@@ -1,0 +1,708 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=Cp1252" />
+<script src="ACTIONS_TAB/report.js" type="text/javascript"></script>
+<link href="ACTIONS_TAB/report.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<div class="banner">
+<table width="98%"><tr>
+<td><h2 class="banner">ACTIONS_TAB</h2></td>
+</tr></table></div>
+<div id="maintabs">
+<div class="currentmaintab" onclick="onSelectMainTab(this, 0)">
+<div>
+<p>Doc</p>
+</div>
+</div>
+<div class="maintab" onclick="onSelectMainTab(this, 1)">
+<div>
+<p>Details</p>
+</div>
+</div>
+<div class="maintab" onclick="onSelectMainTab(this, 2)">
+<div>
+<p>Grants</p>
+</div>
+</div>
+<div class="maintab" onclick="onSelectMainTab(this, 3)">
+<div>
+<p>References</p>
+</div>
+</div>
+<div class="maintab" onclick="onSelectMainTab(this, 4)">
+<div>
+<p>Dependencies</p>
+</div>
+</div>
+<div class="maintab" onclick="onSelectMainTab(this, 5)">
+<div>
+<p>Code</p>
+</div>
+</div>
+</div>
+<br/>
+<div id="masterreports">
+<div id="Master.0">
+<div class="currentmasterreport">
+<TABLE CELLSPACING="0" CELLPADDING="1" WIDTH="100%" BORDER="0">
+<TR><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2">      SUMMARY:  <A HREF="#field_summary">FIELD</A> | <A HREF="#type_summary">TYPE</A> | <A HREF="#method_summary">METHOD</A></FONT></TD><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2"></TR></TABLE><HR><P> Package Actions_Tab</P><HR><P></P><A NAME="method_summary"></A><TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="3" BORDER="1"><TR CLASS="TableHeadingColor"><TD COLSPAN="2"><FONT SIZE="+2"><B>Method Summary</B></FONT></TD><TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#del">del</A></B>( o_id in NUMBER ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; There is no delete trigger for this table</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#get_id">get_id</A></B>( actions_nk1 in VARCHAR2 , actions_nk2 in VARCHAR2 , actions_nk3 in VARCHAR2 , actions_nk4 in NUMBER ) return NUMBER ; </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#get_nk">get_nk</A></B>( id_in in NUMBER ) return varchar2 ; </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; seq</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#get_res_id_by_id_path">get_res_id_by_id_path</A></B>( id_path_in in VARCHAR2 ) return NUMBER ; </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#get_res_id_path">get_res_id_path</A></B>( id_in in NUMBER ) return VARCHAR2 ; </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#get_res_nk_path">get_res_nk_path</A></B>( id_in in NUMBER ) return CLOB ; </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#ins">ins</A></B>( n_rec in out nocopy actions % ROWTYPE ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Can be called from anywhere, except the BI Trigger</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#ins_bi_trigger">ins_bi_trigger</A></B>( n_id in out nocopy NUMBER , n_actions_sub_type in out nocopy VARCHAR2 , n_player_id in out nocopy NUMBER , n_seq in out nocopy NUMBER , n_resolved in out nocopy VARCHAR2 , n_res_action_id in out nocopy NUMBER , n_rev_player_id in out nocopy NUMBER ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Should be called exclusively by the BI Trigger</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#next_seq">next_seq</A></B>( player_id_in in NUMBER ) return number ; </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     A race between 2 transactions can return the same NEXT_SEQ</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#rec_status">rec_status</A></B>( id_in in NUMBER ) return varchar2 ; </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Check Constraints for a actions Record</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#upd">upd</A></B>( o_rec in actions % ROWTYPE , n_rec in out nocopy actions % ROWTYPE ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Note: the OLD values must be provided to check ignore_no_change</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#upd">upd</A></B>( n_rec in out nocopy actions % ROWTYPE ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Note: the OLD values must be provided to check ignore_no_change</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#upd_bu_trigger">upd_bu_trigger</A></B>( o_id in NUMBER , o_actions_sub_type in VARCHAR2 , n_actions_sub_type in out nocopy VARCHAR2 , o_player_id in NUMBER , n_player_id in out nocopy NUMBER , o_seq in NUMBER , n_seq in out nocopy NUMBER , o_resolved in VARCHAR2 , n_resolved in out nocopy VARCHAR2 , o_res_action_id in NUMBER , n_res_action_id in out nocopy NUMBER , o_rev_player_id in NUMBER , n_rev_player_id in out nocopy NUMBER , run_update out boolean ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Note2:  Select for Update Lock is assumed on old values row</TD></TR>
+</TABLE>
+<P></P><A NAME="method_detail"></A><TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="3" BORDER="1"><TR CLASS="TableHeadingColor"><TD COLSPAN="2"><FONT SIZE="+2"><B>Method Detail</B></FONT></TD></TABLE><A NAME="del"></A>
+<H3>del</H3><PRE>          <B>del</B>( o_id in NUMBER ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; There is no delete trigger for this table<DD><DL></DL></DD></DL><HR><A NAME="get_id"></A>
+<H3>get_id</H3><PRE>          <B>get_id</B>( actions_nk1 in VARCHAR2 , actions_nk2 in VARCHAR2 , actions_nk3 in VARCHAR2 , actions_nk4 in NUMBER ) return NUMBER ; </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="get_nk"></A>
+<H3>get_nk</H3><PRE>          <B>get_nk</B>( id_in in NUMBER ) return varchar2 ; </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; seq<DD><DL></DL></DD></DL><HR><A NAME="get_res_id_by_id_path"></A>
+<H3>get_res_id_by_id_path</H3><PRE>          <B>get_res_id_by_id_path</B>( id_path_in in VARCHAR2 ) return NUMBER ; </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="get_res_id_path"></A>
+<H3>get_res_id_path</H3><PRE>          <B>get_res_id_path</B>( id_in in NUMBER ) return VARCHAR2 ; </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="get_res_nk_path"></A>
+<H3>get_res_nk_path</H3><PRE>          <B>get_res_nk_path</B>( id_in in NUMBER ) return CLOB ; </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<DD><DL></DL></DD></DL><HR><A NAME="ins"></A>
+<H3>ins</H3><PRE>          <B>ins</B>( n_rec in out nocopy actions % ROWTYPE ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Can be called from anywhere, except the BI Trigger<DD><DL></DL></DD></DL><HR><A NAME="ins_bi_trigger"></A>
+<H3>ins_bi_trigger</H3><PRE>          <B>ins_bi_trigger</B>( n_id in out nocopy NUMBER , n_actions_sub_type in out nocopy VARCHAR2 , n_player_id in out nocopy NUMBER , n_seq in out nocopy NUMBER , n_resolved in out nocopy VARCHAR2 , n_res_action_id in out nocopy NUMBER , n_rev_player_id in out nocopy NUMBER ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Should be called exclusively by the BI Trigger<DD><DL></DL></DD></DL><HR><A NAME="next_seq"></A>
+<H3>next_seq</H3><PRE>          <B>next_seq</B>( player_id_in in NUMBER ) return number ; </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     A race between 2 transactions can return the same NEXT_SEQ<DD><DL></DL></DD></DL><HR><A NAME="rec_status"></A>
+<H3>rec_status</H3><PRE>          <B>rec_status</B>( id_in in NUMBER ) return varchar2 ; </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Check Constraints for a actions Record<DD><DL></DL></DD></DL><HR><A NAME="upd"></A>
+<H3>upd</H3><PRE>          <B>upd</B>( o_rec in actions % ROWTYPE , n_rec in out nocopy actions % ROWTYPE ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Note: the OLD values must be provided to check ignore_no_change<DD><DL></DL></DD></DL><HR><A NAME="upd"></A>
+<H3>upd</H3><PRE>          <B>upd</B>( n_rec in out nocopy actions % ROWTYPE ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Note: the OLD values must be provided to check ignore_no_change<DD><DL></DL></DD></DL><HR><A NAME="upd_bu_trigger"></A>
+<H3>upd_bu_trigger</H3><PRE>          <B>upd_bu_trigger</B>( o_id in NUMBER , o_actions_sub_type in VARCHAR2 , n_actions_sub_type in out nocopy VARCHAR2 , o_player_id in NUMBER , n_player_id in out nocopy NUMBER , o_seq in NUMBER , n_seq in out nocopy NUMBER , o_resolved in VARCHAR2 , n_resolved in out nocopy VARCHAR2 , o_res_action_id in NUMBER , n_res_action_id in out nocopy NUMBER , o_rev_player_id in NUMBER , n_rev_player_id in out nocopy NUMBER , run_update out boolean ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Note2:  Select for Update Lock is assumed on old values row<DD><DL></DL></DD></DL><HR><TABLE CELLSPACING="0" CELLPADDING="1" WIDTH="100%" BORDER="0">
+<TR><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2">      SUMMARY:  <A HREF="#field_summary">FIELD</A> | <A HREF="#type_summary">TYPE</A> | <A HREF="#method_summary">METHOD</A></FONT></TD><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2"></TR></TABLE></div>
+</div>
+<div id="Master.1">
+<div class="masterreport">
+<table id="Table.0" cellpadding="0" cellspacing="0" summary="">
+<th>NAME</th>
+<th>VALUE</th>
+</tr>
+<tr>
+<td>OWNER</td>
+<td>CLUE</td>
+</tr>
+<tr>
+<td>OBJECT_NAME</td>
+<td>ACTIONS_TAB</td>
+</tr>
+<tr>
+<td>SUBOBJECT_NAME</td>
+<td>null</td>
+</tr>
+<tr>
+<td>OBJECT_ID</td>
+<td>184706</td>
+</tr>
+<tr>
+<td>DATA_OBJECT_ID</td>
+<td>null</td>
+</tr>
+<tr>
+<td>OBJECT_TYPE</td>
+<td>PACKAGE</td>
+</tr>
+<tr>
+<td>CREATED</td>
+<td>16-DEC-2013&nbsp;00:00:00</td>
+</tr>
+<tr>
+<td>LAST_DDL_TIME</td>
+<td>16-DEC-2013&nbsp;00:00:00</td>
+</tr>
+<tr>
+<td>TIMESTAMP</td>
+<td>2013-12-16:11:33:52</td>
+</tr>
+<tr>
+<td>STATUS</td>
+<td>VALID</td>
+</tr>
+<tr>
+<td>TEMPORARY</td>
+<td>N</td>
+</tr>
+<tr>
+<td>GENERATED</td>
+<td>N</td>
+</tr>
+<tr>
+<td>SECONDARY</td>
+<td>N</td>
+</tr>
+<tr>
+<td>NAMESPACE</td>
+<td>1</td>
+</tr>
+<tr>
+<td>EDITION_NAME</td>
+<td>null</td>
+</tr>
+</table>
+</div>
+</div>
+<div id="Master.2">
+<div class="masterreport">
+<table id="Table.1" cellpadding="0" cellspacing="0" summary="">
+<tr>
+<th>PRIVILEGE</th>
+<th>GRANTEE</th>
+<th>GRANTABLE</th>
+<th>GRANTOR</th>
+<th>OBJECT_NAME</th>
+</tr>
+</table>
+</div>
+</div>
+<div id="Master.3">
+<div class="masterreport">
+<table id="Table.2" cellpadding="0" cellspacing="0" summary="">
+<tr>
+<th>NAME</th>
+<th>OWNER</th>
+<th>TYPE</th>
+<th>OBJECT_ID</th>
+<th>STATUS</th>
+<th>TYPE_LINK</th>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 0)" class="currentrow">
+<td class="currentcell">ACTIONS_ACT_IOI</td>
+<td class="currentcell">CLUE</td>
+<td class="currentcell">TRIGGER</td>
+<td class="currentcell">184782</td>
+<td class="currentcell">VALID</td>
+<td class="currentcell">TRIGGER</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 1)">
+<td>ACCUSATION_ACT_IOD</td>
+<td>CLUE</td>
+<td>TRIGGER</td>
+<td>184812</td>
+<td>VALID</td>
+<td>TRIGGER</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 2)">
+<td>REVELATION_ACT</td>
+<td>CLUE</td>
+<td>VIEW</td>
+<td>184814</td>
+<td>VALID</td>
+<td>VIEW</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 3)">
+<td>REVELATION_ACT_IOD</td>
+<td>CLUE</td>
+<td>TRIGGER</td>
+<td>184824</td>
+<td>VALID</td>
+<td>TRIGGER</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 4)">
+<td>ACTION_CARDS_TAB</td>
+<td>CLUE</td>
+<td>PACKAGE&nbsp;BODY</td>
+<td>184715</td>
+<td>VALID</td>
+<td>PACKAGE</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 5)">
+<td>SUGGESTION_ACT_IOI</td>
+<td>CLUE</td>
+<td>TRIGGER</td>
+<td>184834</td>
+<td>VALID</td>
+<td>TRIGGER</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 6)">
+<td>PCARD_ACTIONS_ACT</td>
+<td>CLUE</td>
+<td>VIEW</td>
+<td>184793</td>
+<td>VALID</td>
+<td>VIEW</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 7)">
+<td>PCARD_ACTIONS_ACT_IOU</td>
+<td>CLUE</td>
+<td>TRIGGER</td>
+<td>184799</td>
+<td>VALID</td>
+<td>TRIGGER</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 8)">
+<td>SUGGESTION_ACT_IOD</td>
+<td>CLUE</td>
+<td>TRIGGER</td>
+<td>184836</td>
+<td>VALID</td>
+<td>TRIGGER</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 9)">
+<td>ACTIONS_DML</td>
+<td>CLUE</td>
+<td>PACKAGE&nbsp;BODY</td>
+<td>184781</td>
+<td>VALID</td>
+<td>PACKAGE</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 10)">
+<td>REVELATION_ACT_IOU</td>
+<td>CLUE</td>
+<td>TRIGGER</td>
+<td>184823</td>
+<td>VALID</td>
+<td>TRIGGER</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 11)">
+<td>SUGGESTION_DML</td>
+<td>CLUE</td>
+<td>PACKAGE&nbsp;BODY</td>
+<td>184830</td>
+<td>VALID</td>
+<td>PACKAGE</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 12)">
+<td>SUGGESTION_DML</td>
+<td>CLUE</td>
+<td>PACKAGE</td>
+<td>184829</td>
+<td>VALID</td>
+<td>PACKAGE</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 13)">
+<td>SUGGESTION_IOU</td>
+<td>CLUE</td>
+<td>TRIGGER</td>
+<td>184832</td>
+<td>VALID</td>
+<td>TRIGGER</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 14)">
+<td>ACTIONS_ACT_IOU</td>
+<td>CLUE</td>
+<td>TRIGGER</td>
+<td>184783</td>
+<td>VALID</td>
+<td>TRIGGER</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 15)">
+<td>ACCUSATION_ACT_IOI</td>
+<td>CLUE</td>
+<td>TRIGGER</td>
+<td>184810</td>
+<td>VALID</td>
+<td>TRIGGER</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 16)">
+<td>PCARD_ACTIONS_DML</td>
+<td>CLUE</td>
+<td>PACKAGE</td>
+<td>184796</td>
+<td>VALID</td>
+<td>PACKAGE</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 17)">
+<td>PCARD_ACTIONS_DML</td>
+<td>CLUE</td>
+<td>PACKAGE&nbsp;BODY</td>
+<td>184797</td>
+<td>VALID</td>
+<td>PACKAGE</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 18)">
+<td>CLUE</td>
+<td>CLUE</td>
+<td>PACKAGE&nbsp;BODY</td>
+<td>184837</td>
+<td>VALID</td>
+<td>PACKAGE</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 19)">
+<td>REVELATION_IOI</td>
+<td>CLUE</td>
+<td>TRIGGER</td>
+<td>184819</td>
+<td>VALID</td>
+<td>TRIGGER</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 20)">
+<td>ACTIONS_ACT</td>
+<td>CLUE</td>
+<td>VIEW</td>
+<td>184777</td>
+<td>VALID</td>
+<td>VIEW</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 21)">
+<td>ACCUSATION_IOU</td>
+<td>CLUE</td>
+<td>TRIGGER</td>
+<td>184808</td>
+<td>VALID</td>
+<td>TRIGGER</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 22)">
+<td>REVELATION_IOD</td>
+<td>CLUE</td>
+<td>TRIGGER</td>
+<td>184821</td>
+<td>VALID</td>
+<td>TRIGGER</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 23)">
+<td>PCARD_ACTIONS_TAB</td>
+<td>CLUE</td>
+<td>PACKAGE&nbsp;BODY</td>
+<td>184716</td>
+<td>VALID</td>
+<td>PACKAGE</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 24)">
+<td>ACTIONS_BI</td>
+<td>CLUE</td>
+<td>TRIGGER</td>
+<td>184727</td>
+<td>VALID</td>
+<td>TRIGGER</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 25)">
+<td>ACTIONS_BU</td>
+<td>CLUE</td>
+<td>TRIGGER</td>
+<td>184728</td>
+<td>VALID</td>
+<td>TRIGGER</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 26)">
+<td>ACCUSATION_ACT_IOU</td>
+<td>CLUE</td>
+<td>TRIGGER</td>
+<td>184811</td>
+<td>VALID</td>
+<td>TRIGGER</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 27)">
+<td>ACTIONS_ACT_IOD</td>
+<td>CLUE</td>
+<td>TRIGGER</td>
+<td>184784</td>
+<td>VALID</td>
+<td>TRIGGER</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 28)">
+<td>ACCUSATION_DML</td>
+<td>CLUE</td>
+<td>PACKAGE</td>
+<td>184805</td>
+<td>VALID</td>
+<td>PACKAGE</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 29)">
+<td>REVELATION_IOU</td>
+<td>CLUE</td>
+<td>TRIGGER</td>
+<td>184820</td>
+<td>VALID</td>
+<td>TRIGGER</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 30)">
+<td>SUGGESTION_IOD</td>
+<td>CLUE</td>
+<td>TRIGGER</td>
+<td>184833</td>
+<td>VALID</td>
+<td>TRIGGER</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 31)">
+<td>REVELATION_DML</td>
+<td>CLUE</td>
+<td>PACKAGE&nbsp;BODY</td>
+<td>184818</td>
+<td>VALID</td>
+<td>PACKAGE</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 32)">
+<td>SUGGESTION_ACT_IOU</td>
+<td>CLUE</td>
+<td>TRIGGER</td>
+<td>184835</td>
+<td>VALID</td>
+<td>TRIGGER</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 33)">
+<td>PCARD_ACTIONS_ACT_IOI</td>
+<td>CLUE</td>
+<td>TRIGGER</td>
+<td>184798</td>
+<td>VALID</td>
+<td>TRIGGER</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 34)">
+<td>ACTIONS_TAB</td>
+<td>CLUE</td>
+<td>PACKAGE&nbsp;BODY</td>
+<td>184714</td>
+<td>VALID</td>
+<td>PACKAGE</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 35)">
+<td>ACTIONS_DML</td>
+<td>CLUE</td>
+<td>PACKAGE</td>
+<td>184780</td>
+<td>VALID</td>
+<td>PACKAGE</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 36)">
+<td>ACCUSATION_DML</td>
+<td>CLUE</td>
+<td>PACKAGE&nbsp;BODY</td>
+<td>184806</td>
+<td>VALID</td>
+<td>PACKAGE</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 37)">
+<td>REVELATION_ACT_IOI</td>
+<td>CLUE</td>
+<td>TRIGGER</td>
+<td>184822</td>
+<td>VALID</td>
+<td>TRIGGER</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 38)">
+<td>ACTION_CARDS_DML</td>
+<td>CLUE</td>
+<td>PACKAGE&nbsp;BODY</td>
+<td>184789</td>
+<td>VALID</td>
+<td>PACKAGE</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 39)">
+<td>PCARD_ACTIONS_ACT_IOD</td>
+<td>CLUE</td>
+<td>TRIGGER</td>
+<td>184800</td>
+<td>VALID</td>
+<td>TRIGGER</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 40)">
+<td>ACCUSATION_ACT</td>
+<td>CLUE</td>
+<td>VIEW</td>
+<td>184802</td>
+<td>VALID</td>
+<td>VIEW</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 41)">
+<td>REVELATION_DML</td>
+<td>CLUE</td>
+<td>PACKAGE</td>
+<td>184817</td>
+<td>VALID</td>
+<td>PACKAGE</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 42)">
+<td>SUGGESTION_ACT</td>
+<td>CLUE</td>
+<td>VIEW</td>
+<td>184826</td>
+<td>VALID</td>
+<td>VIEW</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 43)">
+<td>ACCUSATION_IOI</td>
+<td>CLUE</td>
+<td>TRIGGER</td>
+<td>184807</td>
+<td>VALID</td>
+<td>TRIGGER</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 44)">
+<td>ACCUSATION_IOD</td>
+<td>CLUE</td>
+<td>TRIGGER</td>
+<td>184809</td>
+<td>VALID</td>
+<td>TRIGGER</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 45)">
+<td>SUGGESTION_IOI</td>
+<td>CLUE</td>
+<td>TRIGGER</td>
+<td>184831</td>
+<td>VALID</td>
+<td>TRIGGER</td>
+</tr>
+</table>
+</div>
+</div>
+<div id="Master.4">
+<div class="masterreport">
+<table id="Table.3" cellpadding="0" cellspacing="0" summary="">
+<tr>
+<th>NAME</th>
+<th>OWNER</th>
+<th>TYPE</th>
+<th>OBJECT_ID</th>
+<th>STATUS</th>
+<th>TYPE_LINK</th>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 3, 0)" class="currentrow">
+<td class="currentcell">ACTIONS</td>
+<td class="currentcell">CLUE</td>
+<td class="currentcell">TABLE</td>
+<td class="currentcell">184660</td>
+<td class="currentcell">VALID</td>
+<td class="currentcell">TABLE</td>
+</tr>
+</table>
+</div>
+</div>
+<div id="Master.5">
+<div class="masterreport">
+<pre>
+package actions_tab
+is
+
+   -- Package Actions_Tab
+   --    Table functions
+   --    (DML and integrity checks)
+   --
+
+   -- Application: Clue Notes For Oracle
+   -- Generated by DTGen (http://dmstex.com/services/dtgen)
+   -- December  16, 2013  11:32:29 AM
+
+   --
+   --
+   -- © Duane.Dieterich@DMSTEX.com 2013
+   --
+   -- All Rights Reserved
+   --
+   -- No part of this software may be reproduced, copied, modified or adapted,
+   -- without the prior written consent of the author, unless otherwise
+   -- indicated for stand-alone materials.
+   --
+   -- You may quote extracts from this software with attribution to
+   -- Duane.Dieterich@DMSTEX.com
+   --
+   -- For any other mode of sharing, please contact Duane.Dieterich@DMSTEX.com.
+   --
+   -- Commercial use and distribution of this software is not allowed without
+   -- express and prior written consent of the author.
+   --
+   -- THE SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+   -- INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
+   -- AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+   -- THE COPYRIGHT HOLDER OR DMSTEX BUSINESS SOLUTIONS LLC, ITS MEMBERS,
+   -- MANAGERS, OR EMPLOYEES BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+   -- SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+   -- TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+   -- PROFITS; CORRUPTION OF DATA, OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+   -- AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+   -- OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF
+   -- THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
+   -- DAMAGE.
+   --
+   --
+
+
+   -- Indicates the BI/BU/BD Trigger needs to run the TAB Package DML
+   -- NOTE: This package must be local to its table.  If this package
+   --   makes a remote SQL call to its table, the following variable
+   --   will not be set corectly in the remote session
+   run_tab  boolean  := TRUE;
+
+   -- WARNING! NEXT_SEQ does not have exclusive access to max(seq).
+   --     A race between 2 transactions can return the same NEXT_SEQ
+   function next_seq
+      (player_id_in  in  NUMBER
+      ) return number;
+
+   -- Check Constraints for a actions Record
+   function rec_status
+      (id_in  in  NUMBER
+      )  return varchar2;
+
+   function get_id
+      (actions_nk1  in  VARCHAR2  -- players_nk1
+      ,actions_nk2  in  VARCHAR2  -- players_nk2
+      ,actions_nk3  in  VARCHAR2  -- players_nk3
+      ,actions_nk4  in  NUMBER  -- seq
+      ) return NUMBER;
+   function get_nk
+      (id_in  in  NUMBER
+      ) return varchar2;
+
+   function get_res_id_path
+      (id_in  in  NUMBER
+      ) return VARCHAR2;
+   function get_res_nk_path
+      (id_in  in  NUMBER
+      ) return CLOB;
+   function get_res_id_by_id_path
+      (id_path_in  in  VARCHAR2
+      ) return NUMBER;
+
+   -- Should be called exclusively by the BI Trigger
+   procedure ins_bi_trigger
+      (n_id  in out nocopy  NUMBER
+      ,n_actions_sub_type  in out nocopy  VARCHAR2
+      ,n_player_id  in out nocopy  NUMBER
+      ,n_seq  in out nocopy  NUMBER
+      ,n_resolved  in out nocopy  VARCHAR2
+      ,n_res_action_id  in out nocopy  NUMBER
+      ,n_rev_player_id  in out nocopy  NUMBER
+      );
+   -- Can be called from anywhere, except the BI Trigger
+   procedure ins
+      (n_rec  in out nocopy  actions%ROWTYPE
+      );
+
+   -- Should be called exclusively by the BU Trigger
+   --   or the "upd" procedure below
+   -- Note: the OLD values must be provided to check ignore_no_change
+   -- Note2:  Select for Update Lock is assumed on old values row
+   procedure upd_bu_trigger
+      (o_id  in  NUMBER
+      ,o_actions_sub_type  in  VARCHAR2
+      ,n_actions_sub_type  in out nocopy  VARCHAR2
+      ,o_player_id  in  NUMBER
+      ,n_player_id  in out nocopy  NUMBER
+      ,o_seq  in  NUMBER
+      ,n_seq  in out nocopy  NUMBER
+      ,o_resolved  in  VARCHAR2
+      ,n_resolved  in out nocopy  VARCHAR2
+      ,o_res_action_id  in  NUMBER
+      ,n_res_action_id  in out nocopy  NUMBER
+      ,o_rev_player_id  in  NUMBER
+      ,n_rev_player_id  in out nocopy  NUMBER
+      ,run_update  out  boolean
+      );
+   -- Can be called from anywhere, except the BU Trigger
+   -- Note: the OLD values must be provided to check ignore_no_change
+   procedure upd
+      (o_rec  in             actions%ROWTYPE
+      ,n_rec  in out nocopy  actions%ROWTYPE
+      );
+   -- Can be called from anywhere, except the BU Trigger
+   -- Note: the OLD values must be provided to check ignore_no_change
+   procedure upd
+      (n_rec  in out nocopy  actions%ROWTYPE
+      );
+
+   -- There is no delete trigger for this table
+   procedure del
+      (o_id  in  NUMBER
+      );
+
+end actions_tab;</pre>
+</div>
+</div>
+</div>
+</body>
+</html>

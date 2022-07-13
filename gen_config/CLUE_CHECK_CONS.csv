@@ -1,0 +1,6 @@
+"KEY---------------------------","TABLES_NK1","TABLES_NK2","SEQ","TEXT","DESCRIPTION","EOL,"
+"CHECK_CONS--------------------","CLUE","ACT",1,"seq > 0","Action Sequence number must be greater than zero","EOL,"
+"CHECK_CONS--------------------","CLUE","ACT",2,"actions_sub_type != 'suggestion' or resolved in ('NOT','UND') or res_action_id is not null","Resolved Suggestions must have a Resolved Action ID","EOL,"
+"CHECK_CONS--------------------","CLUE","ACT",3,"resolved not in ('NOT','UND') or res_action_id is null","Unresolved Actions cannot have a Resolved Action ID","EOL,"
+"CHECK_CONS--------------------","CLUE","GAM",1,"last_act_num >= 0","Number of Last Actions to Display must be greater than or equal to zero","EOL,"
+"CHECK_CONS--------------------","CLUE","PLY",1,"total_cards >= 0","Number of Total Cards for a Player must be greater than or equal to zero","EOL,"

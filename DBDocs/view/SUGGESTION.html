@@ -1,0 +1,730 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=Cp1252" />
+<script src="SUGGESTION/report.js" type="text/javascript"></script>
+<link href="SUGGESTION/report.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<div class="banner">
+<table width="98%"><tr>
+<td><h2 class="banner">SUGGESTION</h2></td>
+</tr></table></div>
+<div id="maintabs">
+<div class="currentmaintab" onclick="onSelectMainTab(this, 0)">
+<div>
+<p>Columns</p>
+</div>
+</div>
+<div class="maintab" onclick="onSelectMainTab(this, 1)">
+<div>
+<p>Grants</p>
+</div>
+</div>
+<div class="maintab" onclick="onSelectMainTab(this, 2)">
+<div>
+<p>Dependencies</p>
+</div>
+</div>
+<div class="maintab" onclick="onSelectMainTab(this, 3)">
+<div>
+<p>Details</p>
+</div>
+</div>
+<div class="maintab" onclick="onSelectMainTab(this, 4)">
+<div>
+<p>Triggers</p>
+</div>
+</div>
+</div>
+<br/>
+<div id="masterreports">
+<div id="Master.0">
+<div class="currentmasterreport">
+<table id="Table.0" cellpadding="0" cellspacing="0" summary="">
+<tr>
+<th>COLUMN_NAME</th>
+<th>DATA_TYPE</th>
+<th>NULLABLE</th>
+<th>DATA_DEFAULT</th>
+<th>COLUMN_ID</th>
+<th>COMMENTS</th>
+<th>INSERTABLE</th>
+<th>UPDATABLE</th>
+<th>DELETABLE</th>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 0, 0)" class="currentrow">
+<td class="currentcell">ID</td>
+<td class="currentcell">NUMBER(38)</td>
+<td class="currentcell">No</td>
+<td class="currentcell">null</td>
+<td class="currentcell">1</td>
+<td class="currentcell">Surrogate&nbsp;Primary&nbsp;Key&nbsp;for&nbsp;these&nbsp;actions</td>
+<td class="currentcell">YES</td>
+<td class="currentcell">YES</td>
+<td class="currentcell">YES</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 0, 1)">
+<td>PLAYER_ID</td>
+<td>NUMBER(38)</td>
+<td>No</td>
+<td>null</td>
+<td>2</td>
+<td>Player&nbsp;that&nbsp;took&nbsp;this&nbsp;Action</td>
+<td>YES</td>
+<td>YES</td>
+<td>YES</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 0, 2)">
+<td>SEQ</td>
+<td>NUMBER(3)</td>
+<td>No</td>
+<td>null</td>
+<td>3</td>
+<td>Sequence&nbsp;Number&nbsp;for&nbsp;this&nbsp;Action</td>
+<td>YES</td>
+<td>YES</td>
+<td>YES</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 0, 3)">
+<td>RESOLVED</td>
+<td>VARCHAR2(3)</td>
+<td>No</td>
+<td>null</td>
+<td>4</td>
+<td>Resolved&nbsp;Status&nbsp;for&nbsp;this&nbsp;Action</td>
+<td>YES</td>
+<td>YES</td>
+<td>YES</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 0, 4)">
+<td>RES_ACTION_ID</td>
+<td>NUMBER(38)</td>
+<td>Yes</td>
+<td>null</td>
+<td>5</td>
+<td>(suggestion&nbsp;Sub-type)&nbsp;The&nbsp;current&nbsp;Action&nbsp;when&nbsp;this&nbsp;Suggestion&nbsp;was&nbsp;resolved</td>
+<td>YES</td>
+<td>YES</td>
+<td>YES</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 0, 5)">
+<td>REV_PLAYER_ID</td>
+<td>NUMBER(38)</td>
+<td>Yes</td>
+<td>null</td>
+<td>6</td>
+<td>(suggestion&nbsp;Sub-type)&nbsp;Player&nbsp;that&nbsp;reveled&nbsp;a&nbsp;card&nbsp;for&nbsp;this&nbsp;Suggestion</td>
+<td>YES</td>
+<td>YES</td>
+<td>YES</td>
+</tr>
+</table>
+</div>
+</div>
+<div id="Master.1">
+<div class="masterreport">
+<table id="Table.1" cellpadding="0" cellspacing="0" summary="">
+<tr>
+<th>PRIVILEGE</th>
+<th>GRANTEE</th>
+<th>GRANTABLE</th>
+<th>GRANTOR</th>
+<th>OBJECT_NAME</th>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 1, 0)" class="currentrow">
+<td class="currentcell">DELETE</td>
+<td class="currentcell">CLUE_APP</td>
+<td class="currentcell">NO</td>
+<td class="currentcell">CLUE</td>
+<td class="currentcell">SUGGESTION</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 1, 1)">
+<td>INSERT</td>
+<td>CLUE_APP</td>
+<td>NO</td>
+<td>CLUE</td>
+<td>SUGGESTION</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 1, 2)">
+<td>SELECT</td>
+<td>CLUE_APP</td>
+<td>NO</td>
+<td>CLUE</td>
+<td>SUGGESTION</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 1, 3)">
+<td>UPDATE</td>
+<td>CLUE_APP</td>
+<td>NO</td>
+<td>CLUE</td>
+<td>SUGGESTION</td>
+</tr>
+</table>
+</div>
+</div>
+<div id="Master.2">
+<div class="masterreport">
+<table id="Table.2" cellpadding="0" cellspacing="0" summary="">
+<tr>
+<th>OWNER</th>
+<th>NAME</th>
+<th>TYPE</th>
+<th>REFERENCED_OWNER</th>
+<th>REFERENCED_NAME</th>
+<th>REFERENCED_TYPE</th>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 0)" class="currentrow">
+<td class="currentcell">CLUE</td>
+<td class="currentcell">CLUE</td>
+<td class="currentcell">PACKAGE&nbsp;BODY</td>
+<td class="currentcell">CLUE</td>
+<td class="currentcell">SUGGESTION</td>
+<td class="currentcell">VIEW</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 1)">
+<td>CLUE</td>
+<td>SUGGESTION_DML</td>
+<td>PACKAGE</td>
+<td>CLUE</td>
+<td>SUGGESTION</td>
+<td>VIEW</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 2)">
+<td>CLUE</td>
+<td>SUGGESTION_DML</td>
+<td>PACKAGE&nbsp;BODY</td>
+<td>CLUE</td>
+<td>SUGGESTION</td>
+<td>VIEW</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 3)">
+<td>CLUE</td>
+<td>SUGGESTION_IOI</td>
+<td>TRIGGER</td>
+<td>CLUE</td>
+<td>SUGGESTION</td>
+<td>VIEW</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 4)">
+<td>CLUE</td>
+<td>SUGGESTION_IOU</td>
+<td>TRIGGER</td>
+<td>CLUE</td>
+<td>SUGGESTION</td>
+<td>VIEW</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 5)">
+<td>CLUE</td>
+<td>SUGGESTION_IOD</td>
+<td>TRIGGER</td>
+<td>CLUE</td>
+<td>SUGGESTION</td>
+<td>VIEW</td>
+</tr>
+</table>
+<br/>
+<hr/>
+<br/><div id="ChildTabs.2">
+<div class="currentchildtab" onclick="onSelectChildTab(this, 0)">
+<div>
+<p>References</p>
+</div>
+</div>
+</div>
+<br/>
+<div id="ChildReports.2">
+<div id="Child.0.0.2">
+<div class="currentchildreport"><table id="Table.3" cellpadding="0" cellspacing="0" summary="">
+<tr>
+<th>OWNER</th>
+<th>NAME</th>
+<th>TYPE</th>
+<th>REFERENCED_OWNER</th>
+<th>REFERENCED_NAME</th>
+<th>REFERENCED_TYPE</th>
+</tr>
+<tr onclick="table_onSelectRow(this, 3)" class="currentrow">
+<td class="currentcell">CLUE</td>
+<td class="currentcell">SUGGESTION</td>
+<td class="currentcell">VIEW</td>
+<td class="currentcell">CLUE</td>
+<td class="currentcell">ACTIONS</td>
+<td class="currentcell">TABLE</td>
+</tr>
+<tr onclick="table_onSelectRow(this, 3)">
+<td>CLUE</td>
+<td>SUGGESTION</td>
+<td>VIEW</td>
+<td>CLUE</td>
+<td>PLAYERS_ACT</td>
+<td>VIEW</td>
+</tr>
+</table>
+</div>
+</div>
+<div id="Child.0.1.2">
+<div class="childreport"><table id="Table.4" cellpadding="0" cellspacing="0" summary="">
+<tr>
+<th>OWNER</th>
+<th>NAME</th>
+<th>TYPE</th>
+<th>REFERENCED_OWNER</th>
+<th>REFERENCED_NAME</th>
+<th>REFERENCED_TYPE</th>
+</tr>
+<tr onclick="table_onSelectRow(this, 4)" class="currentrow">
+<td class="currentcell">CLUE</td>
+<td class="currentcell">SUGGESTION</td>
+<td class="currentcell">VIEW</td>
+<td class="currentcell">CLUE</td>
+<td class="currentcell">ACTIONS</td>
+<td class="currentcell">TABLE</td>
+</tr>
+<tr onclick="table_onSelectRow(this, 4)">
+<td>CLUE</td>
+<td>SUGGESTION</td>
+<td>VIEW</td>
+<td>CLUE</td>
+<td>PLAYERS_ACT</td>
+<td>VIEW</td>
+</tr>
+</table>
+</div>
+</div>
+<div id="Child.0.2.2">
+<div class="childreport"><table id="Table.5" cellpadding="0" cellspacing="0" summary="">
+<tr>
+<th>OWNER</th>
+<th>NAME</th>
+<th>TYPE</th>
+<th>REFERENCED_OWNER</th>
+<th>REFERENCED_NAME</th>
+<th>REFERENCED_TYPE</th>
+</tr>
+<tr onclick="table_onSelectRow(this, 5)" class="currentrow">
+<td class="currentcell">CLUE</td>
+<td class="currentcell">SUGGESTION</td>
+<td class="currentcell">VIEW</td>
+<td class="currentcell">CLUE</td>
+<td class="currentcell">ACTIONS</td>
+<td class="currentcell">TABLE</td>
+</tr>
+<tr onclick="table_onSelectRow(this, 5)">
+<td>CLUE</td>
+<td>SUGGESTION</td>
+<td>VIEW</td>
+<td>CLUE</td>
+<td>PLAYERS_ACT</td>
+<td>VIEW</td>
+</tr>
+</table>
+</div>
+</div>
+<div id="Child.0.3.2">
+<div class="childreport"><table id="Table.6" cellpadding="0" cellspacing="0" summary="">
+<tr>
+<th>OWNER</th>
+<th>NAME</th>
+<th>TYPE</th>
+<th>REFERENCED_OWNER</th>
+<th>REFERENCED_NAME</th>
+<th>REFERENCED_TYPE</th>
+</tr>
+<tr onclick="table_onSelectRow(this, 6)" class="currentrow">
+<td class="currentcell">CLUE</td>
+<td class="currentcell">SUGGESTION</td>
+<td class="currentcell">VIEW</td>
+<td class="currentcell">CLUE</td>
+<td class="currentcell">ACTIONS</td>
+<td class="currentcell">TABLE</td>
+</tr>
+<tr onclick="table_onSelectRow(this, 6)">
+<td>CLUE</td>
+<td>SUGGESTION</td>
+<td>VIEW</td>
+<td>CLUE</td>
+<td>PLAYERS_ACT</td>
+<td>VIEW</td>
+</tr>
+</table>
+</div>
+</div>
+<div id="Child.0.4.2">
+<div class="childreport"><table id="Table.7" cellpadding="0" cellspacing="0" summary="">
+<tr>
+<th>OWNER</th>
+<th>NAME</th>
+<th>TYPE</th>
+<th>REFERENCED_OWNER</th>
+<th>REFERENCED_NAME</th>
+<th>REFERENCED_TYPE</th>
+</tr>
+<tr onclick="table_onSelectRow(this, 7)" class="currentrow">
+<td class="currentcell">CLUE</td>
+<td class="currentcell">SUGGESTION</td>
+<td class="currentcell">VIEW</td>
+<td class="currentcell">CLUE</td>
+<td class="currentcell">ACTIONS</td>
+<td class="currentcell">TABLE</td>
+</tr>
+<tr onclick="table_onSelectRow(this, 7)">
+<td>CLUE</td>
+<td>SUGGESTION</td>
+<td>VIEW</td>
+<td>CLUE</td>
+<td>PLAYERS_ACT</td>
+<td>VIEW</td>
+</tr>
+</table>
+</div>
+</div>
+<div id="Child.0.5.2">
+<div class="childreport"><table id="Table.8" cellpadding="0" cellspacing="0" summary="">
+<tr>
+<th>OWNER</th>
+<th>NAME</th>
+<th>TYPE</th>
+<th>REFERENCED_OWNER</th>
+<th>REFERENCED_NAME</th>
+<th>REFERENCED_TYPE</th>
+</tr>
+<tr onclick="table_onSelectRow(this, 8)" class="currentrow">
+<td class="currentcell">CLUE</td>
+<td class="currentcell">SUGGESTION</td>
+<td class="currentcell">VIEW</td>
+<td class="currentcell">CLUE</td>
+<td class="currentcell">ACTIONS</td>
+<td class="currentcell">TABLE</td>
+</tr>
+<tr onclick="table_onSelectRow(this, 8)">
+<td>CLUE</td>
+<td>SUGGESTION</td>
+<td>VIEW</td>
+<td>CLUE</td>
+<td>PLAYERS_ACT</td>
+<td>VIEW</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="Master.3">
+<div class="masterreport">
+<table id="Table.9" cellpadding="0" cellspacing="0" summary="">
+<th>NAME</th>
+<th>VALUE</th>
+</tr>
+<tr>
+<td>CREATED</td>
+<td>16-DEC-2013&nbsp;00:00:00</td>
+</tr>
+<tr>
+<td>LAST_DDL_TIME</td>
+<td>16-DEC-2013&nbsp;00:00:00</td>
+</tr>
+<tr>
+<td>OWNER</td>
+<td>CLUE</td>
+</tr>
+<tr>
+<td>VIEW_NAME</td>
+<td>SUGGESTION</td>
+</tr>
+<tr>
+<td>TEXT_LENGTH</td>
+<td>168</td>
+</tr>
+<tr>
+<td>TEXT</td>
+<td>select
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,player_id
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,seq
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,resolved
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,res_action_id
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;,rev_player_id
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;&nbsp;actions
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;where&nbsp;actions_sub_type&nbsp;=&nbsp;'suggestion'</td>
+</tr>
+<tr>
+<td>TYPE_TEXT_LENGTH</td>
+<td>null</td>
+</tr>
+<tr>
+<td>TYPE_TEXT</td>
+<td>null</td>
+</tr>
+<tr>
+<td>OID_TEXT_LENGTH</td>
+<td>null</td>
+</tr>
+<tr>
+<td>OID_TEXT</td>
+<td>null</td>
+</tr>
+<tr>
+<td>VIEW_TYPE_OWNER</td>
+<td>null</td>
+</tr>
+<tr>
+<td>VIEW_TYPE</td>
+<td>null</td>
+</tr>
+<tr>
+<td>SUPERVIEW_NAME</td>
+<td>null</td>
+</tr>
+<tr>
+<td>EDITIONING_VIEW</td>
+<td>N</td>
+</tr>
+<tr>
+<td>READ_ONLY</td>
+<td>N</td>
+</tr>
+</table>
+</div>
+</div>
+<div id="Master.4">
+<div class="masterreport">
+<table id="Table.10" cellpadding="0" cellspacing="0" summary="">
+<tr>
+<th>TRIGGER_NAME</th>
+<th>TRIGGER_TYPE</th>
+<th>TRIGGERING_EVENT</th>
+<th>STATUS</th>
+<th>OBJECT_ID</th>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 10, 0)" class="currentrow">
+<td class="currentcell">SUGGESTION_IOI</td>
+<td class="currentcell">INSTEAD&nbsp;OF</td>
+<td class="currentcell">INSERT</td>
+<td class="currentcell">ENABLED</td>
+<td class="currentcell">184831</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 10, 1)">
+<td>SUGGESTION_IOU</td>
+<td>INSTEAD&nbsp;OF</td>
+<td>UPDATE</td>
+<td>ENABLED</td>
+<td>184832</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 10, 2)">
+<td>SUGGESTION_IOD</td>
+<td>INSTEAD&nbsp;OF</td>
+<td>DELETE</td>
+<td>ENABLED</td>
+<td>184833</td>
+</tr>
+</table>
+<br/>
+<hr/>
+<br/><div id="ChildTabs.4">
+<div class="currentchildtab" onclick="onSelectChildTab(this, 0)">
+<div>
+<p></p>
+</div>
+</div>
+</div>
+<br/>
+<div id="ChildReports.4">
+<div id="Child.0.0.4">
+<div class="currentchildreport"><pre>
+
+  CREATE OR REPLACE TRIGGER "CLUE"."SUGGESTION_IOI" 
+   instead of insert on suggestion
+   for each row
+declare
+
+   -- Trigger Suggestion_Ioi
+
+   -- Application: Clue Notes For Oracle
+   -- Generated by DTGen (http://dmstex.com/services/dtgen)
+   -- December  16, 2013  11:32:34 AM
+
+   --
+   --
+   -- © Duane.Dieterich@DMSTEX.com 2013
+   --
+   -- All Rights Reserved
+   --
+   -- No part of this software may be reproduced, copied, modified or adapted,
+   -- without the prior written consent of the author, unless otherwise
+   -- indicated for stand-alone materials.
+   --
+   -- You may quote extracts from this software with attribution to
+   -- Duane.Dieterich@DMSTEX.com
+   --
+   -- For any other mode of sharing, please contact Duane.Dieterich@DMSTEX.com.
+   --
+   -- Commercial use and distribution of this software is not allowed without
+   -- express and prior written consent of the author.
+   --
+   -- THE SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+   -- INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
+   -- AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+   -- THE COPYRIGHT HOLDER OR DMSTEX BUSINESS SOLUTIONS LLC, ITS MEMBERS,
+   -- MANAGERS, OR EMPLOYEES BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+   -- SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+   -- TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+   -- PROFITS; CORRUPTION OF DATA, OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+   -- AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+   -- OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF
+   -- THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
+   -- DAMAGE.
+   --
+   --
+
+
+   new_rec  actions%ROWTYPE;
+   start_tstamp  timestamp := systimestamp;
+begin
+   new_rec.id := :new.id;
+   new_rec.player_id := :new.player_id;
+   new_rec.seq := :new.seq;
+   new_rec.resolved := :new.resolved;
+   new_rec.res_action_id := :new.res_action_id;
+   new_rec.rev_player_id := :new.rev_player_id;
+   new_rec.actions_sub_type := 'suggestion';
+   actions_tab.ins(new_rec);
+   util.trc_time_interval('suggestion_ioi trigger ID:' || :new.id, start_tstamp);
+end suggestion_ioi;
+ALTER TRIGGER "CLUE"."SUGGESTION_IOI" ENABLE</pre>
+</div>
+</div>
+<div id="Child.0.1.4">
+<div class="childreport"><pre>
+
+  CREATE OR REPLACE TRIGGER "CLUE"."SUGGESTION_IOU" 
+   instead of update on suggestion
+   for each row
+declare
+
+   -- Trigger Suggestion_Iou
+
+   -- Application: Clue Notes For Oracle
+   -- Generated by DTGen (http://dmstex.com/services/dtgen)
+   -- December  16, 2013  11:32:34 AM
+
+   --
+   --
+   -- © Duane.Dieterich@DMSTEX.com 2013
+   --
+   -- All Rights Reserved
+   --
+   -- No part of this software may be reproduced, copied, modified or adapted,
+   -- without the prior written consent of the author, unless otherwise
+   -- indicated for stand-alone materials.
+   --
+   -- You may quote extracts from this software with attribution to
+   -- Duane.Dieterich@DMSTEX.com
+   --
+   -- For any other mode of sharing, please contact Duane.Dieterich@DMSTEX.com.
+   --
+   -- Commercial use and distribution of this software is not allowed without
+   -- express and prior written consent of the author.
+   --
+   -- THE SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+   -- INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
+   -- AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+   -- THE COPYRIGHT HOLDER OR DMSTEX BUSINESS SOLUTIONS LLC, ITS MEMBERS,
+   -- MANAGERS, OR EMPLOYEES BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+   -- SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+   -- TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+   -- PROFITS; CORRUPTION OF DATA, OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+   -- AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+   -- OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF
+   -- THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
+   -- DAMAGE.
+   --
+   --
+
+
+   old_rec  actions%ROWTYPE;
+   new_rec  actions%ROWTYPE;
+   start_tstamp  timestamp := systimestamp;
+begin
+   old_rec.id := :old.id;
+   new_rec.id := :new.id;
+   old_rec.player_id := :old.player_id;
+   new_rec.player_id := :new.player_id;
+   old_rec.seq := :old.seq;
+   new_rec.seq := :new.seq;
+   old_rec.resolved := :old.resolved;
+   new_rec.resolved := :new.resolved;
+   old_rec.res_action_id := :old.res_action_id;
+   new_rec.res_action_id := :new.res_action_id;
+   old_rec.rev_player_id := :old.rev_player_id;
+   new_rec.rev_player_id := :new.rev_player_id;
+   old_rec.actions_sub_type := 'suggestion';
+   new_rec.actions_sub_type := 'suggestion';
+   actions_tab.upd(old_rec, new_rec);
+   util.trc_time_interval('suggestion_iou trigger ID:' || :old.id, start_tstamp);
+end suggestion_iou;
+ALTER TRIGGER "CLUE"."SUGGESTION_IOU" ENABLE</pre>
+</div>
+</div>
+<div id="Child.0.2.4">
+<div class="childreport"><pre>
+
+  CREATE OR REPLACE TRIGGER "CLUE"."SUGGESTION_IOD" 
+   instead of delete on suggestion
+   for each row
+declare
+
+   -- Trigger Suggestion_Iod
+
+   -- Application: Clue Notes For Oracle
+   -- Generated by DTGen (http://dmstex.com/services/dtgen)
+   -- December  16, 2013  11:32:34 AM
+
+   --
+   --
+   -- © Duane.Dieterich@DMSTEX.com 2013
+   --
+   -- All Rights Reserved
+   --
+   -- No part of this software may be reproduced, copied, modified or adapted,
+   -- without the prior written consent of the author, unless otherwise
+   -- indicated for stand-alone materials.
+   --
+   -- You may quote extracts from this software with attribution to
+   -- Duane.Dieterich@DMSTEX.com
+   --
+   -- For any other mode of sharing, please contact Duane.Dieterich@DMSTEX.com.
+   --
+   -- Commercial use and distribution of this software is not allowed without
+   -- express and prior written consent of the author.
+   --
+   -- THE SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+   -- INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
+   -- AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+   -- THE COPYRIGHT HOLDER OR DMSTEX BUSINESS SOLUTIONS LLC, ITS MEMBERS,
+   -- MANAGERS, OR EMPLOYEES BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+   -- SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+   -- TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+   -- PROFITS; CORRUPTION OF DATA, OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+   -- AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+   -- OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF
+   -- THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
+   -- DAMAGE.
+   --
+   --
+
+
+   start_tstamp  timestamp := systimestamp;
+begin
+   actions_tab.del(:old.id);
+   util.trc_time_interval('suggestion_iod trigger ID:' || :old.id, start_tstamp);
+end suggestion_iod;
+ALTER TRIGGER "CLUE"."SUGGESTION_IOD" ENABLE</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

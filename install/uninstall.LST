@@ -1,0 +1,98 @@
+
+This will remove the following from the database:
+
+-) APEX Workspace DMSTEX
+-) Application User DMSTEX
+-) Schema Owner CLUE
+-) Application Roles for CLUE
+
+Press ENTER to continue
+
+
+SCRIPT_NAME
+-----------------------------
+=== CLUE create_util_flow ===
+
+SCRIPT_NAME
+----------------------------
+=== CLUE drop_flow_maint ===
+   APPLICATION 104 - NOTE1
+  Set Credentials...
+  Check Compatibility...
+API Last Extended:20120101
+Your Current Version:20120101
+This import is compatible with version: 20100513
+COMPATIBLE (You should be able to run this import without issues.)
+
+  Set Application ID...
+  ...application processes
+  ...Remove page 1000
+  ...Remove page 1001
+  ...Remove page 1002
+  ...Remove page 1003
+  ...Remove page 1011
+  ...Remove page 1012
+  ...Remove page 1013
+  ...Remove page 1014
+  ...Remove page 1015
+  ...Remove page 1200
+  ...Remove page 1201
+  ...Remove page 1202
+  ...Remove page 1203
+  ...Remove page 1211
+  ...Remove page 1212
+  ...Remove page 1213
+  ...Remove page 1214
+  ...Remove page 1215
+  ...Remove page 1400
+  ...Remove page 1600
+  ...Remove page 1800
+
+SCRIPT_NAME
+--------------------------
+=== CLUE drop_flow_lov ===
+
+SCRIPT_NAME
+-----------------------
+=== CLUE drop_uidef ===
+  Set Credentials...
+  Check Compatibility...
+API Last Extended:20120101
+Your Current Version:20120101
+This import is compatible with version: 20100513
+COMPATIBLE (You should be able to run this import without issues.)
+
+  Set Application ID...
+SCHEMA DMSTEX - User Interface Defaults, Table users Defaults
+SCHEMA DMSTEX - User Interface Defaults, Table card_types Defaults
+SCHEMA DMSTEX - User Interface Defaults, Table games Defaults
+SCHEMA DMSTEX - User Interface Defaults, Table players Defaults
+SCHEMA DMSTEX - User Interface Defaults, Table cards Defaults
+SCHEMA DMSTEX - User Interface Defaults, Table actions Defaults
+SCHEMA DMSTEX - User Interface Defaults, Table accusation Defaults
+SCHEMA DMSTEX - User Interface Defaults, Table revelation Defaults
+SCHEMA DMSTEX - User Interface Defaults, Table suggestion Defaults
+SCHEMA DMSTEX - User Interface Defaults, Table action_cards Defaults
+SCHEMA DMSTEX - User Interface Defaults, Table pcard_actions Defaults
+old   3:       (p_workspace         => '&1.'
+new   3:       (p_workspace         => 'DMSTEX'
+old   1: drop user &1. cascade
+new   1: drop user DMSTEX cascade
+
+User dropped.
+
+old   1: drop user &1. cascade
+new   1: drop user CLUE cascade
+
+User dropped.
+
+old   1: drop role &1._adm
+new   1: drop role CLUE_adm
+
+Role dropped.
+
+old   1: drop role &1._app
+new   1: drop role CLUE_app
+
+Role dropped.
+

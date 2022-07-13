@@ -1,0 +1,281 @@
+
+Need to remove most all locks and "wait" from util package because
+ apex.oracle.com doesn't allow access to DBMS_LOCKS.
+
+
+Enhancement) Number of Player Cards by Card Type
+Enhancement) Players separated from Game Players
+
+
+Secret     GREEN    BILLIARD      CANDLESTICK
+ME         MUSTARD  CONSERVATORY  ROPE
+Michiet    PEACOCK  DINING        KNIFE
+Elizabeth  PLUM     HALL          PIPE
+Zachary    SCARLET  KITCHEN       REVOLVER
+Nina       WHITE    LIBRARY       STUDY
+Olympia    BALL     LOUNGE        WRENCH
+
+Data from failed accusations is unusable (a mistake was made that could
+include the player ignoring a card they hold).
+
+Resolved Domain (for Suggestions)
+---------------
+  NOT - Not Resolved
+  REV - Resolved through a REVEAL
+  DED - Resolved through a DEDUCTION
+
+Dispositions Domain (For Player Card Actions)
+-------------------
+User Entered:
+  HREV - (Hold) Player revealed to me they have the card.
+  LREV - (Lack) Eliminated with other player revealed card.
+Suggestion Based:
+  LPAS - (Lack) Player passed because they do not have the card.
+Batch Processed (One of 3 cards player revealed to another player):
+  HDED - (Hold) Deduced to be this card.
+  LELT - (Lack) Eliminated as too many cards of type.
+  LELP - (Lack) Eliminated as too many cards for player.
+
+Users
+-----
+Name
+
+Default Users
+-------------
+Default
+
+Card Types
+----------
+User FK
+Name
+Sort Order
+
+Default Card Types
+------------------
+Default, Character
+Default, Room
+Default, Weapon
+
+Games
+-----
+Users FK
+Name
+Number of Last Actions to Display
+Completed Flag
+Hide Accusations
+Hide Missing Cards
+Hide My Suggestions
+Hide Player Cards
+Hide Suggestion History
+
+Default Game
+------------
+Default, Default, 3
+
+Players
+-------
+Game FK
+Name
+Sequence
+Total Cards - Number(2)
+
+Players in Default Game
+-----------------------
+Default, Default, Me, 0
+
+Cards
+-----
+Game FK
+Name
+Card Type FK
+
+Cards in Default Game
+---------------------
+Default, Default, Scarlet, Character
+Default, Default, Mustard, Character
+Default, Default, White, Character
+Default, Default, Green, Character
+Default, Default, Peacock, Character
+Default, Default, Plum, Character
+Default, Default, Hall, Room
+Default, Default, Lounge, Room
+Default, Default, Dining, Room
+Default, Default, Kitchen, Room
+Default, Default, Ball, Room
+Default, Default, Conservatory, Room
+Default, Default, Billard, Room
+Default, Default, Library, Room
+Default, Default, Study, Room
+Default, Default, Rope, Weapon
+Default, Default, Pipe, Weapon
+Default, Default, Knife, Weapon
+Default, Default, Wrench, Weapon
+Default, Default, Candlestick, Weapon
+Default, Default, Revolver, Weapon
+
+Actions (ACT Cluster)
+-------
+Actions Sub Type
+Player FK
+Sequence
+Resolved - Resolved Domain
+Resolved Guess FK (Suggestion Subtype)
+Reveal Player FK - Optional (Suggestion Subtype)
+
+Action Cards
+------------
+Action FK (ACT Cluster)
+Card FK
+
+Players Cards
+-------------
+Card FK
+Disposition - Dispositions Domain
+Player FK
+Action FK
+
+
+clue package
+------------
+proc_hded (act_id_in)
+  -) For all NOT resolved suggestions, loop
+  -)   For each card type in this game, loop
+  -)     Mark card HDED and suggestion DED
+         if other card types in this suggestion are LACK
+         for the suggestion player
+proc_lelt (act_id_in)
+  -) For each card type in this game with HOLD count =
+       player count (including me) + 1 (envelope card), loop
+  -)   Mark all players LELT for this card type
+       that are not already marked
+proc_lelp (act_id_in)
+  -) For each player with HOLD count = player card count, loop
+  -)   Mark all cards LELP that are not already marked for this player
+proc_act (action_id)
+  -) Until no changes, loop
+  -)   proc_hded (action_id)
+  -)   proc_lelt (action_id)
+  -)   proc_lelp (action_id)
+------------
+set
+  -) USER, GAME
+get
+  -) USER, GAME
+act_seq
+  -) Return max(actions.seq) for the game
+get_acards (action_id)
+  -) Return a card list for the action_id
+delete_game (uname_in, gname_in)
+  -) delete guess_details
+  -) delete guesses
+  -) delete player_cards
+  -) delete players
+  -) delete cards
+  -) delete games
+delete_user (uname_in)
+  -) For all User's Games, delete_game
+  -) delete card_types
+  -) delete users
+init_user (uname_in)
+  -) Create user as needed
+  -) Create Card Types for user as needed
+  -) Set user_name
+init_game (gname_in, copy_in default null)
+  -) Create game for set_user as needed
+  -) Create Cards for Game
+  -) Create Players for Game
+  -) Set game_name
+add_rev
+  -) Add a Reveal Action
+  -) Add Reveal Action Cards
+  -) Add Player Card Actions (LREV and HREV)
+  -) Mark all NOT resolved suggestions with this card as REV
+  -) proc_sugg
+add_sugg (pname_in, rvl_pname_in, rvl_cname_in, card_aa_in)
+  -) Add a Suggest Action
+  -) Add Suggest Action Cards
+  -) For all players between suggestion and reveal at act_seq, loop
+  -)   set LPAS for player card action
+  -) If rvl_cname is set, add_rev, else proc_sugg
+add_acc (pname_in, card_aa_in)
+  -) Add an Accuse Action
+  -) Add Accuse Action Cards
+undo_action
+  -) Remove Player Card Actions for this Action
+  -) Remove Action Cards for this Action
+  -) Set Referenced Actions and set NOT Resolved for Resolved Suggestions
+  -) Mark Action as 'UND'
+
+Main Screen:
+ -) Accusations:
+ -) Missing Cards:
+ -) Last "last_act_num" Actions (with 1 UNDO Button)
+ -) Add Guess (with Commit Button)
+ -) Add Reveal (with Commit Button)
+ -) Suggestions made by ME:
+ -) Player Cards:
+ -) Undo Actions:
+ -) Suggestion History
+
+Game Check Screen:
+ -) Check Sum of total_cards + number of card types in game = Card Count
+ -) Check for player cards with both held and lacked
+ -) Check all accusations have one card of each type in game (action cards)
+ -) Check all reveals have at least one action card
+ -) Check all suggestions have one card of each type in game (action cards)
+
+Other Screens:
+ -) Game                (update anytime)
+ -) Card Types          (change only when act_seq is null)
+ -) Cards               (change only when act_seq is null)
+ -) Players             (change only when act_seq is null)
+ -) Actions             (Interactive Report with get_acards)
+ -) Action Cards        (Interactive Report with Action Join)
+ -) Player Card Actions (Interactive Report with Action get_acards)
+
+
+Reports:
+--------
+
+Accusations:
+PLUM   HALL   ROPE
+
+Missing Cards (by card type):
+PLUM, WHITE, GREEN
+HALL, LIBRARY
+ROPE, PIPE
+
+Suggestions made by ME:
+  1  PLUM   HALL   ROPE
+
+Player Cards (Held overides Lacked by card type):
+Card  ME  P1  P2  P3
+----  --  --  --  --
+PLUM  ()  ~~  ~~  ~~
+
+Suggestion History:
+SEQ  Player  Card1  Card2  Card3  RES
+---  ------  -----  -----  -----  ---
+  1  ME      PLUM   HALL   ROPE   NOT
+
+
+Procedure:
+----------
+cd install
+sqlplus system/pword@XE3 @uninstall
+ exit
+cd ../gen_config
+sqlplus dtgen/dtgen@XE3
+ set serveroutput on
+ execute dbms_output.put_line(dtgen_util.delete_app('CLUE'));
+ commit;
+ exit
+sqlldr dtgen/dtgen@XE3 control=clue_dataload.ctl
+cd ../install
+sqlplus dtgen/dtgen@XE3 @fullgen CLUE
+ exit
+sqlplus dtgen/dtgen@XE3 @fullasm CLUE
+ exit
+set TNS_ALIAS to @XE3 in vars.sql
+sqlplus sys/pword@XE3 as sysdba @install
+ exit

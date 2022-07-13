@@ -1,0 +1,725 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=Cp1252" />
+<script src="GAMES_DML/report.js" type="text/javascript"></script>
+<link href="GAMES_DML/report.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<div class="banner">
+<table width="98%"><tr>
+<td><h2 class="banner">GAMES_DML</h2></td>
+</tr></table></div>
+<div id="maintabs">
+<div class="currentmaintab" onclick="onSelectMainTab(this, 0)">
+<div>
+<p>Doc</p>
+</div>
+</div>
+<div class="maintab" onclick="onSelectMainTab(this, 1)">
+<div>
+<p>Details</p>
+</div>
+</div>
+<div class="maintab" onclick="onSelectMainTab(this, 2)">
+<div>
+<p>Grants</p>
+</div>
+</div>
+<div class="maintab" onclick="onSelectMainTab(this, 3)">
+<div>
+<p>References</p>
+</div>
+</div>
+<div class="maintab" onclick="onSelectMainTab(this, 4)">
+<div>
+<p>Dependencies</p>
+</div>
+</div>
+<div class="maintab" onclick="onSelectMainTab(this, 5)">
+<div>
+<p>Code</p>
+</div>
+</div>
+</div>
+<br/>
+<div id="masterreports">
+<div id="Master.0">
+<div class="currentmasterreport">
+<TABLE CELLSPACING="0" CELLPADDING="1" WIDTH="100%" BORDER="0">
+<TR><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2">      SUMMARY:  <A HREF="#field_summary">FIELD</A> | <A HREF="#type_summary">TYPE</A> | <A HREF="#method_summary">METHOD</A></FONT></TD><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2"></TR></TABLE><HR><P> Package Games_Dml</P><HR><P></P><A NAME="method_summary"></A><TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="3" BORDER="1"><TR CLASS="TableHeadingColor"><TD COLSPAN="2"><FONT SIZE="+2"><B>Method Summary</B></FONT></TD><TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#clear">clear</A></B>( n_rec in out nocopy games_ACT % ROWTYPE ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Set a "view" record to null</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#clear">clear</A></B>( n_rec in out nocopy games_ACT % ROWTYPE ) return varchar2 ; </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This function traps and returns any error message from the clear procedure</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#clear">clear</A></B>( n_tab in out nocopy games % ROWTYPE ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Set a "table" record to null</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#clear">clear</A></B>( n_tab in out nocopy games % ROWTYPE ) return varchar2 ; </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This function traps and returns any error message from the clear procedure</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#del">del</A></B>( id_in in NUMBER default null , user_id_in in NUMBER default null , users_nk1_in in VARCHAR2 default null , name_in in VARCHAR2 default null ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Application Delete procedure without updated parameters</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#del">del</A></B>( id_in in NUMBER default null , user_id_in in NUMBER default null , users_nk1_in in VARCHAR2 default null , name_in in VARCHAR2 default null ) return varchar2 ; </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This function traps and returns any error message from the del procedure</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#del2">del2</A></B>( id_io in out nocopy NUMBER , user_id_in in NUMBER default null , users_nk1_in in VARCHAR2 default null , name_in in VARCHAR2 default null ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Application Delete procedure with updated parameters</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#del2">del2</A></B>( id_io in out nocopy NUMBER , user_id_in in NUMBER default null , users_nk1_in in VARCHAR2 default null , name_in in VARCHAR2 default null ) return varchar2 ; </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This function traps and returns any error message from the del2 procedure</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#get_curr_id">get_curr_id</A></B></CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   NOTE: This will return an ERROR if get_next_id has not been called</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#get_id">get_id</A></B>( users_nk1 in VARCHAR2 , name in VARCHAR2 ) return NUMBER ; </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            -) name</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#get_id2">get_id2</A></B>( user_id_in in NUMBER , name_in in VARCHAR2 ) return NUMBER ; </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; For all the Natural Key Column IDs, Return an ID</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#get_next_id">get_next_id</A></B></CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Return the next Surrogate Key ID for games</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#get_nk">get_nk</A></B>( id_in in NUMBER ) return VARCHAR2 ; </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Return a concatenated string of Natural Keys for a games id</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#get_rec_by_id">get_rec_by_id</A></B>( n_rec in out nocopy games_ACT % ROWTYPE ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Set a "view" record from a games ID</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#get_rec_by_id">get_rec_by_id</A></B>( n_rec in out nocopy games_ACT % ROWTYPE ) return varchar2 ; </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This function traps and returns any error message from the get_rec_by_id procedure</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#get_rec_by_id">get_rec_by_id</A></B>( n_tab in out nocopy games % ROWTYPE ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Set a "table" record from a games ID</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#get_rec_by_id">get_rec_by_id</A></B>( n_tab in out nocopy games % ROWTYPE ) return varchar2 ; </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This function traps and returns any error message from the get_rec_by_id procedure</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#ins">ins</A></B>( new_rec in out nocopy games_act % ROWTYPE , upd_vals_in in boolean default TRUE ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;       but the returned record may contain invalid data</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#ins">ins</A></B>( new_rec in out nocopy games_act % ROWTYPE , upd_vals_in in boolean default TRUE ) return varchar2 ; </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This function traps and returns any error message from the ins procedure</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#ins">ins</A></B>( new_tab in out nocopy games % ROWTYPE ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  (Fastest insert procedure and returned data is always valid)</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#ins">ins</A></B>( new_tab in out nocopy games % ROWTYPE ) return varchar2 ; </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This function traps and returns any error message from the ins procedure</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#ins">ins</A></B>( id_in in NUMBER default null , user_id_in in NUMBER default null , users_nk1_in in VARCHAR2 default null , name_in in VARCHAR2 default null , last_act_num_in in NUMBER default null , completed_in in VARCHAR2 default null , hide_undo_in in VARCHAR2 default null , hide_accuse_in in VARCHAR2 default null , hide_missing_in in VARCHAR2 default null , hide_my_sugg_in in VARCHAR2 default null , hide_pcards_in in VARCHAR2 default null , hide_sugg_hist_in in VARCHAR2 default null ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   without returning updated data in each column</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#ins">ins</A></B>( id_in in NUMBER default null , user_id_in in NUMBER default null , users_nk1_in in VARCHAR2 default null , name_in in VARCHAR2 default null , last_act_num_in in NUMBER default null , completed_in in VARCHAR2 default null , hide_undo_in in VARCHAR2 default null , hide_accuse_in in VARCHAR2 default null , hide_missing_in in VARCHAR2 default null , hide_my_sugg_in in VARCHAR2 default null , hide_pcards_in in VARCHAR2 default null , hide_sugg_hist_in in VARCHAR2 default null ) return varchar2 ; </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This function traps and returns any error message from the ins procedure</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#ins2">ins2</A></B>( id_io in out nocopy NUMBER , user_id_io in out nocopy NUMBER , users_nk1_io in out nocopy VARCHAR2 , name_io in out nocopy VARCHAR2 , last_act_num_io in out nocopy NUMBER , completed_io in out nocopy VARCHAR2 , hide_undo_io in out nocopy VARCHAR2 , hide_accuse_io in out nocopy VARCHAR2 , hide_missing_io in out nocopy VARCHAR2 , hide_my_sugg_io in out nocopy VARCHAR2 , hide_pcards_io in out nocopy VARCHAR2 , hide_sugg_hist_io in out nocopy VARCHAR2 ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   with updated data returned in each column</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#ins2">ins2</A></B>( id_io in out nocopy NUMBER , user_id_io in out nocopy NUMBER , users_nk1_io in out nocopy VARCHAR2 , name_io in out nocopy VARCHAR2 , last_act_num_io in out nocopy NUMBER , completed_io in out nocopy VARCHAR2 , hide_undo_io in out nocopy VARCHAR2 , hide_accuse_io in out nocopy VARCHAR2 , hide_missing_io in out nocopy VARCHAR2 , hide_my_sugg_io in out nocopy VARCHAR2 , hide_pcards_io in out nocopy VARCHAR2 , hide_sugg_hist_io in out nocopy VARCHAR2 ) return varchar2 ; </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This function traps and returns any error message from the ins2 procedure</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#ins2">ins2</A></B>( id_io in out nocopy NUMBER , user_id_io in out nocopy NUMBER , name_io in out nocopy VARCHAR2 , last_act_num_io in out nocopy NUMBER , completed_io in out nocopy VARCHAR2 , hide_undo_io in out nocopy VARCHAR2 , hide_accuse_io in out nocopy VARCHAR2 , hide_missing_io in out nocopy VARCHAR2 , hide_my_sugg_io in out nocopy VARCHAR2 , hide_pcards_io in out nocopy VARCHAR2 , hide_sugg_hist_io in out nocopy VARCHAR2 ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   with updated data returned in each column</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#ins2">ins2</A></B>( id_io in out nocopy NUMBER , user_id_io in out nocopy NUMBER , name_io in out nocopy VARCHAR2 , last_act_num_io in out nocopy NUMBER , completed_io in out nocopy VARCHAR2 , hide_undo_io in out nocopy VARCHAR2 , hide_accuse_io in out nocopy VARCHAR2 , hide_missing_io in out nocopy VARCHAR2 , hide_my_sugg_io in out nocopy VARCHAR2 , hide_pcards_io in out nocopy VARCHAR2 , hide_sugg_hist_io in out nocopy VARCHAR2 ) return varchar2 ; </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This function traps and returns any error message from the ins2 procedure</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#load_dim">load_dim</A></B>( dim_tab in out nocopy games % ROWTYPE ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   Returns ID of record</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#load_dim">load_dim</A></B>( dim_tab in out nocopy games % ROWTYPE ) return varchar2 ; </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This function traps and returns any error message from the load_dim procedure</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#upd">upd</A></B>( old_rec in games_act % ROWTYPE , new_rec in out nocopy games_act % ROWTYPE , upd_vals_in in boolean default FALSE ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   Set upd_val_in TRUE to get updated data in new_rec</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#upd">upd</A></B>( old_rec in games_act % ROWTYPE , new_rec in out nocopy games_act % ROWTYPE , upd_vals_in in boolean default FALSE ) return varchar2 ; </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This function traps and returns any error message from the upd procedure</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#upd">upd</A></B>( old_tab in games % ROWTYPE , new_tab in out nocopy games % ROWTYPE ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   Set upd_val_in TRUE to get updated data in new_rec</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#upd">upd</A></B>( old_tab in games % ROWTYPE , new_tab in out nocopy games % ROWTYPE ) return varchar2 ; </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This function traps and returns any error message from the upd procedure</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#upd">upd</A></B>( new_rec in out nocopy games_act % ROWTYPE , upd_vals_in in boolean default TRUE ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;       this ID from its NKs (FK IDs will be ignored)</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#upd">upd</A></B>( new_rec in out nocopy games_act % ROWTYPE , upd_vals_in in boolean default TRUE ) return varchar2 ; </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This function traps and returns any error message from the upd procedure</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#upd">upd</A></B>( new_tab in out nocopy games % ROWTYPE ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NOTE: gamesID must be supplied (NK lookup will not be performed)</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#upd">upd</A></B>( new_tab in out nocopy games % ROWTYPE ) return varchar2 ; </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This function traps and returns any error message from the upd procedure</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#upd">upd</A></B>( id_in in NUMBER default null , user_id_in in NUMBER default null , users_nk1_in in VARCHAR2 default null , name_in in VARCHAR2 default null , last_act_num_in in NUMBER default null , completed_in in VARCHAR2 default null , hide_undo_in in VARCHAR2 default null , hide_accuse_in in VARCHAR2 default null , hide_missing_in in VARCHAR2 default null , hide_my_sugg_in in VARCHAR2 default null , hide_pcards_in in VARCHAR2 default null , hide_sugg_hist_in in VARCHAR2 default null ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   without returning updated data in each column</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#upd">upd</A></B>( id_in in NUMBER default null , user_id_in in NUMBER default null , users_nk1_in in VARCHAR2 default null , name_in in VARCHAR2 default null , last_act_num_in in NUMBER default null , completed_in in VARCHAR2 default null , hide_undo_in in VARCHAR2 default null , hide_accuse_in in VARCHAR2 default null , hide_missing_in in VARCHAR2 default null , hide_my_sugg_in in VARCHAR2 default null , hide_pcards_in in VARCHAR2 default null , hide_sugg_hist_in in VARCHAR2 default null ) return varchar2 ; </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This function traps and returns any error message from the upd procedure</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#upd2">upd2</A></B>( id_io in out nocopy NUMBER , user_id_io in out nocopy NUMBER , users_nk1_io in out nocopy VARCHAR2 , name_io in out nocopy VARCHAR2 , last_act_num_io in out nocopy NUMBER , completed_io in out nocopy VARCHAR2 , hide_undo_io in out nocopy VARCHAR2 , hide_accuse_io in out nocopy VARCHAR2 , hide_missing_io in out nocopy VARCHAR2 , hide_my_sugg_io in out nocopy VARCHAR2 , hide_pcards_io in out nocopy VARCHAR2 , hide_sugg_hist_io in out nocopy VARCHAR2 ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   with updated data returned in each column</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#upd2">upd2</A></B>( id_io in out nocopy NUMBER , user_id_io in out nocopy NUMBER , users_nk1_io in out nocopy VARCHAR2 , name_io in out nocopy VARCHAR2 , last_act_num_io in out nocopy NUMBER , completed_io in out nocopy VARCHAR2 , hide_undo_io in out nocopy VARCHAR2 , hide_accuse_io in out nocopy VARCHAR2 , hide_missing_io in out nocopy VARCHAR2 , hide_my_sugg_io in out nocopy VARCHAR2 , hide_pcards_io in out nocopy VARCHAR2 , hide_sugg_hist_io in out nocopy VARCHAR2 ) return varchar2 ; </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This function traps and returns any error message from the upd2 procedure</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#upd2">upd2</A></B>( id_io in out nocopy NUMBER , user_id_io in out nocopy NUMBER , hide_undo_io in out nocopy VARCHAR2 , name_io in out nocopy VARCHAR2 , last_act_num_io in out nocopy NUMBER , completed_io in out nocopy VARCHAR2 , hide_accuse_io in out nocopy VARCHAR2 , hide_missing_io in out nocopy VARCHAR2 , hide_my_sugg_io in out nocopy VARCHAR2 , hide_pcards_io in out nocopy VARCHAR2 , hide_sugg_hist_io in out nocopy VARCHAR2 ) </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   with updated data returned in each column</TD></TR>
+<TR CLASS="TableRowColor"><TD WIDTH="1%" VALIGN="top" ALIGN="right"><FONT SIZE="-1"><CODE>&nbsp;</CODE></FONT></TD><TD><CODE><B><A HREF="#upd2">upd2</A></B>( id_io in out nocopy NUMBER , user_id_io in out nocopy NUMBER , name_io in out nocopy VARCHAR2 , last_act_num_io in out nocopy NUMBER , completed_io in out nocopy VARCHAR2 , hide_undo_io in out nocopy VARCHAR2 , hide_accuse_io in out nocopy VARCHAR2 , hide_missing_io in out nocopy VARCHAR2 , hide_my_sugg_io in out nocopy VARCHAR2 , hide_pcards_io in out nocopy VARCHAR2 , hide_sugg_hist_io in out nocopy VARCHAR2 ) return varchar2 ; </CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This function traps and returns any error message from the upd2 procedure</TD></TR>
+</TABLE>
+<P></P><A NAME="method_detail"></A><TABLE WIDTH="100%" CELLSPACING="0" CELLPADDING="3" BORDER="1"><TR CLASS="TableHeadingColor"><TD COLSPAN="2"><FONT SIZE="+2"><B>Method Detail</B></FONT></TD></TABLE><A NAME="clear"></A>
+<H3>clear</H3><PRE>          <B>clear</B>( n_rec in out nocopy games_ACT % ROWTYPE ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Set a "view" record to null<DD><DL></DL></DD></DL><HR><A NAME="clear"></A>
+<H3>clear</H3><PRE>          <B>clear</B>( n_rec in out nocopy games_ACT % ROWTYPE ) return varchar2 ; </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This function traps and returns any error message from the clear procedure<DD><DL></DL></DD></DL><HR><A NAME="clear"></A>
+<H3>clear</H3><PRE>          <B>clear</B>( n_tab in out nocopy games % ROWTYPE ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Set a "table" record to null<DD><DL></DL></DD></DL><HR><A NAME="clear"></A>
+<H3>clear</H3><PRE>          <B>clear</B>( n_tab in out nocopy games % ROWTYPE ) return varchar2 ; </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This function traps and returns any error message from the clear procedure<DD><DL></DL></DD></DL><HR><A NAME="del"></A>
+<H3>del</H3><PRE>          <B>del</B>( id_in in NUMBER default null , user_id_in in NUMBER default null , users_nk1_in in VARCHAR2 default null , name_in in VARCHAR2 default null ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Application Delete procedure without updated parameters<DD><DL></DL></DD></DL><HR><A NAME="del"></A>
+<H3>del</H3><PRE>          <B>del</B>( id_in in NUMBER default null , user_id_in in NUMBER default null , users_nk1_in in VARCHAR2 default null , name_in in VARCHAR2 default null ) return varchar2 ; </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This function traps and returns any error message from the del procedure<DD><DL></DL></DD></DL><HR><A NAME="del2"></A>
+<H3>del2</H3><PRE>          <B>del2</B>( id_io in out nocopy NUMBER , user_id_in in NUMBER default null , users_nk1_in in VARCHAR2 default null , name_in in VARCHAR2 default null ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Application Delete procedure with updated parameters<DD><DL></DL></DD></DL><HR><A NAME="del2"></A>
+<H3>del2</H3><PRE>          <B>del2</B>( id_io in out nocopy NUMBER , user_id_in in NUMBER default null , users_nk1_in in VARCHAR2 default null , name_in in VARCHAR2 default null ) return varchar2 ; </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This function traps and returns any error message from the del2 procedure<DD><DL></DL></DD></DL><HR><A NAME="get_curr_id"></A>
+<H3>get_curr_id</H3><PRE>          <B>get_curr_id</B></PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   NOTE: This will return an ERROR if get_next_id has not been called<DD><DL></DL></DD></DL><HR><A NAME="get_id"></A>
+<H3>get_id</H3><PRE>          <B>get_id</B>( users_nk1 in VARCHAR2 , name in VARCHAR2 ) return NUMBER ; </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            -) name<DD><DL></DL></DD></DL><HR><A NAME="get_id2"></A>
+<H3>get_id2</H3><PRE>          <B>get_id2</B>( user_id_in in NUMBER , name_in in VARCHAR2 ) return NUMBER ; </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; For all the Natural Key Column IDs, Return an ID<DD><DL></DL></DD></DL><HR><A NAME="get_next_id"></A>
+<H3>get_next_id</H3><PRE>          <B>get_next_id</B></PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Return the next Surrogate Key ID for games<DD><DL></DL></DD></DL><HR><A NAME="get_nk"></A>
+<H3>get_nk</H3><PRE>          <B>get_nk</B>( id_in in NUMBER ) return VARCHAR2 ; </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Return a concatenated string of Natural Keys for a games id<DD><DL></DL></DD></DL><HR><A NAME="get_rec_by_id"></A>
+<H3>get_rec_by_id</H3><PRE>          <B>get_rec_by_id</B>( n_rec in out nocopy games_ACT % ROWTYPE ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Set a "view" record from a games ID<DD><DL></DL></DD></DL><HR><A NAME="get_rec_by_id"></A>
+<H3>get_rec_by_id</H3><PRE>          <B>get_rec_by_id</B>( n_rec in out nocopy games_ACT % ROWTYPE ) return varchar2 ; </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This function traps and returns any error message from the get_rec_by_id procedure<DD><DL></DL></DD></DL><HR><A NAME="get_rec_by_id"></A>
+<H3>get_rec_by_id</H3><PRE>          <B>get_rec_by_id</B>( n_tab in out nocopy games % ROWTYPE ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Set a "table" record from a games ID<DD><DL></DL></DD></DL><HR><A NAME="get_rec_by_id"></A>
+<H3>get_rec_by_id</H3><PRE>          <B>get_rec_by_id</B>( n_tab in out nocopy games % ROWTYPE ) return varchar2 ; </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This function traps and returns any error message from the get_rec_by_id procedure<DD><DL></DL></DD></DL><HR><A NAME="ins"></A>
+<H3>ins</H3><PRE>          <B>ins</B>( new_rec in out nocopy games_act % ROWTYPE , upd_vals_in in boolean default TRUE ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;       but the returned record may contain invalid data<DD><DL></DL></DD></DL><HR><A NAME="ins"></A>
+<H3>ins</H3><PRE>          <B>ins</B>( new_rec in out nocopy games_act % ROWTYPE , upd_vals_in in boolean default TRUE ) return varchar2 ; </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This function traps and returns any error message from the ins procedure<DD><DL></DL></DD></DL><HR><A NAME="ins"></A>
+<H3>ins</H3><PRE>          <B>ins</B>( new_tab in out nocopy games % ROWTYPE ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  (Fastest insert procedure and returned data is always valid)<DD><DL></DL></DD></DL><HR><A NAME="ins"></A>
+<H3>ins</H3><PRE>          <B>ins</B>( new_tab in out nocopy games % ROWTYPE ) return varchar2 ; </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This function traps and returns any error message from the ins procedure<DD><DL></DL></DD></DL><HR><A NAME="ins"></A>
+<H3>ins</H3><PRE>          <B>ins</B>( id_in in NUMBER default null , user_id_in in NUMBER default null , users_nk1_in in VARCHAR2 default null , name_in in VARCHAR2 default null , last_act_num_in in NUMBER default null , completed_in in VARCHAR2 default null , hide_undo_in in VARCHAR2 default null , hide_accuse_in in VARCHAR2 default null , hide_missing_in in VARCHAR2 default null , hide_my_sugg_in in VARCHAR2 default null , hide_pcards_in in VARCHAR2 default null , hide_sugg_hist_in in VARCHAR2 default null ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   without returning updated data in each column<DD><DL></DL></DD></DL><HR><A NAME="ins"></A>
+<H3>ins</H3><PRE>          <B>ins</B>( id_in in NUMBER default null , user_id_in in NUMBER default null , users_nk1_in in VARCHAR2 default null , name_in in VARCHAR2 default null , last_act_num_in in NUMBER default null , completed_in in VARCHAR2 default null , hide_undo_in in VARCHAR2 default null , hide_accuse_in in VARCHAR2 default null , hide_missing_in in VARCHAR2 default null , hide_my_sugg_in in VARCHAR2 default null , hide_pcards_in in VARCHAR2 default null , hide_sugg_hist_in in VARCHAR2 default null ) return varchar2 ; </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This function traps and returns any error message from the ins procedure<DD><DL></DL></DD></DL><HR><A NAME="ins2"></A>
+<H3>ins2</H3><PRE>          <B>ins2</B>( id_io in out nocopy NUMBER , user_id_io in out nocopy NUMBER , users_nk1_io in out nocopy VARCHAR2 , name_io in out nocopy VARCHAR2 , last_act_num_io in out nocopy NUMBER , completed_io in out nocopy VARCHAR2 , hide_undo_io in out nocopy VARCHAR2 , hide_accuse_io in out nocopy VARCHAR2 , hide_missing_io in out nocopy VARCHAR2 , hide_my_sugg_io in out nocopy VARCHAR2 , hide_pcards_io in out nocopy VARCHAR2 , hide_sugg_hist_io in out nocopy VARCHAR2 ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   with updated data returned in each column<DD><DL></DL></DD></DL><HR><A NAME="ins2"></A>
+<H3>ins2</H3><PRE>          <B>ins2</B>( id_io in out nocopy NUMBER , user_id_io in out nocopy NUMBER , users_nk1_io in out nocopy VARCHAR2 , name_io in out nocopy VARCHAR2 , last_act_num_io in out nocopy NUMBER , completed_io in out nocopy VARCHAR2 , hide_undo_io in out nocopy VARCHAR2 , hide_accuse_io in out nocopy VARCHAR2 , hide_missing_io in out nocopy VARCHAR2 , hide_my_sugg_io in out nocopy VARCHAR2 , hide_pcards_io in out nocopy VARCHAR2 , hide_sugg_hist_io in out nocopy VARCHAR2 ) return varchar2 ; </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This function traps and returns any error message from the ins2 procedure<DD><DL></DL></DD></DL><HR><A NAME="ins2"></A>
+<H3>ins2</H3><PRE>          <B>ins2</B>( id_io in out nocopy NUMBER , user_id_io in out nocopy NUMBER , name_io in out nocopy VARCHAR2 , last_act_num_io in out nocopy NUMBER , completed_io in out nocopy VARCHAR2 , hide_undo_io in out nocopy VARCHAR2 , hide_accuse_io in out nocopy VARCHAR2 , hide_missing_io in out nocopy VARCHAR2 , hide_my_sugg_io in out nocopy VARCHAR2 , hide_pcards_io in out nocopy VARCHAR2 , hide_sugg_hist_io in out nocopy VARCHAR2 ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   with updated data returned in each column<DD><DL></DL></DD></DL><HR><A NAME="ins2"></A>
+<H3>ins2</H3><PRE>          <B>ins2</B>( id_io in out nocopy NUMBER , user_id_io in out nocopy NUMBER , name_io in out nocopy VARCHAR2 , last_act_num_io in out nocopy NUMBER , completed_io in out nocopy VARCHAR2 , hide_undo_io in out nocopy VARCHAR2 , hide_accuse_io in out nocopy VARCHAR2 , hide_missing_io in out nocopy VARCHAR2 , hide_my_sugg_io in out nocopy VARCHAR2 , hide_pcards_io in out nocopy VARCHAR2 , hide_sugg_hist_io in out nocopy VARCHAR2 ) return varchar2 ; </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This function traps and returns any error message from the ins2 procedure<DD><DL></DL></DD></DL><HR><A NAME="load_dim"></A>
+<H3>load_dim</H3><PRE>          <B>load_dim</B>( dim_tab in out nocopy games % ROWTYPE ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   Returns ID of record<DD><DL></DL></DD></DL><HR><A NAME="load_dim"></A>
+<H3>load_dim</H3><PRE>          <B>load_dim</B>( dim_tab in out nocopy games % ROWTYPE ) return varchar2 ; </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This function traps and returns any error message from the load_dim procedure<DD><DL></DL></DD></DL><HR><A NAME="upd"></A>
+<H3>upd</H3><PRE>          <B>upd</B>( old_rec in games_act % ROWTYPE , new_rec in out nocopy games_act % ROWTYPE , upd_vals_in in boolean default FALSE ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   Set upd_val_in TRUE to get updated data in new_rec<DD><DL></DL></DD></DL><HR><A NAME="upd"></A>
+<H3>upd</H3><PRE>          <B>upd</B>( old_rec in games_act % ROWTYPE , new_rec in out nocopy games_act % ROWTYPE , upd_vals_in in boolean default FALSE ) return varchar2 ; </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This function traps and returns any error message from the upd procedure<DD><DL></DL></DD></DL><HR><A NAME="upd"></A>
+<H3>upd</H3><PRE>          <B>upd</B>( old_tab in games % ROWTYPE , new_tab in out nocopy games % ROWTYPE ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   Set upd_val_in TRUE to get updated data in new_rec<DD><DL></DL></DD></DL><HR><A NAME="upd"></A>
+<H3>upd</H3><PRE>          <B>upd</B>( old_tab in games % ROWTYPE , new_tab in out nocopy games % ROWTYPE ) return varchar2 ; </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This function traps and returns any error message from the upd procedure<DD><DL></DL></DD></DL><HR><A NAME="upd"></A>
+<H3>upd</H3><PRE>          <B>upd</B>( new_rec in out nocopy games_act % ROWTYPE , upd_vals_in in boolean default TRUE ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;       this ID from its NKs (FK IDs will be ignored)<DD><DL></DL></DD></DL><HR><A NAME="upd"></A>
+<H3>upd</H3><PRE>          <B>upd</B>( new_rec in out nocopy games_act % ROWTYPE , upd_vals_in in boolean default TRUE ) return varchar2 ; </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This function traps and returns any error message from the upd procedure<DD><DL></DL></DD></DL><HR><A NAME="upd"></A>
+<H3>upd</H3><PRE>          <B>upd</B>( new_tab in out nocopy games % ROWTYPE ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NOTE: gamesID must be supplied (NK lookup will not be performed)<DD><DL></DL></DD></DL><HR><A NAME="upd"></A>
+<H3>upd</H3><PRE>          <B>upd</B>( new_tab in out nocopy games % ROWTYPE ) return varchar2 ; </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This function traps and returns any error message from the upd procedure<DD><DL></DL></DD></DL><HR><A NAME="upd"></A>
+<H3>upd</H3><PRE>          <B>upd</B>( id_in in NUMBER default null , user_id_in in NUMBER default null , users_nk1_in in VARCHAR2 default null , name_in in VARCHAR2 default null , last_act_num_in in NUMBER default null , completed_in in VARCHAR2 default null , hide_undo_in in VARCHAR2 default null , hide_accuse_in in VARCHAR2 default null , hide_missing_in in VARCHAR2 default null , hide_my_sugg_in in VARCHAR2 default null , hide_pcards_in in VARCHAR2 default null , hide_sugg_hist_in in VARCHAR2 default null ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   without returning updated data in each column<DD><DL></DL></DD></DL><HR><A NAME="upd"></A>
+<H3>upd</H3><PRE>          <B>upd</B>( id_in in NUMBER default null , user_id_in in NUMBER default null , users_nk1_in in VARCHAR2 default null , name_in in VARCHAR2 default null , last_act_num_in in NUMBER default null , completed_in in VARCHAR2 default null , hide_undo_in in VARCHAR2 default null , hide_accuse_in in VARCHAR2 default null , hide_missing_in in VARCHAR2 default null , hide_my_sugg_in in VARCHAR2 default null , hide_pcards_in in VARCHAR2 default null , hide_sugg_hist_in in VARCHAR2 default null ) return varchar2 ; </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This function traps and returns any error message from the upd procedure<DD><DL></DL></DD></DL><HR><A NAME="upd2"></A>
+<H3>upd2</H3><PRE>          <B>upd2</B>( id_io in out nocopy NUMBER , user_id_io in out nocopy NUMBER , users_nk1_io in out nocopy VARCHAR2 , name_io in out nocopy VARCHAR2 , last_act_num_io in out nocopy NUMBER , completed_io in out nocopy VARCHAR2 , hide_undo_io in out nocopy VARCHAR2 , hide_accuse_io in out nocopy VARCHAR2 , hide_missing_io in out nocopy VARCHAR2 , hide_my_sugg_io in out nocopy VARCHAR2 , hide_pcards_io in out nocopy VARCHAR2 , hide_sugg_hist_io in out nocopy VARCHAR2 ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   with updated data returned in each column<DD><DL></DL></DD></DL><HR><A NAME="upd2"></A>
+<H3>upd2</H3><PRE>          <B>upd2</B>( id_io in out nocopy NUMBER , user_id_io in out nocopy NUMBER , users_nk1_io in out nocopy VARCHAR2 , name_io in out nocopy VARCHAR2 , last_act_num_io in out nocopy NUMBER , completed_io in out nocopy VARCHAR2 , hide_undo_io in out nocopy VARCHAR2 , hide_accuse_io in out nocopy VARCHAR2 , hide_missing_io in out nocopy VARCHAR2 , hide_my_sugg_io in out nocopy VARCHAR2 , hide_pcards_io in out nocopy VARCHAR2 , hide_sugg_hist_io in out nocopy VARCHAR2 ) return varchar2 ; </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This function traps and returns any error message from the upd2 procedure<DD><DL></DL></DD></DL><HR><A NAME="upd2"></A>
+<H3>upd2</H3><PRE>          <B>upd2</B>( id_io in out nocopy NUMBER , user_id_io in out nocopy NUMBER , hide_undo_io in out nocopy VARCHAR2 , name_io in out nocopy VARCHAR2 , last_act_num_io in out nocopy NUMBER , completed_io in out nocopy VARCHAR2 , hide_accuse_io in out nocopy VARCHAR2 , hide_missing_io in out nocopy VARCHAR2 , hide_my_sugg_io in out nocopy VARCHAR2 , hide_pcards_io in out nocopy VARCHAR2 , hide_sugg_hist_io in out nocopy VARCHAR2 ) </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   with updated data returned in each column<DD><DL></DL></DD></DL><HR><A NAME="upd2"></A>
+<H3>upd2</H3><PRE>          <B>upd2</B>( id_io in out nocopy NUMBER , user_id_io in out nocopy NUMBER , name_io in out nocopy VARCHAR2 , last_act_num_io in out nocopy NUMBER , completed_io in out nocopy VARCHAR2 , hide_undo_io in out nocopy VARCHAR2 , hide_accuse_io in out nocopy VARCHAR2 , hide_missing_io in out nocopy VARCHAR2 , hide_my_sugg_io in out nocopy VARCHAR2 , hide_pcards_io in out nocopy VARCHAR2 , hide_sugg_hist_io in out nocopy VARCHAR2 ) return varchar2 ; </PRE><DL>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This function traps and returns any error message from the upd2 procedure<DD><DL></DL></DD></DL><HR><TABLE CELLSPACING="0" CELLPADDING="1" WIDTH="100%" BORDER="0">
+<TR><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2">      SUMMARY:  <A HREF="#field_summary">FIELD</A> | <A HREF="#type_summary">TYPE</A> | <A HREF="#method_summary">METHOD</A></FONT></TD><TD CLASS="NavBarRow3" VALIGN="top"><FONT SIZE="-2"></TR></TABLE></div>
+</div>
+<div id="Master.1">
+<div class="masterreport">
+<table id="Table.0" cellpadding="0" cellspacing="0" summary="">
+<th>NAME</th>
+<th>VALUE</th>
+</tr>
+<tr>
+<td>OWNER</td>
+<td>CLUE</td>
+</tr>
+<tr>
+<td>OBJECT_NAME</td>
+<td>GAMES_DML</td>
+</tr>
+<tr>
+<td>SUBOBJECT_NAME</td>
+<td>null</td>
+</tr>
+<tr>
+<td>OBJECT_ID</td>
+<td>184752</td>
+</tr>
+<tr>
+<td>DATA_OBJECT_ID</td>
+<td>null</td>
+</tr>
+<tr>
+<td>OBJECT_TYPE</td>
+<td>PACKAGE</td>
+</tr>
+<tr>
+<td>CREATED</td>
+<td>16-DEC-2013&nbsp;00:00:00</td>
+</tr>
+<tr>
+<td>LAST_DDL_TIME</td>
+<td>16-DEC-2013&nbsp;00:00:00</td>
+</tr>
+<tr>
+<td>TIMESTAMP</td>
+<td>2013-12-16:11:33:57</td>
+</tr>
+<tr>
+<td>STATUS</td>
+<td>VALID</td>
+</tr>
+<tr>
+<td>TEMPORARY</td>
+<td>N</td>
+</tr>
+<tr>
+<td>GENERATED</td>
+<td>N</td>
+</tr>
+<tr>
+<td>SECONDARY</td>
+<td>N</td>
+</tr>
+<tr>
+<td>NAMESPACE</td>
+<td>1</td>
+</tr>
+<tr>
+<td>EDITION_NAME</td>
+<td>null</td>
+</tr>
+</table>
+</div>
+</div>
+<div id="Master.2">
+<div class="masterreport">
+<table id="Table.1" cellpadding="0" cellspacing="0" summary="">
+<tr>
+<th>PRIVILEGE</th>
+<th>GRANTEE</th>
+<th>GRANTABLE</th>
+<th>GRANTOR</th>
+<th>OBJECT_NAME</th>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 1, 0)" class="currentrow">
+<td class="currentcell">EXECUTE</td>
+<td class="currentcell">CLUE_APP</td>
+<td class="currentcell">NO</td>
+<td class="currentcell">CLUE</td>
+<td class="currentcell">GAMES_DML</td>
+</tr>
+</table>
+</div>
+</div>
+<div id="Master.3">
+<div class="masterreport">
+<table id="Table.2" cellpadding="0" cellspacing="0" summary="">
+<tr>
+<th>NAME</th>
+<th>OWNER</th>
+<th>TYPE</th>
+<th>OBJECT_ID</th>
+<th>STATUS</th>
+<th>TYPE_LINK</th>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 0)" class="currentrow">
+<td class="currentcell">GAMES_ACT_IOU</td>
+<td class="currentcell">CLUE</td>
+<td class="currentcell">TRIGGER</td>
+<td class="currentcell">184755</td>
+<td class="currentcell">VALID</td>
+<td class="currentcell">TRIGGER</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 1)">
+<td>GAMES_DML</td>
+<td>CLUE</td>
+<td>PACKAGE&nbsp;BODY</td>
+<td>184753</td>
+<td>VALID</td>
+<td>PACKAGE</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 2, 2)">
+<td>GAMES_ACT_IOI</td>
+<td>CLUE</td>
+<td>TRIGGER</td>
+<td>184754</td>
+<td>VALID</td>
+<td>TRIGGER</td>
+</tr>
+</table>
+</div>
+</div>
+<div id="Master.4">
+<div class="masterreport">
+<table id="Table.3" cellpadding="0" cellspacing="0" summary="">
+<tr>
+<th>NAME</th>
+<th>OWNER</th>
+<th>TYPE</th>
+<th>OBJECT_ID</th>
+<th>STATUS</th>
+<th>TYPE_LINK</th>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 3, 0)" class="currentrow">
+<td class="currentcell">GAMES</td>
+<td class="currentcell">CLUE</td>
+<td class="currentcell">TABLE</td>
+<td class="currentcell">184646</td>
+<td class="currentcell">VALID</td>
+<td class="currentcell">TABLE</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 3, 1)">
+<td>USERS_ACT</td>
+<td>CLUE</td>
+<td>VIEW</td>
+<td>184733</td>
+<td>VALID</td>
+<td>VIEW</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 3, 2)">
+<td>GAMES_ACT</td>
+<td>CLUE</td>
+<td>VIEW</td>
+<td>184749</td>
+<td>VALID</td>
+<td>VIEW</td>
+</tr>
+<tr onclick="table_onSelectMasterRow(this, 3, 3)">
+<td>USERS</td>
+<td>CLUE</td>
+<td>TABLE</td>
+<td>184638</td>
+<td>VALID</td>
+<td>TABLE</td>
+</tr>
+</table>
+</div>
+</div>
+<div id="Master.5">
+<div class="masterreport">
+<pre>
+package games_dml
+is
+
+   -- Package Games_Dml
+   -- (Data Manipulation Language, Foreign Key and Path Lookup)
+
+   -- Application: Clue Notes For Oracle
+   -- Generated by DTGen (http://dmstex.com/services/dtgen)
+   -- December  16, 2013  11:32:31 AM
+
+   --
+   --
+   -- © Duane.Dieterich@DMSTEX.com 2013
+   --
+   -- All Rights Reserved
+   --
+   -- No part of this software may be reproduced, copied, modified or adapted,
+   -- without the prior written consent of the author, unless otherwise
+   -- indicated for stand-alone materials.
+   --
+   -- You may quote extracts from this software with attribution to
+   -- Duane.Dieterich@DMSTEX.com
+   --
+   -- For any other mode of sharing, please contact Duane.Dieterich@DMSTEX.com.
+   --
+   -- Commercial use and distribution of this software is not allowed without
+   -- express and prior written consent of the author.
+   --
+   -- THE SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+   -- INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
+   -- AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+   -- THE COPYRIGHT HOLDER OR DMSTEX BUSINESS SOLUTIONS LLC, ITS MEMBERS,
+   -- MANAGERS, OR EMPLOYEES BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+   -- SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+   -- TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+   -- PROFITS; CORRUPTION OF DATA, OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+   -- AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+   -- OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF
+   -- THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
+   -- DAMAGE.
+   --
+   --
+
+
+   -- Return the next Surrogate Key ID for games
+   function get_next_id
+      return NUMBER;
+   -- Return the current Surrogate Key ID for games
+   --   NOTE: This will return an ERROR if get_next_id has not been called
+   function get_curr_id
+      return NUMBER;
+
+   -- Return the next Surrogate Key ID for the Natural Keys of games
+   --   NOTE: The fields used in this function are the Natural Keys for games
+   --         Alternatively, the Natural Key IDs for games are:
+   --            -) user_id
+   --            -) name
+   function get_id
+      (users_nk1  in  VARCHAR2
+      ,name  in  VARCHAR2
+      ) return NUMBER;
+   -- For all the Natural Key Column IDs, Return an ID
+   function get_id2
+      (user_id_in  in  NUMBER
+      ,name_in  in  VARCHAR2
+      ) return NUMBER;
+   -- Return a concatenated string of Natural Keys for a games id
+   function get_nk
+      (id_in  in  NUMBER
+      ) return VARCHAR2;
+
+   -- Set a "view" record to null
+   procedure clear
+      (n_rec  in out nocopy  games_ACT%ROWTYPE
+      );
+   -- This function traps and returns any error message from the clear procedure
+   function clear
+      (n_rec  in out nocopy  games_ACT%ROWTYPE
+      ) return varchar2;
+   -- Set a "table" record to null
+   procedure clear
+      (n_tab  in out nocopy  games%ROWTYPE
+      );
+   -- This function traps and returns any error message from the clear procedure
+   function clear
+      (n_tab  in out nocopy  games%ROWTYPE
+      ) return varchar2;
+
+   -- Set a "view" record from a games ID
+   procedure get_rec_by_id
+      (n_rec  in out nocopy  games_ACT%ROWTYPE
+      );
+   -- This function traps and returns any error message from the get_rec_by_id procedure
+   function get_rec_by_id
+      (n_rec  in out nocopy  games_ACT%ROWTYPE
+      ) return varchar2;
+   -- Set a "table" record from a games ID
+   procedure get_rec_by_id
+      (n_tab  in out nocopy  games%ROWTYPE
+      );
+   -- This function traps and returns any error message from the get_rec_by_id procedure
+   function get_rec_by_id
+      (n_tab  in out nocopy  games%ROWTYPE
+      ) return varchar2;
+
+   -- NOTE: All INS procedures will run faster with a null ID
+   --       because it avoids a history search for duplicate IDs
+   --
+   -- Insert a games ACTIVE View Record
+   -- NOTE: If UPD_VALS_IN is set to FALSE, the function will run faster,
+   --       but the returned record may contain invalid data
+   procedure ins
+      (new_rec  in out nocopy  games_act%ROWTYPE
+      ,upd_vals_in  in  boolean default TRUE
+      );
+   -- This function traps and returns any error message from the ins procedure
+   function ins
+      (new_rec  in out nocopy  games_act%ROWTYPE
+      ,upd_vals_in  in  boolean default TRUE
+      ) return varchar2;
+   -- Insert a games Table Record
+   --  (Fastest insert procedure and returned data is always valid)
+   procedure ins
+      (new_tab  in out nocopy  games%ROWTYPE
+      );
+   -- This function traps and returns any error message from the ins procedure
+   function ins
+      (new_tab  in out nocopy  games%ROWTYPE
+      ) return varchar2;
+   -- Insert columns for games ACTIVE View
+   --   without returning updated data in each column
+   procedure ins
+      (id_in  in  NUMBER default null
+      ,user_id_in  in  NUMBER default null
+      ,users_nk1_in  in  VARCHAR2 default null
+      ,name_in  in  VARCHAR2 default null
+      ,last_act_num_in  in  NUMBER default null
+      ,completed_in  in  VARCHAR2 default null
+      ,hide_undo_in  in  VARCHAR2 default null
+      ,hide_accuse_in  in  VARCHAR2 default null
+      ,hide_missing_in  in  VARCHAR2 default null
+      ,hide_my_sugg_in  in  VARCHAR2 default null
+      ,hide_pcards_in  in  VARCHAR2 default null
+      ,hide_sugg_hist_in  in  VARCHAR2 default null
+      );
+   -- This function traps and returns any error message from the ins procedure
+   function ins
+      (id_in  in  NUMBER default null
+      ,user_id_in  in  NUMBER default null
+      ,users_nk1_in  in  VARCHAR2 default null
+      ,name_in  in  VARCHAR2 default null
+      ,last_act_num_in  in  NUMBER default null
+      ,completed_in  in  VARCHAR2 default null
+      ,hide_undo_in  in  VARCHAR2 default null
+      ,hide_accuse_in  in  VARCHAR2 default null
+      ,hide_missing_in  in  VARCHAR2 default null
+      ,hide_my_sugg_in  in  VARCHAR2 default null
+      ,hide_pcards_in  in  VARCHAR2 default null
+      ,hide_sugg_hist_in  in  VARCHAR2 default null
+      ) return varchar2;
+   -- Insert columns for games ACTIVE View
+   --   with updated data returned in each column
+   procedure ins2
+      (id_io  in out nocopy  NUMBER
+      ,user_id_io  in out nocopy  NUMBER
+      ,users_nk1_io  in out nocopy  VARCHAR2
+      ,name_io  in out nocopy  VARCHAR2
+      ,last_act_num_io  in out nocopy  NUMBER
+      ,completed_io  in out nocopy  VARCHAR2
+      ,hide_undo_io  in out nocopy  VARCHAR2
+      ,hide_accuse_io  in out nocopy  VARCHAR2
+      ,hide_missing_io  in out nocopy  VARCHAR2
+      ,hide_my_sugg_io  in out nocopy  VARCHAR2
+      ,hide_pcards_io  in out nocopy  VARCHAR2
+      ,hide_sugg_hist_io  in out nocopy  VARCHAR2
+      );
+   -- This function traps and returns any error message from the ins2 procedure
+   function ins2
+      (id_io  in out nocopy  NUMBER
+      ,user_id_io  in out nocopy  NUMBER
+      ,users_nk1_io  in out nocopy  VARCHAR2
+      ,name_io  in out nocopy  VARCHAR2
+      ,last_act_num_io  in out nocopy  NUMBER
+      ,completed_io  in out nocopy  VARCHAR2
+      ,hide_undo_io  in out nocopy  VARCHAR2
+      ,hide_accuse_io  in out nocopy  VARCHAR2
+      ,hide_missing_io  in out nocopy  VARCHAR2
+      ,hide_my_sugg_io  in out nocopy  VARCHAR2
+      ,hide_pcards_io  in out nocopy  VARCHAR2
+      ,hide_sugg_hist_io  in out nocopy  VARCHAR2
+      ) return varchar2;
+   -- Insert columns for games Table
+   --   with updated data returned in each column
+   procedure ins2
+      (id_io  in out nocopy  NUMBER
+      ,user_id_io  in out nocopy  NUMBER
+      ,name_io  in out nocopy  VARCHAR2
+      ,last_act_num_io  in out nocopy  NUMBER
+      ,completed_io  in out nocopy  VARCHAR2
+      ,hide_undo_io  in out nocopy  VARCHAR2
+      ,hide_accuse_io  in out nocopy  VARCHAR2
+      ,hide_missing_io  in out nocopy  VARCHAR2
+      ,hide_my_sugg_io  in out nocopy  VARCHAR2
+      ,hide_pcards_io  in out nocopy  VARCHAR2
+      ,hide_sugg_hist_io  in out nocopy  VARCHAR2
+      );
+   -- This function traps and returns any error message from the ins2 procedure
+   function ins2
+      (id_io  in out nocopy  NUMBER
+      ,user_id_io  in out nocopy  NUMBER
+      ,name_io  in out nocopy  VARCHAR2
+      ,last_act_num_io  in out nocopy  NUMBER
+      ,completed_io  in out nocopy  VARCHAR2
+      ,hide_undo_io  in out nocopy  VARCHAR2
+      ,hide_accuse_io  in out nocopy  VARCHAR2
+      ,hide_missing_io  in out nocopy  VARCHAR2
+      ,hide_my_sugg_io  in out nocopy  VARCHAR2
+      ,hide_pcards_io  in out nocopy  VARCHAR2
+      ,hide_sugg_hist_io  in out nocopy  VARCHAR2
+      ) return varchar2;
+
+   -- Special Use Update for Specific Column Updates.
+   --   Only differences between old and new data will be updated.
+   --   Set upd_val_in TRUE to get updated data in new_rec
+   procedure upd
+      (old_rec  in  games_act%ROWTYPE
+      ,new_rec  in out nocopy  games_act%ROWTYPE
+      ,upd_vals_in  in  boolean default FALSE
+      );
+   -- This function traps and returns any error message from the upd procedure
+   function upd
+      (old_rec  in  games_act%ROWTYPE
+      ,new_rec  in out nocopy  games_act%ROWTYPE
+      ,upd_vals_in  in  boolean default FALSE
+      ) return varchar2;
+   -- Special Use Update for Specific Column Updates.
+   --   Only differences between old and new data will be updated.
+   --   Set upd_val_in TRUE to get updated data in new_rec
+   procedure upd
+      (old_tab  in  games%ROWTYPE
+      ,new_tab  in out nocopy  games%ROWTYPE
+      );
+   -- This function traps and returns any error message from the upd procedure
+   function upd
+      (old_tab  in  games%ROWTYPE
+      ,new_tab  in out nocopy  games%ROWTYPE
+      ) return varchar2;
+   -- Update a games ACTIVE View Record
+   -- NOTE: If UPD_VALS_IN is set to FALSE, the returned record
+   --       may contain invalid data
+   -- NOTE: Only FK NKs that are part of this NK will be used to find
+   --       this ID from its NKs (FK IDs will be ignored)
+   procedure upd
+      (new_rec  in out nocopy  games_act%ROWTYPE
+      ,upd_vals_in  in  boolean default TRUE
+      );
+   -- This function traps and returns any error message from the upd procedure
+   function upd
+      (new_rec  in out nocopy  games_act%ROWTYPE
+      ,upd_vals_in  in  boolean default TRUE
+      ) return varchar2;
+   -- Update a games Table Record
+   --  (Fastest update procedure and returned data is always valid)
+   -- NOTE: gamesID must be supplied (NK lookup will not be performed)
+   procedure upd
+      (new_tab  in out nocopy  games%ROWTYPE
+      );
+   -- This function traps and returns any error message from the upd procedure
+   function upd
+      (new_tab  in out nocopy  games%ROWTYPE
+      ) return varchar2;
+   -- Update columns for games ACTIVE View
+   --   without returning updated data in each column
+   procedure upd
+      (id_in  in  NUMBER default null
+      ,user_id_in  in  NUMBER default null
+      ,users_nk1_in  in  VARCHAR2 default null
+      ,name_in  in  VARCHAR2 default null
+      ,last_act_num_in  in  NUMBER default null
+      ,completed_in  in  VARCHAR2 default null
+      ,hide_undo_in  in  VARCHAR2 default null
+      ,hide_accuse_in  in  VARCHAR2 default null
+      ,hide_missing_in  in  VARCHAR2 default null
+      ,hide_my_sugg_in  in  VARCHAR2 default null
+      ,hide_pcards_in  in  VARCHAR2 default null
+      ,hide_sugg_hist_in  in  VARCHAR2 default null
+      );
+   -- This function traps and returns any error message from the upd procedure
+   function upd
+      (id_in  in  NUMBER default null
+      ,user_id_in  in  NUMBER default null
+      ,users_nk1_in  in  VARCHAR2 default null
+      ,name_in  in  VARCHAR2 default null
+      ,last_act_num_in  in  NUMBER default null
+      ,completed_in  in  VARCHAR2 default null
+      ,hide_undo_in  in  VARCHAR2 default null
+      ,hide_accuse_in  in  VARCHAR2 default null
+      ,hide_missing_in  in  VARCHAR2 default null
+      ,hide_my_sugg_in  in  VARCHAR2 default null
+      ,hide_pcards_in  in  VARCHAR2 default null
+      ,hide_sugg_hist_in  in  VARCHAR2 default null
+      ) return varchar2;
+   -- Update columns for games ACTIVE View
+   --   with updated data returned in each column
+   procedure upd2
+      (id_io  in out nocopy  NUMBER
+      ,user_id_io  in out nocopy  NUMBER
+      ,users_nk1_io  in out nocopy  VARCHAR2
+      ,name_io  in out nocopy  VARCHAR2
+      ,last_act_num_io  in out nocopy  NUMBER
+      ,completed_io  in out nocopy  VARCHAR2
+      ,hide_undo_io  in out nocopy  VARCHAR2
+      ,hide_accuse_io  in out nocopy  VARCHAR2
+      ,hide_missing_io  in out nocopy  VARCHAR2
+      ,hide_my_sugg_io  in out nocopy  VARCHAR2
+      ,hide_pcards_io  in out nocopy  VARCHAR2
+      ,hide_sugg_hist_io  in out nocopy  VARCHAR2
+      );
+   -- This function traps and returns any error message from the upd2 procedure
+   function upd2
+      (id_io  in out nocopy  NUMBER
+      ,user_id_io  in out nocopy  NUMBER
+      ,users_nk1_io  in out nocopy  VARCHAR2
+      ,name_io  in out nocopy  VARCHAR2
+      ,last_act_num_io  in out nocopy  NUMBER
+      ,completed_io  in out nocopy  VARCHAR2
+      ,hide_undo_io  in out nocopy  VARCHAR2
+      ,hide_accuse_io  in out nocopy  VARCHAR2
+      ,hide_missing_io  in out nocopy  VARCHAR2
+      ,hide_my_sugg_io  in out nocopy  VARCHAR2
+      ,hide_pcards_io  in out nocopy  VARCHAR2
+      ,hide_sugg_hist_io  in out nocopy  VARCHAR2
+      ) return varchar2;
+   -- Update columns for games Table
+   --   with updated data returned in each column
+   procedure upd2
+      (id_io  in out nocopy  NUMBER
+      ,user_id_io  in out nocopy  NUMBER
+      ,name_io  in out nocopy  VARCHAR2
+      ,last_act_num_io  in out nocopy  NUMBER
+      ,completed_io  in out nocopy  VARCHAR2
+      ,hide_undo_io  in out nocopy  VARCHAR2
+      ,hide_accuse_io  in out nocopy  VARCHAR2
+      ,hide_missing_io  in out nocopy  VARCHAR2
+      ,hide_my_sugg_io  in out nocopy  VARCHAR2
+      ,hide_pcards_io  in out nocopy  VARCHAR2
+      ,hide_sugg_hist_io  in out nocopy  VARCHAR2
+      );
+   -- This function traps and returns any error message from the upd2 procedure
+   function upd2
+      (id_io  in out nocopy  NUMBER
+      ,user_id_io  in out nocopy  NUMBER
+      ,name_io  in out nocopy  VARCHAR2
+      ,last_act_num_io  in out nocopy  NUMBER
+      ,completed_io  in out nocopy  VARCHAR2
+      ,hide_undo_io  in out nocopy  VARCHAR2
+      ,hide_accuse_io  in out nocopy  VARCHAR2
+      ,hide_missing_io  in out nocopy  VARCHAR2
+      ,hide_my_sugg_io  in out nocopy  VARCHAR2
+      ,hide_pcards_io  in out nocopy  VARCHAR2
+      ,hide_sugg_hist_io  in out nocopy  VARCHAR2
+      ) return varchar2;
+
+   -- Application Delete procedure without updated parameters
+   procedure del
+      (id_in  in  NUMBER default null
+      ,user_id_in  in  NUMBER default null
+      ,users_nk1_in  in  VARCHAR2 default null
+      ,name_in  in  VARCHAR2 default null
+      );
+   -- This function traps and returns any error message from the del procedure
+   function del
+      (id_in  in  NUMBER default null
+      ,user_id_in  in  NUMBER default null
+      ,users_nk1_in  in  VARCHAR2 default null
+      ,name_in  in  VARCHAR2 default null
+      ) return varchar2;
+   -- Application Delete procedure with updated parameters
+   procedure del2
+      (id_io  in out nocopy  NUMBER
+      ,user_id_in  in NUMBER default null
+      ,users_nk1_in  in VARCHAR2 default null
+      ,name_in  in VARCHAR2 default null
+      );
+   -- This function traps and returns any error message from the del2 procedure
+   function del2
+      (id_io  in out nocopy  NUMBER
+      ,user_id_in  in NUMBER default null
+      ,users_nk1_in  in VARCHAR2 default null
+      ,name_in  in VARCHAR2 default null
+      ) return varchar2;
+
+   -- Special Data Warehouse Dimension Function
+   --   Attempts to find matching record based on natural keys
+   --   If found, performs updates on non-NK columns that changed
+   --   If not found, inserts new record
+   --   Returns ID of record
+   procedure load_dim
+      (dim_tab  in out nocopy  games%ROWTYPE
+      );
+   -- This function traps and returns any error message from the load_dim procedure
+   function load_dim
+      (dim_tab  in out nocopy  games%ROWTYPE
+      ) return varchar2;
+
+end games_dml;</pre>
+</div>
+</div>
+</div>
+</body>
+</html>

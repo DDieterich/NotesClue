@@ -1,0 +1,4 @@
+"KEY---------------------------","TABLES_NK1","TABLES_NK2","NAME","SORT_ORD","PAR_SUB_TYPES_NK1","PAR_SUB_TYPES_NK2","PAR_SUB_TYPES_NK3","GROUP_NAME","EST_ACT_PCT","EST_HOA_PCT","DESCRIPTION","EOL,"
+"SUB_TYPES---------------------","CLUE","ACT","accusation",1,"","","","",,,"Accusation Action","EOL,"
+"SUB_TYPES---------------------","CLUE","ACT","revelation",2,"","","","",,,"Revelation Action","EOL,"
+"SUB_TYPES---------------------","CLUE","ACT","suggestion",3,"","","","",,,"Suggestion Action","EOL,"

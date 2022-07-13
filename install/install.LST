@@ -1,0 +1,483 @@
+Connected.
+
+SCRIPT_NAME
+------------------------
+=== CLUE create_clus ===
+----------------------------------------
+Creating Cluster act_clus
+
+SCRIPT_NAME
+-----------------------
+=== CLUE create_tab ===
+----------------------------------------
+Creating Table users
+----------------------------------------
+Creating ACTIVE Indexes for users
+----------------------------------------
+Creating Table card_types
+----------------------------------------
+Creating ACTIVE Indexes for card_types
+----------------------------------------
+Creating Table games
+----------------------------------------
+Creating ACTIVE Indexes for games
+----------------------------------------
+Creating Table players
+----------------------------------------
+Creating ACTIVE Indexes for players
+----------------------------------------
+Creating Table cards
+----------------------------------------
+Creating ACTIVE Indexes for cards
+----------------------------------------
+Creating Table actions
+----------------------------------------
+Creating ACTIVE Indexes for actions
+----------------------------------------
+Creating Table action_cards
+----------------------------------------
+Creating ACTIVE Indexes for action_cards
+----------------------------------------
+Creating Table pcard_actions
+----------------------------------------
+Creating ACTIVE Indexes for pcard_actions
+
+SCRIPT_NAME
+----------------------
+=== CLUE create_fk ===
+
+SCRIPT_NAME
+------------------------
+=== CLUE create_util ===
+
+SCRIPT_NAME
+-----------------------
+=== CLUE create_dom ===
+
+SCRIPT_NAME
+------------------------
+=== CLUE create_cons ===
+
+SCRIPT_NAME
+-------------------------
+=== CLUE create_ttrig ===
+
+SCRIPT_NAME
+------------------------
+=== CLUE create_view ===
+
+SCRIPT_NAME
+----------------------
+=== CLUE create_aa ===
+
+SCRIPT_NAME
+----------------------
+=== CLUE create_st ===
+
+SCRIPT_NAME
+------------------------
+=== CLUE create_grnt ===
+
+=== Compile Stored Program Units ===
+
+clue.pks
+No errors.
+
+clue.pkb
+No errors.
+
+Connected.
+
+SCRIPT_NAME
+------------------------
+=== CLUE create_usyn ===
+APPLICATION 104 - DMSTEX
+Set Credentials...
+Check Compatibility...
+API Last Extended:20120101
+Your Current Version:20120101
+This import is compatible with version: 20120101
+COMPATIBLE (You should be able to run this import without issues.)
+
+Set Application ID...
+...ui types
+...user interfaces
+...plug-in settings
+...authorization schemes
+...navigation bar entries
+...application processes
+...application items
+...application level computations
+...Application Tabs
+...Application Parent Tabs
+...Shared Lists of values
+...Application Trees
+...page groups
+...comments: requires application express 2.2 or higher
+...PAGE 1: Home
+...PAGE 101: Login
+...lists
+...breadcrumbs
+...page templates for application: 104
+......Page template 17496135965099559
+......Page template 17496232546099559
+......Page template 17496327453099559
+......Page template 17496442363099559
+......Page template 17496518243099559
+......Page template 17496634205099559
+......Page template 17496718599099559
+......Page template 17496838197099560
+......Page template 17496931430099560
+......Page template 17497039752099560
+......Page template 17497136759099560
+......Page template 17497243858099560
+......Page template 17497312305099560
+......Page template 17497415288099560
+......Page template 17497537884099562
+...button templates
+......Button Template 17497615302099562
+......Button Template 17497712492099562
+......Button Template 17497829632099562
+......Button Template 17497931315099562
+......Button Template 17498028076099562
+......Button Template 17498116751099562
+......Button Template 17498214295099562
+...region templates
+......region template 17498333794099562
+......region template 17498437457099562
+......region template 17498520168099562
+......region template 17498638599099562
+......region template 17498729945099562
+......region template 17498813959099562
+......region template 17498943696099562
+......region template 17499038040099562
+......region template 17499120107099562
+......region template 17499223080099563
+......region template 17499313322099563
+......region template 17499414780099563
+......region template 17499523434099563
+......region template 17499631209099563
+......region template 17499734300099563
+......region template 17499841596099563
+......region template 17499918850099563
+......region template 17500022369099563
+......region template 17500135441099563
+......region template 17500239586099563
+......region template 17500319448099563
+......region template 17500443865099563
+......region template 17500535791099564
+......region template 17500637224099564
+......region template 17500733539099564
+......region template 17500811861099564
+......region template 17500941462099564
+......region template 17501029089099564
+......region template 17501142410099564
+......region template 17501241828099564
+...List Templates
+......list template 17501338521099564
+......list template 17501443558099566
+......list template 17501542911099566
+......list template 17501620773099566
+......list template 17501739968099566
+......list template 17501829316099566
+......list template 17501922779099566
+......list template 17502038171099566
+......list template 17502130110099566
+......list template 17502238883099567
+......list template 17502315130099567
+......list template 17502432050099567
+......list template 17502526511099567
+......list template 17502624121099567
+......list template 17502734489099567
+......list template 17502837777099567
+......list template 17502937301099567
+......list template 17503016817099567
+......list template 17503140783099567
+......list template 17503218594099567
+...report templates
+......report template 17503335700099567
+......report template 17503442070099567
+......report template 17503528585099567
+......report template 17503642847099567
+......report template 17503724459099568
+......report template 17503813316099568
+......report template 17503927593099568
+......report template 17504016352099568
+......report template 17504117173099568
+......report template 17504238033099568
+...label templates
+......label template 17504313311099568
+......label template 17504429731099568
+......label template 17504541919099568
+......label template 17504639479099568
+......label template 17504738217099568
+...breadcrumb templates
+......template 17504837658099568
+......template 17504926955099568
+...popup list of values templates
+......template 17505621443099568
+...calendar templates
+......template 17505041029099568
+......template 17505228155099568
+......template 17505418438099568
+...application themes
+......theme 17505713317099568
+...theme styles
+...theme display points
+...build options
+...Language Maps for Application 104
+...text messages
+...dynamic translations
+...Shortcuts
+...web services (9iR2 or better)
+...shared queries
+...report layouts
+...authentication schemes
+......authentication 17505844018099569
+......authentication 17505923043099569
+......authentication 17506040716099569
+...ui types
+...plugins
+...data loading
+...post import process
+...done
+
+SCRIPT_NAME
+-----------------------------
+=== CLUE create_util_flow ===
+
+SCRIPT_NAME
+-------------------------
+=== CLUE create_uidef ===
+  Set Credentials...
+  Check Compatibility...
+API Last Extended:20120101
+Your Current Version:20120101
+This import is compatible with version: 20100513
+COMPATIBLE (You should be able to run this import without issues.)
+
+  Set Application ID...
+SCHEMA DMSTEX - User Interface Defaults, Table users Defaults
+SCHEMA DMSTEX - User Interface Defaults, Table users_act Defaults
+SCHEMA DMSTEX - User Interface Defaults, Table card_types Defaults
+SCHEMA DMSTEX - User Interface Defaults, Table card_types_act Defaults
+SCHEMA DMSTEX - User Interface Defaults, Table games Defaults
+SCHEMA DMSTEX - User Interface Defaults, Table games_act Defaults
+SCHEMA DMSTEX - User Interface Defaults, Table players Defaults
+SCHEMA DMSTEX - User Interface Defaults, Table players_act Defaults
+SCHEMA DMSTEX - User Interface Defaults, Table cards Defaults
+SCHEMA DMSTEX - User Interface Defaults, Table cards_act Defaults
+SCHEMA DMSTEX - User Interface Defaults, Table actions Defaults
+SCHEMA DMSTEX - User Interface Defaults, Table actions_act Defaults
+SCHEMA DMSTEX - User Interface Defaults, Table accusation Defaults
+SCHEMA DMSTEX - User Interface Defaults, Table accusation_act Defaults
+SCHEMA DMSTEX - User Interface Defaults, Table revelation Defaults
+SCHEMA DMSTEX - User Interface Defaults, Table revelation_act Defaults
+SCHEMA DMSTEX - User Interface Defaults, Table suggestion Defaults
+SCHEMA DMSTEX - User Interface Defaults, Table suggestion_act Defaults
+SCHEMA DMSTEX - User Interface Defaults, Table action_cards Defaults
+SCHEMA DMSTEX - User Interface Defaults, Table action_cards_act Defaults
+SCHEMA DMSTEX - User Interface Defaults, Table pcard_actions Defaults
+SCHEMA DMSTEX - User Interface Defaults, Table pcard_actions_act Defaults
+
+SCRIPT_NAME
+----------------------------
+=== CLUE create_flow_lov ===
+   APPLICATION 104 - NOTE1
+  Set Credentials...
+  Check Compatibility...
+API Last Extended:20120101
+Your Current Version:20120101
+This import is compatible with version: 20100513
+COMPATIBLE (You should be able to run this import without issues.)
+
+  Set Application ID...
+  ...Shared Lists of values
+  ...Create Shared STATIC LOV "ZZES_DOM_LOV"
+  ...Create Shared STATIC LOV "ZZLA_DOM_LOV"
+  ...Create Shared STATIC LOV "ZZLS_DOM_LOV"
+  ...Create Shared STATIC LOV "ZZPD_DOM_LOV"
+  ...Create Shared DOM LOV "ZZSR_DOM_LOV"
+  ...Create Shared DOM LOV "DISPOSITIONS_DOM_LOV"
+  ...Create Shared DOM LOV "FLAGGED_DOM_LOV"
+  ...Create Shared DOM LOV "RESOLUTIONS_DOM_LOV"
+  ...Create Shared FK LOV "USERS_LOV"
+  ...Create Shared FK LOV "CARD_TYPES_LOV"
+  ...Create Shared FK LOV "GAMES_LOV"
+  ...Create Shared FK LOV "PLAYERS_LOV"
+  ...Create Shared FK LOV "CARDS_LOV"
+  ...Create Shared STATIC LOV "ACTIONS_ST_LOV"
+  ...Create Shared FK LOV "ACTIONS_LOV"
+  ...Create Shared Self-Ref FK LOV "RES_ACTIONS_LOV"
+  ...Create Shared FK LOV "ACTION_CARDS_LOV"
+  ...Create Shared FK LOV "PCARD_ACTIONS_LOV"
+
+SCRIPT_NAME
+------------------------------
+=== CLUE create_flow_maint ===
+   APPLICATION 104 - NOTE1
+  Set Credentials...
+  Check Compatibility...
+API Last Extended:20120101
+Your Current Version:20120101
+This import is compatible with version: 20100513
+COMPATIBLE (You should be able to run this import without issues.)
+
+  Set Application ID...
+  ...Main Setup
+  ...application processes
+  ...Create Flow Process "SET_USR"
+  ...Create page 1000: Maintenance Menu
+  ...Create Information Plug
+  ...Navigation Tabs (for Maintenance Menu)
+  Adding Maintenance Menu Tab to UTIL_TS ...
+  ...Navigation Lists
+  ...Create LIST "SYSTEM Maintenance Menu"
+  ...Create LIST ENTRY "Users MAINT"
+  ...Create LIST ENTRY "Card Types MAINT"
+  ...Create LIST ENTRY "Games MAINT"
+  ... Add LIST "SYSTEM Maintenance Menu" to page 1000
+  ...Create LIST "MAIN Maintenance Menu"
+  ...Create LIST ENTRY "Players MAINT"
+  ...Create LIST ENTRY "Cards MAINT"
+  ...Create LIST ENTRY "Actions MAINT"
+  ...Create LIST ENTRY "Action Cards MAINT"
+  ...Create LIST ENTRY "Pcard Actions MAINT"
+  ... Add LIST "MAIN Maintenance Menu" to page 1000
+  ...Create UTIL_NVP Report Region
+  ...Create Page Processing
+  ...Create page 1200: Utility Log Report
+  ...Create UTIL_TRC Report Region
+  ...Create Page Processing
+  ...Create UTIL_LOG Report Plug
+  ...Create Page Processing
+  ...Navigation Tabs (for Utility Log Report)
+  Adding Utility Log Report Tab to UTIL_TS ...
+  ...Create Page 1400: OMNI Reports Menu
+  ...Create OMNI Reports Page Plug
+  ...Navigation Tabs (for OMNI Reports Menu)
+  Adding OMNI Reports Menu Tab to UTIL_TS ...
+  ...Navigation Lists
+  ...Create Page 1600: ASOF Reports Menu
+  ...Create ASOF Reports Page Plug
+  ...Navigation Tabs (for ASOF Reports Menu)
+  Adding ASOF Reports Menu Tab to UTIL_TS ...
+  ...Navigation Lists
+  ...Create page 1800: GEO Reference Report
+  ...Create GEO_REF Report Plug
+  ...Create Page Processing
+  ...Navigation Tabs (for GEO Reference Report)
+  Adding GEO Reference Report Tab to UTIL_TS ...
+  ...Skipping LIST "Utility Menu"
+  ...Create LIST ENTRY "Maintenance Menu"
+  ...Create LIST ENTRY "Utility Log Report"
+  ...Create LIST ENTRY "OMNI Reports Menu"
+  ...Create LIST ENTRY "ASOF Reports Menu"
+  ...Create LIST ENTRY "GEO Reference Report"
+  Adding Breadcrumbs
+  ...Create BREADCRUMB ENTRY "Maintenance Menu"
+  ...Create BREADCRUMB ENTRY "Users Maint"
+  ...Create BREADCRUMB ENTRY "Users Form"
+  ...Create BREADCRUMB ENTRY "Card Types Maint"
+  ...Create BREADCRUMB ENTRY "Card Types Form"
+  ...Create BREADCRUMB ENTRY "Games Maint"
+  ...Create BREADCRUMB ENTRY "Games Form"
+  ...Create BREADCRUMB ENTRY "Players Maint"
+  ...Create BREADCRUMB ENTRY "Players Form"
+  ...Create BREADCRUMB ENTRY "Cards Maint"
+  ...Create BREADCRUMB ENTRY "Cards Form"
+  ...Create BREADCRUMB ENTRY "Actions Maint"
+  ...Create BREADCRUMB ENTRY "Actions Form"
+  ...Create BREADCRUMB ENTRY "Action Cards Maint"
+  ...Create BREADCRUMB ENTRY "Action Cards Form"
+  ...Create BREADCRUMB ENTRY "Pcard Actions Maint"
+  ...Create BREADCRUMB ENTRY "Pcard Actions Form"
+  ...Create BREADCRUMB ENTRY "Utility Log Report"
+  ...Create BREADCRUMB ENTRY "OMNI Reports Menu"
+  ...Create BREADCRUMB ENTRY "ASOF Reports Menu"
+  ...Create BREADCRUMB ENTRY "GEO Reference Report"
+  ...Create Page 1001: Users Maint
+  ...Navigation Tabs (for Users Maint)
+  Adding Users Maint Tab to SYSTEM_MAINT_TS ...
+  ...Create ALL/ACT Report Page Plug
+  ...Create Page Processing
+  ...Create Page 1201: Users Form
+  ...Create DML Form Page Plug
+  ...Create Page Processing
+  ...Navigation Tabs (for Users Form)
+  Adding Users Form Tab to SYSTEM_FORM_TS ...
+  ...Create Page 1002: Card Types Maint
+  ...Navigation Tabs (for Card Types Maint)
+  Adding Card Types Maint Tab to SYSTEM_MAINT_TS ...
+  ...Create ALL/ACT Report Page Plug
+  ...Create Page Processing
+  ...Create Page 1202: Card Types Form
+  ...Create DML Form Page Plug
+  ...Create Page Processing
+  ...Navigation Tabs (for Card Types Form)
+  Adding Card Types Form Tab to SYSTEM_FORM_TS ...
+  ...Create Page 1003: Games Maint
+  ...Navigation Tabs (for Games Maint)
+  Adding Games Maint Tab to SYSTEM_MAINT_TS ...
+  ...Create ALL/ACT Report Page Plug
+  ...Create Page Processing
+  ...Create Page 1203: Games Form
+  ...Create DML Form Page Plug
+  ...Create Page Processing
+  ...Navigation Tabs (for Games Form)
+  Adding Games Form Tab to SYSTEM_FORM_TS ...
+  ...Create Page 1011: Players Maint
+  ...Navigation Tabs (for Players Maint)
+  Adding Players Maint Tab to MAIN_MAINT_TS ...
+  ...Create ALL/ACT Report Page Plug
+  ...Create Page Processing
+  ...Create Page 1211: Players Form
+  ...Create DML Form Page Plug
+  ...Create Page Processing
+  ...Navigation Tabs (for Players Form)
+  Adding Players Form Tab to MAIN_FORM_TS ...
+  ...Create Page 1012: Cards Maint
+  ...Navigation Tabs (for Cards Maint)
+  Adding Cards Maint Tab to MAIN_MAINT_TS ...
+  ...Create ALL/ACT Report Page Plug
+  ...Create Page Processing
+  ...Create Page 1212: Cards Form
+  ...Create DML Form Page Plug
+  ...Create Page Processing
+  ...Navigation Tabs (for Cards Form)
+  Adding Cards Form Tab to MAIN_FORM_TS ...
+  ...Create Page 1013: Actions Maint
+  ...Navigation Tabs (for Actions Maint)
+  Adding Actions Maint Tab to MAIN_MAINT_TS ...
+  ...Create ALL/ACT Report Page Plug
+  ...Create Page Processing
+  ...Create Page 1213: Actions Form
+  ...Create DML Form Page Plug
+  ...Create Sub-Type Tree Page Plug
+  ...Create Accusation Sub-Type Dynamic Action
+  ...Create Revelation Sub-Type Dynamic Action
+  ...Create Suggestion Sub-Type Dynamic Action
+  ...Create NULL Sub-Type Dynamic Action
+  ...Create Page Processing
+  ...Navigation Tabs (for Actions Form)
+  Adding Actions Form Tab to MAIN_FORM_TS ...
+  ...Create Page 1014: Action Cards Maint
+  ...Navigation Tabs (for Action Cards Maint)
+  Adding Action Cards Maint Tab to MAIN_MAINT_TS ...
+  ...Create ALL/ACT Report Page Plug
+  ...Create Page Processing
+  ...Create Page 1214: Action Cards Form
+  ...Create DML Form Page Plug
+  ...Create Page Processing
+  ...Navigation Tabs (for Action Cards Form)
+  Adding Action Cards Form Tab to MAIN_FORM_TS ...
+  ...Create Page 1015: Pcard Actions Maint
+  ...Navigation Tabs (for Pcard Actions Maint)
+  Adding Pcard Actions Maint Tab to MAIN_MAINT_TS ...
+  ...Create ALL/ACT Report Page Plug
+  ...Create Page Processing
+  ...Create Page 1215: Pcard Actions Form
+  ...Create DML Form Page Plug
+  ...Create Page Processing
+  ...Navigation Tabs (for Pcard Actions Form)
+  Adding Pcard Actions Form Tab to MAIN_FORM_TS ...
