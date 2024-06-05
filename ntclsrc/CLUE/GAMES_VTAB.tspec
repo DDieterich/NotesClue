@@ -1,0 +1,28 @@
+
+--
+--  Create CLUE.GAMES_VTAB Type
+--
+
+set define off
+
+
+--DBMS_METADATA:CLUE.GAMES_VTAB
+
+  CREATE OR REPLACE EDITIONABLE TYPE "CLUE"."GAMES_VTAB" 
+is
+   -- Games Active View (Virtual) Table Type
+table of games_vobj
+/
+
+
+--  Grants
+
+
+--  Synonyms
+
+--DBMS_METADATA:DMSTEX.GAMES_VTAB
+
+  CREATE OR REPLACE EDITIONABLE SYNONYM "DMSTEX"."GAMES_VTAB" FOR "CLUE"."GAMES_VTAB";
+
+
+set define on

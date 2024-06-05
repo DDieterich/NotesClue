@@ -1,0 +1,61 @@
+
+--
+--  Create CLUE.GAMES Table
+--
+--  NOTE: Foreign keys are in a different script
+--        Indexes are in a different script
+--        Triggers are in a different script
+--
+
+set define off
+
+
+--DBMS_METADATA:CLUE.GAMES
+
+  CREATE TABLE "CLUE"."GAMES" 
+   (	"ID" NUMBER(38,0), 
+	"USER_ID" NUMBER(38,0) CONSTRAINT "GAMES_NN2" NOT NULL ENABLE, 
+	"NAME" VARCHAR2(320 BYTE) CONSTRAINT "GAMES_NN3" NOT NULL ENABLE, 
+	"LAST_ACT_NUM" NUMBER(2,0) CONSTRAINT "GAMES_NN4" NOT NULL ENABLE, 
+	"COMPLETED" VARCHAR2(1 BYTE), 
+	"HIDE_UNDO" VARCHAR2(1 BYTE), 
+	"HIDE_ACCUSE" VARCHAR2(1 BYTE), 
+	"HIDE_MISSING" VARCHAR2(1 BYTE), 
+	"HIDE_MY_SUGG" VARCHAR2(1 BYTE), 
+	"HIDE_PCARDS" VARCHAR2(1 BYTE), 
+	"HIDE_SUGG_HIST" VARCHAR2(1 BYTE)
+   ) SEGMENT CREATION IMMEDIATE  LOGGING;
+ALTER TABLE "CLUE"."GAMES" ADD CONSTRAINT "GAMES_PK" PRIMARY KEY ("ID")
+  USING INDEX  ENABLE;
+ALTER TABLE "CLUE"."GAMES" ADD CONSTRAINT "GAMES_NK" UNIQUE ("USER_ID", "NAME")
+  USING INDEX  ENABLE;
+
+--  Comments
+
+--DBMS_METADATA:CLUE.GAMES
+
+   COMMENT ON COLUMN "CLUE"."GAMES"."ID" IS 'Surrogate Primary Key for these games';
+   COMMENT ON COLUMN "CLUE"."GAMES"."USER_ID" IS 'User for this Game';
+   COMMENT ON COLUMN "CLUE"."GAMES"."NAME" IS 'User''s Game Name';
+   COMMENT ON COLUMN "CLUE"."GAMES"."LAST_ACT_NUM" IS 'Number of Last Actions to Display in User''s Game';
+   COMMENT ON COLUMN "CLUE"."GAMES"."COMPLETED" IS 'Flag indicating the Game is complete';
+   COMMENT ON COLUMN "CLUE"."GAMES"."HIDE_UNDO" IS 'Flag indicating to hide the Accusations Report in Users'' Game';
+   COMMENT ON COLUMN "CLUE"."GAMES"."HIDE_ACCUSE" IS 'Flag indicating to hide the Accusations Report in Users'' Game';
+   COMMENT ON COLUMN "CLUE"."GAMES"."HIDE_MISSING" IS 'Flag indicating to hide the Missing Cards Report in Users'' Game';
+   COMMENT ON COLUMN "CLUE"."GAMES"."HIDE_MY_SUGG" IS 'Flag indicating to hide the My Suggestions Report in Users'' Game';
+   COMMENT ON COLUMN "CLUE"."GAMES"."HIDE_PCARDS" IS 'Flag indicating to hide the Player Cards Report in Users'' Game';
+   COMMENT ON COLUMN "CLUE"."GAMES"."HIDE_SUGG_HIST" IS 'Flag indicating to hide the Suggestion History Report in Users'' Game';
+   COMMENT ON TABLE "CLUE"."GAMES"  IS 'Individual User''s Games';
+
+
+--  Grants
+
+
+--  Synonyms
+
+--DBMS_METADATA:DMSTEX.GAMES
+
+  CREATE OR REPLACE EDITIONABLE SYNONYM "DMSTEX"."GAMES" FOR "CLUE"."GAMES";
+
+
+set define on

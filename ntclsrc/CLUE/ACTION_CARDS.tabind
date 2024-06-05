@@ -1,0 +1,16 @@
+
+--
+--  Create Indexes for CLUE.ACTION_CARDS TABLE
+--
+
+set define off
+
+
+--  NOTE: This is a "INDEX" Index
+
+--DBMS_METADATA:CLUE.ACTION_CARDS_FX2
+
+  CREATE INDEX "CLUE"."ACTION_CARDS_FX2" ON "CLUE"."ACTION_CARDS" ("CARD_ID") 
+  ;
+
+set define on

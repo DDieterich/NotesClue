@@ -1,0 +1,48 @@
+
+--
+--  Create CLUE.ACTIONS_VOBJ Type
+--
+
+set define off
+
+
+--DBMS_METADATA:CLUE.ACTIONS_VOBJ
+
+  CREATE OR REPLACE EDITIONABLE TYPE "CLUE"."ACTIONS_VOBJ" 
+is
+   -- Actions Active View (Virtual) Record Type
+object
+   (id  NUMBER(38)
+   ,actions_sub_type  VARCHAR2(25)
+   ,player_id  NUMBER(38)
+   ,players_nk1  VARCHAR2(320)
+   ,players_nk2  VARCHAR2(320)
+   ,players_nk3  VARCHAR2(15)
+   ,seq  NUMBER(3)
+   ,resolved  VARCHAR2(3)
+   ,res_action_id  NUMBER(38)
+   ,res_id_path  VARCHAR2(4000)
+   ,res_nk_path  VARCHAR2(32767)
+   ,res_actions_nk1  VARCHAR2(320)
+   ,res_actions_nk2  VARCHAR2(320)
+   ,res_actions_nk3  VARCHAR2(15)
+   ,res_actions_nk4  NUMBER(3)
+   ,rev_player_id  NUMBER(38)
+   ,rev_players_nk1  VARCHAR2(320)
+   ,rev_players_nk2  VARCHAR2(320)
+   ,rev_players_nk3  VARCHAR2(15)
+   )
+/
+
+
+--  Grants
+
+
+--  Synonyms
+
+--DBMS_METADATA:DMSTEX.ACTIONS_VOBJ
+
+  CREATE OR REPLACE EDITIONABLE SYNONYM "DMSTEX"."ACTIONS_VOBJ" FOR "CLUE"."ACTIONS_VOBJ";
+
+
+set define on

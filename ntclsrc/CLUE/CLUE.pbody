@@ -1,0 +1,766 @@
+
+--
+--  Create CLUE.CLUE Package Body
+--
+
+set define off
+
+
+--DBMS_METADATA:CLUE.CLUE
+
+  CREATE OR REPLACE EDITIONABLE PACKAGE BODY "CLUE"."CLUE" as
+
+proc_gid      games.id%TYPE;
+proc_changes  boolean;
+------------------------------------------------------------
+procedure proc_hded
+      (act_id_in  in  actions.id%TYPE)
+as
+   cursor curs (sugg_id number, sugg_pid number, sugg_cid number) is
+      select other_ac.card_id
+       from  action_cards  other_ac
+       where other_ac.card_id  != sugg_cid
+        and  other_ac.action_id = sugg_id
+      minus
+      select olack_pca.card_id
+       from  pcard_actions  olack_pca
+            ,action_cards   other_ac
+       where olack_pca.disposition like 'L%'
+        and  olack_pca.player_id = sugg_pid
+        and  olack_pca.card_id   = other_ac.card_id
+        and  other_ac.card_id   != sugg_cid
+        and  other_ac.action_id  = sugg_id;
+   buff  curs%ROWTYPE;
+   num_cards  number;
+   not_fnd    boolean;
+begin
+   -- For all NOT resolved suggestions
+   for sbuff in (select id, rev_player_id from suggestion_act
+                  where rev_players_nk1 = user_name
+                   and  rev_players_nk2 = game_name
+                   and  resolved        = 'NOT' )
+   loop
+      <<CARD_LOOP>>
+      -- For each card in this suggestion
+      for acbuff in (select card_id from action_cards
+                      where action_id = sbuff.id)
+      loop
+         -- Look for this suggestion's player's card action cards of a
+         --   type other than the type for this card in this suggestion
+         open curs(sbuff.id, sbuff.rev_player_id, acbuff.card_id);
+         fetch curs into buff;
+         not_fnd := curs%NOTFOUND;
+         close curs;
+         if not_fnd then
+            -- Mark this Card HDED
+            insert into pcard_actions (card_id, disposition, player_id, action_id)
+               values (acbuff.card_id, 'HDED', sbuff.rev_player_id, act_id_in);
+            -- Mark this Suggestion DED
+            update actions set resolved = 'DED', res_action_id = act_id_in
+             where id = sbuff.id;
+            -- Changes were made
+            proc_changes := TRUE;
+            exit CARD_LOOP;
+         end if;
+      end loop CARD_LOOP;
+   end loop;
+end proc_hded;
+------------------------------------------------------------
+procedure proc_lelt
+      (act_id_in  in  actions.id%TYPE)
+as
+begin
+   -- For each card type in this game with HOLD count =
+   --    player count (including me) + 1 (envelope card)
+   for ctbuff in (select cta.ctype_id, cth.ctypes_held, cta.ctypes_all
+                   from  (select ctype_id, count(ctype_id) ctypes_held
+                           from (select c.ctype_id, pca.card_id
+                                  from  pcard_actions pca
+                                       ,cards         c
+                                  where pca.disposition like 'H%'
+                                   and  pca.card_id     = c.id
+                                   and  c.game_id       = proc_gid
+                                  group by c.ctype_id, pca.card_id )
+                           group by ctype_id  ) cth
+                        ,(select ctype_id, count(ctype_id) ctypes_all
+                           from  cards
+                           where game_id = proc_gid
+                           group by ctype_id  ) cta
+                   where cth.ctypes_held + 1 >= cta.ctypes_all
+                    and  cth.ctype_id         = cta.ctype_id   )
+   loop
+      -- Mark all players LELT for this card type that are not already marked
+      for pcbuff in (select p.id player_id, c.id card_id
+                      from  players  p
+                           ,cards    c
+                      where p.game_id  = proc_gid
+                       and  c.ctype_id = ctbuff.ctype_id
+                     minus
+                     select pca.player_id, pca.card_id
+                      from  pcard_actions pca
+                           ,cards         c
+                      where pca.card_id     = c.id
+                       and  c.ctype_id      = ctbuff.ctype_id
+                      group by pca.player_id, pca.card_id  )
+      loop
+         insert into pcard_actions (card_id, disposition, player_id, action_id)
+            values (pcbuff.card_id, 'LELT', pcbuff.player_id, act_id_in);
+         -- Changes were made
+         proc_changes := TRUE;
+      end loop;
+   end loop;
+end proc_lelt;
+------------------------------------------------------------
+procedure proc_lelp
+      (act_id_in  in  actions.id%TYPE)
+as
+begin
+   -- For each player with HOLD count = player card count
+   for pbuff in (select p.id from players p
+                       ,(select player_id, count(player_id) cards_held
+                          from  (select player_id, card_id
+                                  from  pcard_actions_act
+                                  where disposition like 'H%'
+                                   and  players_nk1 = user_name
+                                   and  players_nk2 = game_name
+                                  group by player_id, card_id )
+                           group by player_id  ) ch
+                  where ch.cards_held >= p.total_cards
+                   and  ch.player_id   = p.id )
+   loop
+      -- Mark all cards LELP that are not already marked for this player
+      for pcbuff in (select id card_id
+                      from  cards
+                      where game_id = proc_gid
+                     minus
+                     select card_id
+                      from  pcard_actions
+                      where player_id = pbuff.id
+                      group by card_id)
+      loop
+         insert into pcard_actions (card_id, disposition, player_id, action_id)
+            values (pcbuff.card_id, 'LELP', pbuff.id, act_id_in);
+         -- Changes were made
+         proc_changes := TRUE;
+      end loop;
+   end loop;
+end proc_lelp;
+------------------------------------------------------------
+procedure proc_act
+     (act_id_in  in  actions.id%TYPE)
+as
+begin
+   -- Find the Game ID
+   begin
+      select id into proc_gid from games_act
+       where users_nk1 = user_name and name = game_name;
+   exception when NO_DATA_FOUND then proc_gid := null;
+   end;
+   if proc_gid is null then return; end if;
+   -- Iterate until done
+   for i in 1 .. 100 loop
+      proc_changes := FALSE;
+      proc_hded (act_id_in);
+      proc_lelt (act_id_in);
+      proc_lelp (act_id_in);
+      exit when proc_changes = FALSE;
+   end loop;
+   if proc_changes then
+      raise_application_error(-20000, 'Changes remain at 100 iterations of PROC_ACT');
+   end if;
+end proc_act;
+------------------------------------------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+procedure set
+      (name_in  in  varchar2
+      ,val_in   in  varchar2)
+as
+begin
+   case upper(name_in)
+   when 'USER' then user_name := val_in;
+   when 'GAME' then game_name := val_in;
+   end case;
+end set;
+------------------------------------------------------------
+function get(name_in  in  varchar2) return varchar2
+as
+begin
+   case upper(name_in)
+   when 'USER' then return user_name;
+   when 'GAME' then return game_name;
+               else return null;
+   end case;
+end get;
+------------------------------------------------------------
+function act_seq
+   return number
+as
+   seq_num  actions.seq%TYPE;
+begin
+   select max(seq) into seq_num from actions_act
+    where players_nk1 = user_name and players_nk2 = game_name;
+   return nvl(seq_num,0);
+end act_seq;
+------------------------------------------------------------
+function get_acards
+      (act_id_in  in  actions.id%TYPE
+      ,show_type  in  varchar2 default null)
+   return varchar2
+as
+   rstr  varchar2(4000) := '';
+   rlen  number;
+begin
+   for buff in (select ct.name ctype, c.name cname
+                 from  card_types    ct
+                      ,cards         c
+                      ,action_cards  ac
+                 where ct.id        = c.ctype_id
+                  and  c.id         = ac.card_id
+                  and  ac.action_id = act_id_in
+                 order by ct.sort_ord   )
+   loop
+      if show_type is not null then
+         rstr := rstr || buff.ctype || ':';
+      end if;
+      rstr := rstr || buff.cname || ', ';
+   end loop;
+   rlen := length(rstr);
+   if rlen > 2 then return substr(rstr, 1, rlen-2);
+               else return '';
+   end if;
+end get_acards;
+------------------------------------------------------------
+function get_missing
+      (ctype_id_in  in  cards.ctype_id%TYPE)
+   return varchar2
+as
+   rstr     varchar2(4000);
+begin
+   for cbuff in (select c.name
+                  from  cards_act  c
+                  where c.ctype_id  = ctype_id_in
+                   and  c.games_nk2 = game_name
+                   and  not exists (select 'X' from pcard_actions pca
+                                     where pca.disposition like 'H%'
+                                      and  pca.card_id     = c.id  )
+                  order by c.name )
+   loop
+      rstr := rstr || cbuff.name || ', ';
+   end loop;
+   return substr(rstr,1,nvl(length(rstr),0)-2);
+end get_missing;
+------------------------------------------------------------
+function get_pdisp_hdr
+   return varchar2
+as
+   rstr  varchar2(4000);
+begin
+   for pbuff in (select name from players_act
+                  where games_nk1 = user_name
+                   and  games_nk2 = game_name
+                  order by seq)
+   loop
+      rstr := rstr || rpad(pbuff.name, 8) || '  ';
+   end loop;
+   return substr(rstr,1,nvl(length(rstr),0)-2);
+end get_pdisp_hdr;
+------------------------------------------------------------
+function get_pdisp_list
+      (card_id_in  in  cards.id%TYPE)
+   return varchar2
+as
+   rstr  varchar2(4000);
+   disp  varchar2(1);
+begin
+   for pbuff in (select p.id
+                       ,p.name
+                  from  players  p
+                       ,cards    c
+                  where p.game_id = c.game_id
+                   and  c.id      = card_id_in
+                  order by p.seq)
+   loop
+      begin
+         select min(substr(disposition,1,1)) into disp from pcard_actions
+          where player_id = pbuff.id and card_id = card_id_in;
+      exception when NO_DATA_FOUND then disp := null;
+      end;
+      case disp
+      when 'H' then rstr := rstr || '  (())    ';
+      when 'L' then rstr := rstr || '  ~~~~    ';
+               else rstr := rstr || '          ';
+      end case;
+   end loop;
+   return substr(rstr,1,nvl(length(rstr),0)-2);
+end get_pdisp_list;
+------------------------------------------------------------
+------------------------------------------------------------
+------------------------------------------------------------
+procedure init_user
+      (uname_in  in  users.name%TYPE)
+as
+begin
+  -- Create user as needed
+  begin
+     insert into users (name) values (uname_in);
+  exception when DUP_VAL_ON_INDEX then null;
+            when others then raise;
+  end;
+  -- Create Card Types for user as needed
+  for ctbuff in (select name, sort_ord from card_types_act
+                  where users_nk1 = 'Default'
+                  order by sort_ord)
+  loop
+     begin
+        insert into card_types_act (users_nk1, name, sort_ord)
+           values (uname_in, ctbuff.name, ctbuff.sort_ord);
+     exception when DUP_VAL_ON_INDEX then null;
+               when others then raise;
+     end;
+  end loop;
+  -- Set user_name
+  user_name := uname_in;
+end init_user;
+------------------------------------------------------------
+procedure init_game
+      (gname_in  in  games.name%TYPE
+      ,gcopy_in  in  games.name%TYPE  default null)
+as
+begin
+  -- Create game for set_user as needed
+  begin
+     insert into games_act (users_nk1, name) values (user_name, gname_in);
+  exception when DUP_VAL_ON_INDEX then null;
+            when others then raise;
+  end;
+  -- Create Cards for the game
+  for cbuff in (select name, card_types_nk2 from cards_act
+                 where (    gcopy_in  is null
+                        and games_nk1 = 'Default'
+                        and games_nk2 = 'Default' )
+                   OR  (    gcopy_in  is not null
+                        and games_nk1 = user_name
+                        and games_nk2 = gcopy_in ) )
+  loop
+     begin
+        insert into cards_act (games_nk1, games_nk2, name, card_types_nk1, card_types_nk2)
+           values (user_name, gname_in, cbuff.name, user_name, cbuff.card_types_nk2);
+     exception when DUP_VAL_ON_INDEX then null;
+               when others then raise;
+     end;
+  end loop;
+  -- Create Players for the game
+  for pbuff in (select name, seq from players_act
+                 where (    gcopy_in  is null
+                        and games_nk1 = 'Default'
+                        and games_nk2 = 'Default' )
+                   OR  (    gcopy_in  is not null
+                        and games_nk1 = user_name
+                        and games_nk2 = gcopy_in ) )
+  loop
+     begin
+        insert into players_act (games_nk1, games_nk2, name, seq)
+           values (user_name, gname_in, pbuff.name, pbuff.seq);
+     exception when DUP_VAL_ON_INDEX then null;
+               when others then raise;
+     end;
+  end loop;
+  -- Set game_name
+  game_name := gname_in;
+end init_game;
+------------------------------------------------------------
+procedure add_rev
+      (pname_in    in  players.name%TYPE
+      ,card_aa_in  in  card_aa_type)
+as
+   cind    card_aa_ind;
+   disp    pcard_actions.disposition%TYPE;
+   act_id  actions.id%TYPE;
+begin
+   -- Add a Reveal Action
+   insert into actions (actions_sub_type, player_id,
+         seq, resolved)
+      values ('revelation', players_dml.get_id(user_name, game_name, pname_in),
+         act_seq + 1, 'REV')
+      returning id into act_id;
+   -- Add Reveal Action Cards
+   cind := card_aa_in.FIRST;
+   loop
+      insert into action_cards_act (cards_nk1, cards_nk2, cards_nk3, action_id)
+         values (user_name, game_name, card_aa_in(cind), act_id);
+      exit when cind = card_aa_in.LAST;
+      cind := card_aa_in.NEXT(cind);
+   end loop;
+   -- Add Player Card Actions (LREV and HREV)
+   for pbuff in (select id, name from players_act
+                  where games_nk1 = user_name
+                   and  games_nk2 = game_name)
+   loop
+      case pbuff.name
+      when pname_in then disp := 'HREV';
+                    else disp := 'LREV';
+      end case;
+      cind := card_aa_in.FIRST;
+      loop
+         insert into pcard_actions_act (cards_nk1, cards_nk2, cards_nk3,
+               disposition, player_id, action_id)
+            values (user_name, game_name, card_aa_in(cind),
+               disp, pbuff.id, act_id);
+         exit when cind = card_aa_in.LAST;
+         cind := card_aa_in.NEXT(cind);
+      end loop;
+   end loop;
+   -- Mark all NOT resolved suggestions with this card as REV
+   cind := card_aa_in.FIRST;
+   dbms_output.put_line('act_id = ' || act_id || ', pname_in = ' || pname_in);
+   loop
+      update suggestion_act  sugg
+        set  resolved      = 'REV'
+            ,res_action_id = act_id
+       where rev_players_nk1 = user_name
+        and  rev_players_nk2 = game_name
+        and  rev_players_nk3 = pname_in
+        and  resolved        = 'NOT'
+        and  exists ( select 'X' from action_cards_act  ac
+                       where ac.action_id = sugg.id
+                        and  ac.cards_nk1 = user_name
+                        and  ac.cards_nk2 = game_name
+                        and  ac.cards_nk3 = card_aa_in(cind) );
+      dbms_output.put_line('cind = ' || cind || ', card_aa_in(cind) = ' || card_aa_in(cind));
+      exit when cind = card_aa_in.LAST;
+      cind := card_aa_in.NEXT(cind);
+   end loop;
+   -- proc_act
+   proc_act(act_id);
+end add_rev;
+------------------------------------------------------------
+procedure add_sugg
+      (pname_in      in  players.name%TYPE
+      ,rev_pname_in  in  players.name%TYPE  default null
+      ,rev_caind_in  in  card_aa_ind
+      ,card_aa_in    in  card_aa_type)
+as
+   cind     card_aa_ind;
+   card_aa  card_aa_type;
+   act_id   actions.id%TYPE;
+   s_pseq   players.seq%TYPE;
+   r_pseq   players.seq%TYPE;
+begin
+   -- Add Suggest Action
+   -- Resolved will default to NOT and get modified by another action_id
+   -- Must use get_id here because get_id in the view trigger will
+   --   throw an error if rev_pname_in is null
+   insert into actions (actions_sub_type, player_id,
+         seq, rev_player_id)
+      values ('suggestion', players_dml.get_id(user_name, game_name, pname_in),
+         act_seq+1, players_dml.get_id(user_name, game_name, rev_pname_in))
+      returning id into act_id;
+   -- Add Action Cards
+   cind := card_aa_in.FIRST;
+   loop
+      insert into action_cards_act (cards_nk1, cards_nk2, cards_nk3, action_id)
+         values (user_name, game_name, card_aa_in(cind), act_id);
+      exit when cind = card_aa_in.LAST;
+      cind := card_aa_in.NEXT(cind);
+   end loop;
+   -- Find sequence number for suggestion player
+   select seq into s_pseq from players_act
+    where games_nk1 = user_name
+     and  games_nk2 = game_name
+     and  name      = pname_in;
+   if rev_pname_in is not null then
+      -- Find sequence number for revelation player
+      select seq into r_pseq from players_act
+       where games_nk1 = user_name
+        and  games_nk2 = game_name
+        and  name      = rev_pname_in;
+   else
+      -- None of the other players have these cards
+      r_pseq := s_pseq;
+   end if;
+   -- For all players between suggestion and reveal at act_seq
+   for pbuff in (select id from players_act
+                  where games_nk1 = user_name
+                   and  games_nk2 = game_name
+                   and  (  (s_pseq < r_pseq and seq > s_pseq and seq < r_pseq)
+                        or (s_pseq > r_pseq and (seq > s_pseq or seq < r_pseq))
+                        or (s_pseq = r_pseq and seq != s_pseq)  )  )
+   loop
+      -- Set LPAS for player card action
+      cind := card_aa_in.FIRST;
+      loop
+         insert into pcard_actions_act (cards_nk1, cards_nk2, cards_nk3,
+               disposition, player_id, action_id)
+            values (user_name, game_name, card_aa_in(cind),
+               'LPAS', pbuff.id, act_id);
+         exit when cind = card_aa_in.LAST;
+         cind := card_aa_in.NEXT(cind);
+      end loop;
+   end loop;
+   -- If rev_cname is set, add_rev, else proc_act
+   if rev_caind_in is not null then
+      card_aa(1) := card_aa_in(rev_caind_in);
+      add_rev (rev_pname_in, card_aa);
+   else
+      proc_act(act_id);
+   end if;
+end add_sugg;
+------------------------------------------------------------
+procedure add_acc
+      (pname_in    in  players.name%TYPE
+      ,card_aa_in  in  card_aa_type)
+as
+   cind    card_aa_ind;
+   act_id  actions.id%TYPE;
+begin
+   -- Add a Accuse Action
+   insert into actions (actions_sub_type, player_id,
+         seq)
+      values ('accusation', players_dml.get_id(user_name, game_name, pname_in),
+         act_seq + 1)
+      returning id into act_id;
+   -- Add Reveal Action Cards
+   cind := card_aa_in.FIRST;
+   loop
+      insert into action_cards_act (cards_nk1, cards_nk2, cards_nk3, action_id)
+         values (user_name, game_name, card_aa_in(cind), act_id);
+      exit when cind = card_aa_in.LAST;
+      cind := card_aa_in.NEXT(cind);
+   end loop;
+end add_acc;
+------------------------------------------------------------
+procedure undo_action
+as
+   act_id  actions.id%TYPE;
+begin
+   -- Can't use act_seq because that action may be an UNDO
+   select a1.id into act_id
+    from  actions_act  a1
+    where a1.players_nk1 = user_name
+     and  a1.players_nk2 = game_name
+     and  a1.seq         = (select max(seq) from actions_act a2
+                             where a2.resolved   != 'UND'
+                              and  a2.players_nk1 = a1.players_nk1
+                              and  a2.players_nk2 = a1.players_nk2);
+   -- Remove Player Card Actions for this Action
+   delete from pcard_actions where action_id = act_id;
+   -- Set Referenced Actions and set NOT Resolved for Resolved Suggestions
+   update suggestion
+     set  res_action_id = NULL
+         ,resolved = 'NOT'
+    where res_action_id = act_id;
+   -- Remove Action
+   update actions set resolved = 'UND' where id = act_id;
+end undo_action;
+------------------------------------------------------------
+function check_game
+   return varchar2
+as
+   EOL  CONSTANT varchar2(2) := '.' || chr(10);
+   tot_cards    number;
+   num_ctypes   number;
+   card_cnt     number;
+   rstr         varchar2(4000);
+   estr         varchar2(4000);
+   found_error  boolean;
+begin
+   if user_name is null or game_name is null then
+      return 'check_game: Failed. USER and GAME must be set';
+   end if;
+   -- Check Sum of total_cards + number of card types in game = Card Count
+   select sum(total_cards) into tot_cards from players_act
+    where games_nk1 = user_name and games_nk2 = game_name;
+   select count(distinct card_types_nk2), count(card_types_nk2)
+     into num_ctypes, card_cnt from cards_act
+    where games_nk1 = user_name and games_nk2 = game_name;
+   if tot_cards + num_ctypes != card_cnt then
+      rstr := rstr || 'Card Count: Failed, tot_cards: ' || tot_cards ||
+         ', num_ctypes: ' || num_ctypes || ', card_cnt: ' || card_cnt || EOL;
+   else
+      rstr := rstr || 'Card Count: Passed' || EOL;
+   end if;
+   -- Check for player cards with both held and lacked
+   found_error := FALSE;
+   <<hold_lack>>
+   for pcbuff in (select hold.pname, hold.cname, hdisp, ldisp
+                   from  (select players_nk3       pname
+                                ,cards_nk3         cname
+                                ,min(disposition)  hdisp
+                           from  pcard_actions_act
+                           where players_nk1 = user_name
+                            and  players_nk2 = game_name
+                            and  disposition like 'H%'
+                           group by players_nk3
+                                ,cards_nk3               ) hold
+                        ,(select players_nk3       pname
+                                ,cards_nk3         cname
+                                ,min(disposition)  ldisp
+                           from  pcard_actions_act
+                           where players_nk1 = user_name
+                            and  players_nk2 = game_name
+                            and  disposition like 'L%'
+                           group by players_nk3
+                                ,cards_nk3               ) lack
+                    where hold.pname = lack.pname
+                     and  hold.cname = lack.cname  )
+   loop
+      estr := '  Player: ' || pcbuff.pname || ', Card: ' || pcbuff.cname ||
+              ', Hold Disposition ' || pcbuff.hdisp ||
+              ', Lack Disposition ' || pcbuff.ldisp || EOL;
+      found_error := TRUE;
+      exit hold_lack;
+   end loop hold_lack;
+   if found_error then
+      rstr := rstr || 'Hold/Lack: Failed' || EOL || estr;
+   else
+      rstr := rstr || 'Hold/Lack: Passed' || EOL;
+   end if;
+   -- Check all accusations have one card of each type in game (action cards)
+   found_error := FALSE;
+   <<cnt_accuse>>
+   for ctbuff in (select ctype_id
+                        ,card_types_nk2  ctype_name
+                   from  cards_act
+                   where games_nk1 = user_name
+                    and  games_nk2 = game_name
+                  group by ctype_id
+                        ,card_types_nk2 )
+   loop
+      for pbuff in (select id
+                          ,players_nk3   pname
+                          ,seq
+                      from accusation_act
+                     where players_nk1 = user_name
+                      and  players_nk2 = game_name )
+      loop
+         begin
+            select count(ac.action_id) into card_cnt
+             from  cards         c
+                  ,action_cards  ac
+             where c.ctype_id   = ctbuff.ctype_id
+              and  c.id         = ac.card_id
+              and  ac.action_id = pbuff.id;
+         exception when NO_DATA_FOUND then card_cnt := 0;
+         end;
+         if nvl(card_cnt,0) != 1 then
+            estr := '  Player: ' || pbuff.pname || ', Seq: ' || pbuff.seq ||
+                    ', CType_Name: ' || ctbuff.ctype_name ||
+                    ', Card_Cnt: ' || card_cnt || EOL;
+            found_error := TRUE;
+            exit cnt_accuse;
+         end if;
+      end loop;
+   end loop cnt_accuse;
+   if found_error then
+      rstr := rstr || 'Cnt Accuse: Failed' || EOL || estr;
+   else
+      rstr := rstr || 'Cnt Accuse: Passed' || EOL;
+   end if;
+   -- Check all reveals have at least one action card
+   found_error := FALSE;
+   <<cnt_reveal>>
+   for rbuff in (select id
+                       ,players_nk3   pname
+                       ,seq
+                   from revelation_act
+                  where players_nk1 = user_name
+                   and  players_nk2 = game_name )
+   loop
+      begin
+         select count(ac.action_id) into card_cnt
+          from  action_cards ac
+          where ac.action_id = rbuff.id;
+      exception when NO_DATA_FOUND then card_cnt := 0;
+      end;
+      if nvl(card_cnt,0) < 1 then
+         estr := '  Player: ' || rbuff.pname || ', Seq: ' || rbuff.seq ||
+                 ', Card_Cnt: ' || card_cnt || EOL;
+         found_error := TRUE;
+         exit cnt_reveal;
+      end if;
+   end loop cnt_reveal;
+   if found_error then
+      rstr := rstr || 'Cnt Reveal: Failed' || EOL || estr;
+   else
+      rstr := rstr || 'Cnt Reveal: Passed' || EOL;
+   end if;
+   -- Check all suggestions have one card of each type in game (action cards)
+   found_error := FALSE;
+   <<cnt_suggest>>
+   for ctbuff in (select ctype_id
+                        ,card_types_nk2  ctype_name
+                   from  cards_act
+                   where games_nk1 = user_name
+                    and  games_nk2 = game_name
+                  group by ctype_id
+                        ,card_types_nk2   )
+   loop
+      for pbuff in (select id
+                          ,players_nk3   pname
+                          ,seq
+                      from suggestion_act
+                     where players_nk1 = user_name
+                      and  players_nk2 = game_name )
+      loop
+         begin
+            select count(ac.action_id) into card_cnt
+             from  cards         c
+                  ,action_cards  ac
+             where c.ctype_id   = ctbuff.ctype_id
+              and  c.id         = ac.card_id
+              and  ac.action_id = pbuff.id;
+         exception when NO_DATA_FOUND then card_cnt := 0;
+         end;
+         if nvl(card_cnt,0) != 1 then
+            estr := '  Player: ' || pbuff.pname || ', Seq: ' || pbuff.seq ||
+                    ', CType_Name: ' || ctbuff.ctype_name ||
+                    ', Card_Cnt: ' || card_cnt || EOL;
+            found_error := TRUE;
+            exit cnt_suggest;
+         end if;
+      end loop;
+   end loop cnt_suggest;
+   if found_error then
+      rstr := rstr || 'Cnt Suggest: Failed' || EOL || estr;
+   else
+      rstr := rstr || 'Cnt Suggest: Passed' || EOL;
+   end if;
+   return substr(rstr,1,nvl(length(rstr),0)-2);
+end check_game;
+------------------------------------------------------------
+procedure delete_game
+as
+begin
+   delete from pcard_actions_act
+    where cards_nk1 = user_name and cards_nk2 = game_name;
+   delete from action_cards_act
+    where actions_nk1 = user_name and actions_nk2 = game_name;
+   delete from actions_act
+    where players_nk1 = user_name and players_nk2 = game_name;
+   delete from players_act
+    where games_nk1 = user_name and games_nk2 = game_name;
+   delete from cards_act
+    where games_nk1 = user_name and games_nk2 = game_name;
+   delete from games_act
+    where users_nk1 = user_name and name = game_name;
+   game_name := null;
+end delete_game;
+------------------------------------------------------------
+procedure delete_user
+as
+begin
+   for gbuff in (select name from games_act where users_nk1 = user_name)
+   loop
+      init_game(gbuff.name);
+      delete_game;
+   end loop;
+   delete from card_types_act where users_nk1 = user_name;
+   delete from users where name = user_name;
+   user_name := null;
+end delete_user;
+------------------------------------------------------------
+end clue;
+/
+
+set define on

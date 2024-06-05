@@ -1,0 +1,41 @@
+
+--
+--  Create CLUE.GAMES_VOBJ Type
+--
+
+set define off
+
+
+--DBMS_METADATA:CLUE.GAMES_VOBJ
+
+  CREATE OR REPLACE EDITIONABLE TYPE "CLUE"."GAMES_VOBJ" 
+is
+   -- Games Active View (Virtual) Record Type
+object
+   (id  NUMBER(38)
+   ,user_id  NUMBER(38)
+   ,users_nk1  VARCHAR2(320)
+   ,name  VARCHAR2(320)
+   ,last_act_num  NUMBER(2)
+   ,completed  VARCHAR2(1)
+   ,hide_undo  VARCHAR2(1)
+   ,hide_accuse  VARCHAR2(1)
+   ,hide_missing  VARCHAR2(1)
+   ,hide_my_sugg  VARCHAR2(1)
+   ,hide_pcards  VARCHAR2(1)
+   ,hide_sugg_hist  VARCHAR2(1)
+   )
+/
+
+
+--  Grants
+
+
+--  Synonyms
+
+--DBMS_METADATA:DMSTEX.GAMES_VOBJ
+
+  CREATE OR REPLACE EDITIONABLE SYNONYM "DMSTEX"."GAMES_VOBJ" FOR "CLUE"."GAMES_VOBJ";
+
+
+set define on

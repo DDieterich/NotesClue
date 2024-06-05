@@ -1,0 +1,43 @@
+
+--
+--  Create CLUE.USERS Table
+--
+--  NOTE: Foreign keys are in a different script
+--        Indexes are in a different script
+--        Triggers are in a different script
+--
+
+set define off
+
+
+--DBMS_METADATA:CLUE.USERS
+
+  CREATE TABLE "CLUE"."USERS" 
+   (	"ID" NUMBER(38,0), 
+	"NAME" VARCHAR2(320 BYTE) CONSTRAINT "USERS_NN2" NOT NULL ENABLE
+   ) SEGMENT CREATION IMMEDIATE  LOGGING;
+ALTER TABLE "CLUE"."USERS" ADD CONSTRAINT "USERS_PK" PRIMARY KEY ("ID")
+  USING INDEX  ENABLE;
+ALTER TABLE "CLUE"."USERS" ADD CONSTRAINT "USERS_NK" UNIQUE ("NAME")
+  USING INDEX  ENABLE;
+
+--  Comments
+
+--DBMS_METADATA:CLUE.USERS
+
+   COMMENT ON COLUMN "CLUE"."USERS"."ID" IS 'Surrogate Primary Key for these users';
+   COMMENT ON COLUMN "CLUE"."USERS"."NAME" IS 'Clue Notes User Name';
+   COMMENT ON TABLE "CLUE"."USERS"  IS 'Registered Users';
+
+
+--  Grants
+
+
+--  Synonyms
+
+--DBMS_METADATA:DMSTEX.USERS
+
+  CREATE OR REPLACE EDITIONABLE SYNONYM "DMSTEX"."USERS" FOR "CLUE"."USERS";
+
+
+set define on

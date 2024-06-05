@@ -1,0 +1,16 @@
+
+--
+--  Create Foreign Keys for CLUE.PLAYERS TABLE
+--
+
+set define off
+
+
+--  NOTE: This is a "BASE TABLE" Foreign Key
+
+--DBMS_METADATA:CLUE.PLAYERS_FK1
+
+  ALTER TABLE "CLUE"."PLAYERS" ADD CONSTRAINT "PLAYERS_FK1" FOREIGN KEY ("GAME_ID")
+	  REFERENCES "CLUE"."GAMES" ("ID") ENABLE;
+
+set define on

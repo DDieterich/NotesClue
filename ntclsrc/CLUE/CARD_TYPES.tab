@@ -1,0 +1,47 @@
+
+--
+--  Create CLUE.CARD_TYPES Table
+--
+--  NOTE: Foreign keys are in a different script
+--        Indexes are in a different script
+--        Triggers are in a different script
+--
+
+set define off
+
+
+--DBMS_METADATA:CLUE.CARD_TYPES
+
+  CREATE TABLE "CLUE"."CARD_TYPES" 
+   (	"ID" NUMBER(38,0), 
+	"USER_ID" NUMBER(38,0) CONSTRAINT "CARD_TYPES_NN2" NOT NULL ENABLE, 
+	"NAME" VARCHAR2(15 BYTE) CONSTRAINT "CARD_TYPES_NN3" NOT NULL ENABLE, 
+	"SORT_ORD" NUMBER(2,0)
+   ) SEGMENT CREATION IMMEDIATE  LOGGING;
+ALTER TABLE "CLUE"."CARD_TYPES" ADD CONSTRAINT "CARD_TYPES_PK" PRIMARY KEY ("ID")
+  USING INDEX  ENABLE;
+ALTER TABLE "CLUE"."CARD_TYPES" ADD CONSTRAINT "CARD_TYPES_NK" UNIQUE ("USER_ID", "NAME")
+  USING INDEX  ENABLE;
+
+--  Comments
+
+--DBMS_METADATA:CLUE.CARD_TYPES
+
+   COMMENT ON COLUMN "CLUE"."CARD_TYPES"."ID" IS 'Surrogate Primary Key for these card_types';
+   COMMENT ON COLUMN "CLUE"."CARD_TYPES"."USER_ID" IS 'User for this Card Type';
+   COMMENT ON COLUMN "CLUE"."CARD_TYPES"."NAME" IS 'Card Type Name';
+   COMMENT ON COLUMN "CLUE"."CARD_TYPES"."SORT_ORD" IS 'Sort Order for Card Types';
+   COMMENT ON TABLE "CLUE"."CARD_TYPES"  IS 'Players for each User''s Game';
+
+
+--  Grants
+
+
+--  Synonyms
+
+--DBMS_METADATA:DMSTEX.CARD_TYPES
+
+  CREATE OR REPLACE EDITIONABLE SYNONYM "DMSTEX"."CARD_TYPES" FOR "CLUE"."CARD_TYPES";
+
+
+set define on

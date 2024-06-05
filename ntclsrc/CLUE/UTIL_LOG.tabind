@@ -1,0 +1,16 @@
+
+--
+--  Create Indexes for CLUE.UTIL_LOG TABLE
+--
+
+set define off
+
+
+--  NOTE: This is a "INDEX" Index
+
+--DBMS_METADATA:CLUE.UTIL_LOG_IX1
+
+  CREATE INDEX "CLUE"."UTIL_LOG_IX1" ON "CLUE"."UTIL_LOG" ("DTM", "USR") 
+  ;
+
+set define on

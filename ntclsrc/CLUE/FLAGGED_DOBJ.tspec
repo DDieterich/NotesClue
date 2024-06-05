@@ -1,0 +1,32 @@
+
+--
+--  Create CLUE.FLAGGED_DOBJ Type
+--
+
+set define off
+
+
+--DBMS_METADATA:CLUE.FLAGGED_DOBJ
+
+  CREATE OR REPLACE EDITIONABLE TYPE "CLUE"."FLAGGED_DOBJ" 
+is
+   -- Flagged Domain Value Record Type
+object
+   (value        varchar2(1)
+   ,seq          number
+   ,description  varchar2(1000)
+   )
+/
+
+
+--  Grants
+
+
+--  Synonyms
+
+--DBMS_METADATA:DMSTEX.FLAGGED_DOBJ
+
+  CREATE OR REPLACE EDITIONABLE SYNONYM "DMSTEX"."FLAGGED_DOBJ" FOR "CLUE"."FLAGGED_DOBJ";
+
+
+set define on

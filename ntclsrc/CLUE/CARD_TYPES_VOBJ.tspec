@@ -1,0 +1,34 @@
+
+--
+--  Create CLUE.CARD_TYPES_VOBJ Type
+--
+
+set define off
+
+
+--DBMS_METADATA:CLUE.CARD_TYPES_VOBJ
+
+  CREATE OR REPLACE EDITIONABLE TYPE "CLUE"."CARD_TYPES_VOBJ" 
+is
+   -- Card_Types Active View (Virtual) Record Type
+object
+   (id  NUMBER(38)
+   ,user_id  NUMBER(38)
+   ,users_nk1  VARCHAR2(320)
+   ,name  VARCHAR2(15)
+   ,sort_ord  NUMBER(2)
+   )
+/
+
+
+--  Grants
+
+
+--  Synonyms
+
+--DBMS_METADATA:DMSTEX.CARD_TYPES_VOBJ
+
+  CREATE OR REPLACE EDITIONABLE SYNONYM "DMSTEX"."CARD_TYPES_VOBJ" FOR "CLUE"."CARD_TYPES_VOBJ";
+
+
+set define on

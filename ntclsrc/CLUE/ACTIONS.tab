@@ -1,0 +1,53 @@
+
+--
+--  Create CLUE.ACTIONS Table
+--
+--  NOTE: Foreign keys are in a different script
+--        Indexes are in a different script
+--        Triggers are in a different script
+--
+
+set define off
+
+
+--DBMS_METADATA:CLUE.ACTIONS
+
+  CREATE TABLE "CLUE"."ACTIONS" 
+   (	"ID" NUMBER(38,0), 
+	"ACTIONS_SUB_TYPE" VARCHAR2(25 BYTE), 
+	"PLAYER_ID" NUMBER(38,0) CONSTRAINT "ACTIONS_NN3" NOT NULL ENABLE, 
+	"SEQ" NUMBER(3,0) CONSTRAINT "ACTIONS_NN4" NOT NULL ENABLE, 
+	"RESOLVED" VARCHAR2(3 BYTE) CONSTRAINT "ACTIONS_NN5" NOT NULL ENABLE, 
+	"RES_ACTION_ID" NUMBER(38,0), 
+	"REV_PLAYER_ID" NUMBER(38,0)
+   ) CLUSTER "CLUE"."ACT_CLUS" ("ID");
+ALTER TABLE "CLUE"."ACTIONS" ADD CONSTRAINT "ACTIONS_PK" PRIMARY KEY ("ID")
+  USING INDEX  ENABLE;
+ALTER TABLE "CLUE"."ACTIONS" ADD CONSTRAINT "ACTIONS_NK" UNIQUE ("PLAYER_ID", "SEQ")
+  USING INDEX  ENABLE;
+
+--  Comments
+
+--DBMS_METADATA:CLUE.ACTIONS
+
+   COMMENT ON COLUMN "CLUE"."ACTIONS"."ID" IS 'Surrogate Primary Key for these actions';
+   COMMENT ON COLUMN "CLUE"."ACTIONS"."ACTIONS_SUB_TYPE" IS 'Sub-type for these actions';
+   COMMENT ON COLUMN "CLUE"."ACTIONS"."PLAYER_ID" IS 'Player that took this Action';
+   COMMENT ON COLUMN "CLUE"."ACTIONS"."SEQ" IS 'Sequence Number for this Action';
+   COMMENT ON COLUMN "CLUE"."ACTIONS"."RESOLVED" IS 'Resolved Status for this Action';
+   COMMENT ON COLUMN "CLUE"."ACTIONS"."RES_ACTION_ID" IS '(suggestion Sub-type) The current Action when this Suggestion was resolved';
+   COMMENT ON COLUMN "CLUE"."ACTIONS"."REV_PLAYER_ID" IS '(suggestion Sub-type) Player that reveled a card for this Suggestion';
+   COMMENT ON TABLE "CLUE"."ACTIONS"  IS 'Player''s Suggestions for each User''s Game';
+
+
+--  Grants
+
+
+--  Synonyms
+
+--DBMS_METADATA:DMSTEX.ACTIONS
+
+  CREATE OR REPLACE EDITIONABLE SYNONYM "DMSTEX"."ACTIONS" FOR "CLUE"."ACTIONS";
+
+
+set define on

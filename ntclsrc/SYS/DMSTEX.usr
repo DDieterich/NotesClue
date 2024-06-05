@@ -1,0 +1,17 @@
+
+--
+--  Create DMSTEX Schema
+--
+
+set define off
+
+create user "DMSTEX"
+   no authentication
+   profile DEFAULT
+   temporary tablespace TEMP
+   ;
+
+--  Grant SYS Objects (but not directories)
+
+
+set define on

@@ -1,0 +1,32 @@
+
+--
+--  Create CLUE.RESOLUTIONS_DOBJ Type
+--
+
+set define off
+
+
+--DBMS_METADATA:CLUE.RESOLUTIONS_DOBJ
+
+  CREATE OR REPLACE EDITIONABLE TYPE "CLUE"."RESOLUTIONS_DOBJ" 
+is
+   -- Resolutions Domain Value Record Type
+object
+   (value        varchar2(3)
+   ,seq          number
+   ,description  varchar2(1000)
+   )
+/
+
+
+--  Grants
+
+
+--  Synonyms
+
+--DBMS_METADATA:DMSTEX.RESOLUTIONS_DOBJ
+
+  CREATE OR REPLACE EDITIONABLE SYNONYM "DMSTEX"."RESOLUTIONS_DOBJ" FOR "CLUE"."RESOLUTIONS_DOBJ";
+
+
+set define on

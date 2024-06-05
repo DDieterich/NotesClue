@@ -1,0 +1,32 @@
+
+--
+--  Create CLUE.DISPOSITIONS_DOBJ Type
+--
+
+set define off
+
+
+--DBMS_METADATA:CLUE.DISPOSITIONS_DOBJ
+
+  CREATE OR REPLACE EDITIONABLE TYPE "CLUE"."DISPOSITIONS_DOBJ" 
+is
+   -- Dispositions Domain Value Record Type
+object
+   (value        varchar2(4)
+   ,seq          number
+   ,description  varchar2(1000)
+   )
+/
+
+
+--  Grants
+
+
+--  Synonyms
+
+--DBMS_METADATA:DMSTEX.DISPOSITIONS_DOBJ
+
+  CREATE OR REPLACE EDITIONABLE SYNONYM "DMSTEX"."DISPOSITIONS_DOBJ" FOR "CLUE"."DISPOSITIONS_DOBJ";
+
+
+set define on

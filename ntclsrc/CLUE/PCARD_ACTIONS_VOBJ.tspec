@@ -1,0 +1,44 @@
+
+--
+--  Create CLUE.PCARD_ACTIONS_VOBJ Type
+--
+
+set define off
+
+
+--DBMS_METADATA:CLUE.PCARD_ACTIONS_VOBJ
+
+  CREATE OR REPLACE EDITIONABLE TYPE "CLUE"."PCARD_ACTIONS_VOBJ" 
+is
+   -- Pcard_Actions Active View (Virtual) Record Type
+object
+   (id  NUMBER(38)
+   ,card_id  NUMBER(38)
+   ,cards_nk1  VARCHAR2(320)
+   ,cards_nk2  VARCHAR2(320)
+   ,cards_nk3  VARCHAR2(15)
+   ,disposition  VARCHAR2(4)
+   ,player_id  NUMBER(38)
+   ,players_nk1  VARCHAR2(320)
+   ,players_nk2  VARCHAR2(320)
+   ,players_nk3  VARCHAR2(15)
+   ,action_id  NUMBER(38)
+   ,actions_nk1  VARCHAR2(320)
+   ,actions_nk2  VARCHAR2(320)
+   ,actions_nk3  VARCHAR2(15)
+   ,actions_nk4  NUMBER(3)
+   )
+/
+
+
+--  Grants
+
+
+--  Synonyms
+
+--DBMS_METADATA:DMSTEX.PCARD_ACTIONS_VOBJ
+
+  CREATE OR REPLACE EDITIONABLE SYNONYM "DMSTEX"."PCARD_ACTIONS_VOBJ" FOR "CLUE"."PCARD_ACTIONS_VOBJ";
+
+
+set define on

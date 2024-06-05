@@ -1,0 +1,44 @@
+
+--
+--  Create CLUE.UTIL_TRC Table
+--
+--  NOTE: Foreign keys are in a different script
+--        Indexes are in a different script
+--        Triggers are in a different script
+--
+
+set define off
+
+
+--DBMS_METADATA:CLUE.UTIL_TRC
+
+  CREATE TABLE "CLUE"."UTIL_TRC" 
+   (	"LOC" VARCHAR2(1000 BYTE), 
+	"TXT" VARCHAR2(2000 BYTE), 
+	"USR" VARCHAR2(30 BYTE), 
+	"SID" NUMBER, 
+	 CONSTRAINT "UTIL_TRC_PK" PRIMARY KEY ("LOC", "TXT", "USR", "SID") ENABLE
+   ) ORGANIZATION INDEX NOCOMPRESS  OVERFLOW;
+
+--  Comments
+
+--DBMS_METADATA:CLUE.UTIL_TRC
+
+   COMMENT ON COLUMN "CLUE"."UTIL_TRC"."LOC" IS 'Search string for the location in the source code where the message was logged';
+   COMMENT ON COLUMN "CLUE"."UTIL_TRC"."TXT" IS 'Search string for the error or debug message text';
+   COMMENT ON COLUMN "CLUE"."UTIL_TRC"."USR" IS 'Search string for the username for auditing';
+   COMMENT ON COLUMN "CLUE"."UTIL_TRC"."SID" IS 'Matching Database Session ID';
+   COMMENT ON TABLE "CLUE"."UTIL_TRC"  IS 'Trace Triggers';
+
+
+--  Grants
+
+
+--  Synonyms
+
+--DBMS_METADATA:DMSTEX.UTIL_TRC
+
+  CREATE OR REPLACE EDITIONABLE SYNONYM "DMSTEX"."UTIL_TRC" FOR "CLUE"."UTIL_TRC";
+
+
+set define on

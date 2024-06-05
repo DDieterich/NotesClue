@@ -1,0 +1,3 @@
+"USERNAME","INSTALL_TYPE","ORACLE_PROVIDED","PROFILE","TEMPORARY_TSPACE","DEFAULT_TSPACE","TS_QUOTA","NOTES"
+"CLUE","ntclsrc","N",,,,,"Notes Clue Schema Owner"
+"DMSTEX","ntclsrc","N",,,,,"Notes Clue User"

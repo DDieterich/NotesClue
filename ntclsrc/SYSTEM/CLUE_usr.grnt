@@ -1,0 +1,28 @@
+
+
+--
+--  Create CLUE Grants
+--
+
+set define off
+
+
+
+--  Database System Privileges
+
+grant CREATE SYNONYM to "CLUE";
+grant CREATE VIEW to "CLUE";
+grant DEBUG ANY PROCEDURE to "CLUE";
+grant DEBUG CONNECT SESSION to "CLUE";
+
+
+--  "sys" INSTALL_TYPE Role Grants
+--  "GRANTEE" (delayed) Role Grants
+--  Note: "OBJECT" Schema Object Grants are given during Role creation
+
+grant "CONNECT" to "CLUE";
+grant "RESOURCE" to "CLUE";
+
+
+set define on
+

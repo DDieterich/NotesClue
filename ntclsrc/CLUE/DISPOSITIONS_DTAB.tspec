@@ -1,0 +1,28 @@
+
+--
+--  Create CLUE.DISPOSITIONS_DTAB Type
+--
+
+set define off
+
+
+--DBMS_METADATA:CLUE.DISPOSITIONS_DTAB
+
+  CREATE OR REPLACE EDITIONABLE TYPE "CLUE"."DISPOSITIONS_DTAB" 
+is
+   -- Dispositions Domain Value Table Type
+table of Dispositions_dobj
+/
+
+
+--  Grants
+
+
+--  Synonyms
+
+--DBMS_METADATA:DMSTEX.DISPOSITIONS_DTAB
+
+  CREATE OR REPLACE EDITIONABLE SYNONYM "DMSTEX"."DISPOSITIONS_DTAB" FOR "CLUE"."DISPOSITIONS_DTAB";
+
+
+set define on

@@ -1,0 +1,36 @@
+
+--
+--  Create CLUE.REVELATION_VOBJ Type
+--
+
+set define off
+
+
+--DBMS_METADATA:CLUE.REVELATION_VOBJ
+
+  CREATE OR REPLACE EDITIONABLE TYPE "CLUE"."REVELATION_VOBJ" 
+is
+   -- Revelation Active View (Virtual) Record Type
+object
+   (id  NUMBER(38)
+   ,player_id  NUMBER(38)
+   ,players_nk1  VARCHAR2(320)
+   ,players_nk2  VARCHAR2(320)
+   ,players_nk3  VARCHAR2(15)
+   ,seq  NUMBER(3)
+   ,resolved  VARCHAR2(3)
+   )
+/
+
+
+--  Grants
+
+
+--  Synonyms
+
+--DBMS_METADATA:DMSTEX.REVELATION_VOBJ
+
+  CREATE OR REPLACE EDITIONABLE SYNONYM "DMSTEX"."REVELATION_VOBJ" FOR "CLUE"."REVELATION_VOBJ";
+
+
+set define on

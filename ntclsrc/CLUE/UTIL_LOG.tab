@@ -1,0 +1,45 @@
+
+--
+--  Create CLUE.UTIL_LOG Table
+--
+--  NOTE: Foreign keys are in a different script
+--        Indexes are in a different script
+--        Triggers are in a different script
+--
+
+set define off
+
+
+--DBMS_METADATA:CLUE.UTIL_LOG
+
+  CREATE TABLE "CLUE"."UTIL_LOG" 
+   (	"DTM" TIMESTAMP (6) WITH LOCAL TIME ZONE, 
+	"USR" VARCHAR2(30 BYTE), 
+	"SID" NUMBER, 
+	"TXT" VARCHAR2(4000 BYTE), 
+	"LOC" VARCHAR2(2000 BYTE)
+   ) SEGMENT CREATION DEFERRED  LOGGING;
+
+--  Comments
+
+--DBMS_METADATA:CLUE.UTIL_LOG
+
+   COMMENT ON COLUMN "CLUE"."UTIL_LOG"."DTM" IS 'System time when message was logged';
+   COMMENT ON COLUMN "CLUE"."UTIL_LOG"."USR" IS 'Username for Auditing';
+   COMMENT ON COLUMN "CLUE"."UTIL_LOG"."SID" IS 'Database Session ID';
+   COMMENT ON COLUMN "CLUE"."UTIL_LOG"."TXT" IS 'Error or Debug message text';
+   COMMENT ON COLUMN "CLUE"."UTIL_LOG"."LOC" IS 'Location in the source code where the message was logged';
+   COMMENT ON TABLE "CLUE"."UTIL_LOG"  IS 'Error and Debug Messages';
+
+
+--  Grants
+
+
+--  Synonyms
+
+--DBMS_METADATA:DMSTEX.UTIL_LOG
+
+  CREATE OR REPLACE EDITIONABLE SYNONYM "DMSTEX"."UTIL_LOG" FOR "CLUE"."UTIL_LOG";
+
+
+set define on

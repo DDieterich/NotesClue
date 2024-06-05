@@ -1,0 +1,28 @@
+
+--
+--  Create CLUE.ACCUSATION_VTAB Type
+--
+
+set define off
+
+
+--DBMS_METADATA:CLUE.ACCUSATION_VTAB
+
+  CREATE OR REPLACE EDITIONABLE TYPE "CLUE"."ACCUSATION_VTAB" 
+is
+   -- Accusation Active View (Virtual) Table Type
+table of accusation_vobj
+/
+
+
+--  Grants
+
+
+--  Synonyms
+
+--DBMS_METADATA:DMSTEX.ACCUSATION_VTAB
+
+  CREATE OR REPLACE EDITIONABLE SYNONYM "DMSTEX"."ACCUSATION_VTAB" FOR "CLUE"."ACCUSATION_VTAB";
+
+
+set define on

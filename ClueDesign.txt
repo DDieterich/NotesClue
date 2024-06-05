@@ -1,4 +1,28 @@
 
+Clue Versions:
+ -) Classic
+ -) Star Wars
+ -) Game of Thrones
+ -) Walking Dead
+ -) Big Bang
+ -) Harry Potter
+ -) Supernatural
+ -) Office Edition
+ -) Luxury Edition
+ -) Gift Edition (7 weapons)
+ -) 50th Anniversary (7 weapons)
+ -) Secrets and Spies
+ -) Firefly
+ -) Legend of Zelda
+ -) Junior
+ -) Cluedo
+ -) Dungeons and Dragons
+ -) Vintage
+ -) Scooby-doo
+ -) Clue IT
+
+
+
 Need to remove most all locks and "wait" from util package because
  apex.oracle.com doesn't allow access to DBMS_LOCKS.
 

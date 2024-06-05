@@ -1,0 +1,42 @@
+
+--
+--  Create CLUE.UTIL_NVP Table
+--
+--  NOTE: Foreign keys are in a different script
+--        Indexes are in a different script
+--        Triggers are in a different script
+--
+
+set define off
+
+
+--DBMS_METADATA:CLUE.UTIL_NVP
+
+  CREATE TABLE "CLUE"."UTIL_NVP" 
+   (	"NAME" VARCHAR2(30 BYTE), 
+	"VALUE" VARCHAR2(4000 BYTE), 
+	"DESCRIPTION" VARCHAR2(1000 BYTE) DEFAULT null, 
+	 CONSTRAINT "UTIL_NVP_PK" PRIMARY KEY ("NAME") ENABLE
+   ) ORGANIZATION INDEX NOCOMPRESS  OVERFLOW;
+
+--  Comments
+
+--DBMS_METADATA:CLUE.UTIL_NVP
+
+   COMMENT ON COLUMN "CLUE"."UTIL_NVP"."NAME" IS 'Name for Name-Value Pair';
+   COMMENT ON COLUMN "CLUE"."UTIL_NVP"."VALUE" IS 'Value for Name-Value Pair';
+   COMMENT ON COLUMN "CLUE"."UTIL_NVP"."DESCRIPTION" IS 'Description for Name-Value Pair';
+   COMMENT ON TABLE "CLUE"."UTIL_NVP"  IS 'Name-Value Pairs Table for System Parameters';
+
+
+--  Grants
+
+
+--  Synonyms
+
+--DBMS_METADATA:DMSTEX.UTIL_NVP
+
+  CREATE OR REPLACE EDITIONABLE SYNONYM "DMSTEX"."UTIL_NVP" FOR "CLUE"."UTIL_NVP";
+
+
+set define on

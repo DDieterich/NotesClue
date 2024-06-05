@@ -1,0 +1,28 @@
+
+--
+--  Create CLUE.RESOLUTIONS_DTAB Type
+--
+
+set define off
+
+
+--DBMS_METADATA:CLUE.RESOLUTIONS_DTAB
+
+  CREATE OR REPLACE EDITIONABLE TYPE "CLUE"."RESOLUTIONS_DTAB" 
+is
+   -- Resolutions Domain Value Table Type
+table of Resolutions_dobj
+/
+
+
+--  Grants
+
+
+--  Synonyms
+
+--DBMS_METADATA:DMSTEX.RESOLUTIONS_DTAB
+
+  CREATE OR REPLACE EDITIONABLE SYNONYM "DMSTEX"."RESOLUTIONS_DTAB" FOR "CLUE"."RESOLUTIONS_DTAB";
+
+
+set define on

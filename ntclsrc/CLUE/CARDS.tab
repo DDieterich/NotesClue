@@ -1,0 +1,47 @@
+
+--
+--  Create CLUE.CARDS Table
+--
+--  NOTE: Foreign keys are in a different script
+--        Indexes are in a different script
+--        Triggers are in a different script
+--
+
+set define off
+
+
+--DBMS_METADATA:CLUE.CARDS
+
+  CREATE TABLE "CLUE"."CARDS" 
+   (	"ID" NUMBER(38,0), 
+	"GAME_ID" NUMBER(38,0) CONSTRAINT "CARDS_NN2" NOT NULL ENABLE, 
+	"NAME" VARCHAR2(15 BYTE) CONSTRAINT "CARDS_NN3" NOT NULL ENABLE, 
+	"CTYPE_ID" NUMBER(38,0) CONSTRAINT "CARDS_NN4" NOT NULL ENABLE
+   ) SEGMENT CREATION IMMEDIATE  LOGGING;
+ALTER TABLE "CLUE"."CARDS" ADD CONSTRAINT "CARDS_PK" PRIMARY KEY ("ID")
+  USING INDEX  ENABLE;
+ALTER TABLE "CLUE"."CARDS" ADD CONSTRAINT "CARDS_NK" UNIQUE ("GAME_ID", "NAME")
+  USING INDEX  ENABLE;
+
+--  Comments
+
+--DBMS_METADATA:CLUE.CARDS
+
+   COMMENT ON COLUMN "CLUE"."CARDS"."ID" IS 'Surrogate Primary Key for these cards';
+   COMMENT ON COLUMN "CLUE"."CARDS"."GAME_ID" IS 'User''s Game for this Card';
+   COMMENT ON COLUMN "CLUE"."CARDS"."NAME" IS 'Card Name';
+   COMMENT ON COLUMN "CLUE"."CARDS"."CTYPE_ID" IS 'Card Type';
+   COMMENT ON TABLE "CLUE"."CARDS"  IS 'Cards for each User''s Game';
+
+
+--  Grants
+
+
+--  Synonyms
+
+--DBMS_METADATA:DMSTEX.CARDS
+
+  CREATE OR REPLACE EDITIONABLE SYNONYM "DMSTEX"."CARDS" FOR "CLUE"."CARDS";
+
+
+set define on

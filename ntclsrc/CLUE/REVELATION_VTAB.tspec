@@ -1,0 +1,28 @@
+
+--
+--  Create CLUE.REVELATION_VTAB Type
+--
+
+set define off
+
+
+--DBMS_METADATA:CLUE.REVELATION_VTAB
+
+  CREATE OR REPLACE EDITIONABLE TYPE "CLUE"."REVELATION_VTAB" 
+is
+   -- Revelation Active View (Virtual) Table Type
+table of revelation_vobj
+/
+
+
+--  Grants
+
+
+--  Synonyms
+
+--DBMS_METADATA:DMSTEX.REVELATION_VTAB
+
+  CREATE OR REPLACE EDITIONABLE SYNONYM "DMSTEX"."REVELATION_VTAB" FOR "CLUE"."REVELATION_VTAB";
+
+
+set define on

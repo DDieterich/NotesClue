@@ -1,0 +1,18 @@
+
+--
+--  Create CLUE Schema
+--
+
+set define off
+
+create user "CLUE"
+   no authentication
+   profile DEFAULT
+   temporary tablespace TEMP
+   ;
+
+--  Grant SYS Objects (but not directories)
+
+grant EXECUTE on "SYS"."DBMS_LOCK" to "CLUE";
+
+set define on

@@ -1,0 +1,45 @@
+
+--
+--  Create CLUE.ACTION_CARDS Table
+--
+--  NOTE: Foreign keys are in a different script
+--        Indexes are in a different script
+--        Triggers are in a different script
+--
+
+set define off
+
+
+--DBMS_METADATA:CLUE.ACTION_CARDS
+
+  CREATE TABLE "CLUE"."ACTION_CARDS" 
+   (	"ID" NUMBER(38,0), 
+	"ACTION_ID" NUMBER(38,0) CONSTRAINT "ACTION_CARDS_NN2" NOT NULL ENABLE, 
+	"CARD_ID" NUMBER(38,0) CONSTRAINT "ACTION_CARDS_NN3" NOT NULL ENABLE
+   ) CLUSTER "CLUE"."ACT_CLUS" ("ACTION_ID");
+ALTER TABLE "CLUE"."ACTION_CARDS" ADD CONSTRAINT "ACTION_CARDS_PK" PRIMARY KEY ("ID")
+  USING INDEX  ENABLE;
+ALTER TABLE "CLUE"."ACTION_CARDS" ADD CONSTRAINT "ACTION_CARDS_NK" UNIQUE ("ACTION_ID", "CARD_ID")
+  USING INDEX  ENABLE;
+
+--  Comments
+
+--DBMS_METADATA:CLUE.ACTION_CARDS
+
+   COMMENT ON COLUMN "CLUE"."ACTION_CARDS"."ID" IS 'Surrogate Primary Key for these action_cards';
+   COMMENT ON COLUMN "CLUE"."ACTION_CARDS"."ACTION_ID" IS 'Action for this Card';
+   COMMENT ON COLUMN "CLUE"."ACTION_CARDS"."CARD_ID" IS 'Card for this Action';
+   COMMENT ON TABLE "CLUE"."ACTION_CARDS"  IS 'Player''s Card Suggestions for each User''s Game';
+
+
+--  Grants
+
+
+--  Synonyms
+
+--DBMS_METADATA:DMSTEX.ACTION_CARDS
+
+  CREATE OR REPLACE EDITIONABLE SYNONYM "DMSTEX"."ACTION_CARDS" FOR "CLUE"."ACTION_CARDS";
+
+
+set define on

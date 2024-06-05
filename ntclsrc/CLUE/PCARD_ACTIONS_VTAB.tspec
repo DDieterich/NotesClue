@@ -1,0 +1,28 @@
+
+--
+--  Create CLUE.PCARD_ACTIONS_VTAB Type
+--
+
+set define off
+
+
+--DBMS_METADATA:CLUE.PCARD_ACTIONS_VTAB
+
+  CREATE OR REPLACE EDITIONABLE TYPE "CLUE"."PCARD_ACTIONS_VTAB" 
+is
+   -- Pcard_Actions Active View (Virtual) Table Type
+table of pcard_actions_vobj
+/
+
+
+--  Grants
+
+
+--  Synonyms
+
+--DBMS_METADATA:DMSTEX.PCARD_ACTIONS_VTAB
+
+  CREATE OR REPLACE EDITIONABLE SYNONYM "DMSTEX"."PCARD_ACTIONS_VTAB" FOR "CLUE"."PCARD_ACTIONS_VTAB";
+
+
+set define on

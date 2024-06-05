@@ -1,0 +1,15 @@
+
+--
+--  Create CLUE_app Role
+--
+
+set define off
+
+
+create role CLUE_app;
+
+
+--  Grant SYS Objects (but not directories)
+
+
+set define on

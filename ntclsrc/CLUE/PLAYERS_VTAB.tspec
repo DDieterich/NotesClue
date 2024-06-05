@@ -1,0 +1,28 @@
+
+--
+--  Create CLUE.PLAYERS_VTAB Type
+--
+
+set define off
+
+
+--DBMS_METADATA:CLUE.PLAYERS_VTAB
+
+  CREATE OR REPLACE EDITIONABLE TYPE "CLUE"."PLAYERS_VTAB" 
+is
+   -- Players Active View (Virtual) Table Type
+table of players_vobj
+/
+
+
+--  Grants
+
+
+--  Synonyms
+
+--DBMS_METADATA:DMSTEX.PLAYERS_VTAB
+
+  CREATE OR REPLACE EDITIONABLE SYNONYM "DMSTEX"."PLAYERS_VTAB" FOR "CLUE"."PLAYERS_VTAB";
+
+
+set define on

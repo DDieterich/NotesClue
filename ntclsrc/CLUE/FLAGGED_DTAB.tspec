@@ -1,0 +1,28 @@
+
+--
+--  Create CLUE.FLAGGED_DTAB Type
+--
+
+set define off
+
+
+--DBMS_METADATA:CLUE.FLAGGED_DTAB
+
+  CREATE OR REPLACE EDITIONABLE TYPE "CLUE"."FLAGGED_DTAB" 
+is
+   -- Flagged Domain Value Table Type
+table of Flagged_dobj
+/
+
+
+--  Grants
+
+
+--  Synonyms
+
+--DBMS_METADATA:DMSTEX.FLAGGED_DTAB
+
+  CREATE OR REPLACE EDITIONABLE SYNONYM "DMSTEX"."FLAGGED_DTAB" FOR "CLUE"."FLAGGED_DTAB";
+
+
+set define on

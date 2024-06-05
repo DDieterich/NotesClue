@@ -1,0 +1,31 @@
+
+--
+--  Create CLUE.USERS_VOBJ Type
+--
+
+set define off
+
+
+--DBMS_METADATA:CLUE.USERS_VOBJ
+
+  CREATE OR REPLACE EDITIONABLE TYPE "CLUE"."USERS_VOBJ" 
+is
+   -- Users Active View (Virtual) Record Type
+object
+   (id  NUMBER(38)
+   ,name  VARCHAR2(320)
+   )
+/
+
+
+--  Grants
+
+
+--  Synonyms
+
+--DBMS_METADATA:DMSTEX.USERS_VOBJ
+
+  CREATE OR REPLACE EDITIONABLE SYNONYM "DMSTEX"."USERS_VOBJ" FOR "CLUE"."USERS_VOBJ";
+
+
+set define on

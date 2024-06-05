@@ -1,0 +1,39 @@
+
+--
+--  Create CLUE.ACTION_CARDS_VOBJ Type
+--
+
+set define off
+
+
+--DBMS_METADATA:CLUE.ACTION_CARDS_VOBJ
+
+  CREATE OR REPLACE EDITIONABLE TYPE "CLUE"."ACTION_CARDS_VOBJ" 
+is
+   -- Action_Cards Active View (Virtual) Record Type
+object
+   (id  NUMBER(38)
+   ,action_id  NUMBER(38)
+   ,actions_nk1  VARCHAR2(320)
+   ,actions_nk2  VARCHAR2(320)
+   ,actions_nk3  VARCHAR2(15)
+   ,actions_nk4  NUMBER(3)
+   ,card_id  NUMBER(38)
+   ,cards_nk1  VARCHAR2(320)
+   ,cards_nk2  VARCHAR2(320)
+   ,cards_nk3  VARCHAR2(15)
+   )
+/
+
+
+--  Grants
+
+
+--  Synonyms
+
+--DBMS_METADATA:DMSTEX.ACTION_CARDS_VOBJ
+
+  CREATE OR REPLACE EDITIONABLE SYNONYM "DMSTEX"."ACTION_CARDS_VOBJ" FOR "CLUE"."ACTION_CARDS_VOBJ";
+
+
+set define on

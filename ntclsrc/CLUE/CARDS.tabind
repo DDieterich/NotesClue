@@ -1,0 +1,16 @@
+
+--
+--  Create Indexes for CLUE.CARDS TABLE
+--
+
+set define off
+
+
+--  NOTE: This is a "INDEX" Index
+
+--DBMS_METADATA:CLUE.CARDS_IX1
+
+  CREATE INDEX "CLUE"."CARDS_IX1" ON "CLUE"."CARDS" ("CTYPE_ID", "GAME_ID") 
+  ;
+
+set define on

@@ -1,0 +1,28 @@
+
+--
+--  Create CLUE.SUGGESTION_VTAB Type
+--
+
+set define off
+
+
+--DBMS_METADATA:CLUE.SUGGESTION_VTAB
+
+  CREATE OR REPLACE EDITIONABLE TYPE "CLUE"."SUGGESTION_VTAB" 
+is
+   -- Suggestion Active View (Virtual) Table Type
+table of suggestion_vobj
+/
+
+
+--  Grants
+
+
+--  Synonyms
+
+--DBMS_METADATA:DMSTEX.SUGGESTION_VTAB
+
+  CREATE OR REPLACE EDITIONABLE SYNONYM "DMSTEX"."SUGGESTION_VTAB" FOR "CLUE"."SUGGESTION_VTAB";
+
+
+set define on

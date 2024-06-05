@@ -1,0 +1,36 @@
+
+--
+--  Create CLUE.PLAYERS_VOBJ Type
+--
+
+set define off
+
+
+--DBMS_METADATA:CLUE.PLAYERS_VOBJ
+
+  CREATE OR REPLACE EDITIONABLE TYPE "CLUE"."PLAYERS_VOBJ" 
+is
+   -- Players Active View (Virtual) Record Type
+object
+   (id  NUMBER(38)
+   ,game_id  NUMBER(38)
+   ,games_nk1  VARCHAR2(320)
+   ,games_nk2  VARCHAR2(320)
+   ,name  VARCHAR2(15)
+   ,seq  NUMBER(2)
+   ,total_cards  NUMBER(2)
+   )
+/
+
+
+--  Grants
+
+
+--  Synonyms
+
+--DBMS_METADATA:DMSTEX.PLAYERS_VOBJ
+
+  CREATE OR REPLACE EDITIONABLE SYNONYM "DMSTEX"."PLAYERS_VOBJ" FOR "CLUE"."PLAYERS_VOBJ";
+
+
+set define on

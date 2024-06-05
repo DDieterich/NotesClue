@@ -1,0 +1,28 @@
+
+--
+--  Create CLUE.USERS_VTAB Type
+--
+
+set define off
+
+
+--DBMS_METADATA:CLUE.USERS_VTAB
+
+  CREATE OR REPLACE EDITIONABLE TYPE "CLUE"."USERS_VTAB" 
+is
+   -- Users Active View (Virtual) Table Type
+table of users_vobj
+/
+
+
+--  Grants
+
+
+--  Synonyms
+
+--DBMS_METADATA:DMSTEX.USERS_VTAB
+
+  CREATE OR REPLACE EDITIONABLE SYNONYM "DMSTEX"."USERS_VTAB" FOR "CLUE"."USERS_VTAB";
+
+
+set define on

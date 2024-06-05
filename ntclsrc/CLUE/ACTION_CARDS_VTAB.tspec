@@ -1,0 +1,28 @@
+
+--
+--  Create CLUE.ACTION_CARDS_VTAB Type
+--
+
+set define off
+
+
+--DBMS_METADATA:CLUE.ACTION_CARDS_VTAB
+
+  CREATE OR REPLACE EDITIONABLE TYPE "CLUE"."ACTION_CARDS_VTAB" 
+is
+   -- Action_Cards Active View (Virtual) Table Type
+table of action_cards_vobj
+/
+
+
+--  Grants
+
+
+--  Synonyms
+
+--DBMS_METADATA:DMSTEX.ACTION_CARDS_VTAB
+
+  CREATE OR REPLACE EDITIONABLE SYNONYM "DMSTEX"."ACTION_CARDS_VTAB" FOR "CLUE"."ACTION_CARDS_VTAB";
+
+
+set define on

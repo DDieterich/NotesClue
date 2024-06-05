@@ -1,0 +1,16 @@
+
+--
+--  Create Foreign Keys for CLUE.PLAYERS_ACT VIEW
+--
+
+set define off
+
+
+--  NOTE: This is a "BASE TABLE" Foreign Key
+
+--DBMS_METADATA:CLUE.PLAYERS_ACT_FK1
+
+  ALTER VIEW "CLUE"."PLAYERS_ACT" ADD CONSTRAINT "PLAYERS_ACT_FK1" FOREIGN KEY ("GAME_ID")
+	  REFERENCES "CLUE"."GAMES_ACT" ("ID") DISABLE;
+
+set define on
