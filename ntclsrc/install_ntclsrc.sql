@@ -114,15 +114,6 @@ set escape ""
 @dbi.sql "CLUE/UTIL_TRC.tab" "CLUE" "&INSTALL_SYSTEM_CONNECT."
 
 ----------------------------------------
--- DATA_LOAD Install
-
-@dbi.sql "CLUE/CARDS.cdl" "CLUE" "&INSTALL_SYSTEM_CONNECT."
-@dbi.sql "CLUE/CARD_TYPES.cdl" "CLUE" "&INSTALL_SYSTEM_CONNECT."
-@dbi.sql "CLUE/GAMES.cdl" "CLUE" "&INSTALL_SYSTEM_CONNECT."
-@dbi.sql "CLUE/PLAYERS.cdl" "CLUE" "&INSTALL_SYSTEM_CONNECT."
-@dbi.sql "CLUE/USERS.cdl" "CLUE" "&INSTALL_SYSTEM_CONNECT."
-
-----------------------------------------
 -- INDEX Install
 
 @dbi.sql "CLUE/ACTIONS.tabind" "CLUE" "&INSTALL_SYSTEM_CONNECT."

@@ -28,12 +28,6 @@ declare
       close c_main;
    end;
 begin
-   do_it('grbendp');
-   do_it('grbjava');
-   do_it('grbras');
-   do_it('grbsdo');
-   do_it('grbsrc');
-   do_it('ntcldat');
    do_it('ntclsrc');
 end;
 /

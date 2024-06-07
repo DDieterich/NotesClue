@@ -1,10 +1,11 @@
 OPTIONS (SKIP=1)
 LOAD DATA
-APPEND INTO TABLE "CLUE"."GAMES"
+APPEND INTO TABLE "CLUE"."GAMES_ACT"
 FIELDS CSV WITH EMBEDDED
 TRAILING NULLCOLS
    (ID                             FLOAT EXTERNAL
    ,USER_ID                        FLOAT EXTERNAL
+   ,USERS_NK1                      CHAR(320)
    ,NAME                           CHAR(320)
    ,LAST_ACT_NUM                   FLOAT EXTERNAL
    ,COMPLETED                      CHAR(1)

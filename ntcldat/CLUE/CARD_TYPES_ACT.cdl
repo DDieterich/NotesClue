@@ -1,6 +1,6 @@
 
 --
---  Consolidated Data Load script for CLUE.USERS data
+--  Consolidated Data Load script for CLUE.CARD_TYPES_ACT data
 --
 -- Command Line Parameters:
 --   1 - SYSTEM/password@TNSALIAS
@@ -22,7 +22,7 @@ begin
    for buff in (select owner, trigger_name
                  from  dba_triggers
                  where table_owner = 'CLUE'
-                  and  table_name = 'USERS'
+                  and  table_name = 'CARD_TYPES_ACT'
                  order by owner, trigger_name)
    loop
       run_sql('alter trigger "' || buff.owner        || '"' ||
@@ -32,17 +32,17 @@ begin
                  from  dba_constraints
                  where constraint_type = 'R'
                   and  owner = 'CLUE'
-                  and  table_name = 'USERS'
+                  and  table_name = 'CARD_TYPES_ACT'
                  order by constraint_name)
    loop
-      run_sql('alter table "CLUE"."USERS"' ||
+      run_sql('alter table "CLUE"."CARD_TYPES_ACT"' ||
               ' DISABLE constraint "' || buff.constraint_name || '"');
    end loop;
    for buff in (select owner, index_name
                  from  dba_indexes
                  where index_type = 'DOMAIN'
                   and  table_owner = 'CLUE'
-                  and  table_name = 'USERS'
+                  and  table_name = 'CARD_TYPES_ACT'
                  order by owner, index_name)
    loop
       run_sql('alter index "' || buff.owner || '"."' || buff.index_name || '"' ||
@@ -57,12 +57,12 @@ end;
 --   .log - Log File
 
 prompt
-prompt sqlldr_control=CLUE/USERS.ctl
-host sqlldr '&1.' control=CLUE/USERS.ctl data=CLUE/USERS.csv log=CLUE/USERS.log silent=HEADER,FEEDBACK
+prompt sqlldr_control=CLUE/CARD_TYPES_ACT.ctl
+host sqlldr '&1.' control=CLUE/CARD_TYPES_ACT.ctl data=CLUE/CARD_TYPES_ACT.csv log=CLUE/CARD_TYPES_ACT.log silent=HEADER,FEEDBACK
 
 begin
    if '&_RC.' != '0' then
-      raise_application_error(-20000, 'Control file "CLUE/USERS.ctl" returned error: &_RC.');
+      raise_application_error(-20000, 'Control file "CLUE/CARD_TYPES_ACT.ctl" returned error: &_RC.');
    end if;
 end;
 /

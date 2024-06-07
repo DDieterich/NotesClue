@@ -1,6 +1,6 @@
 
 --
---  Consolidated Data Load script for CLUE.GAMES data
+--  Consolidated Data Load script for CLUE.USERS_ACT data
 --
 -- Command Line Parameters:
 --   1 - SYSTEM/password@TNSALIAS
@@ -22,7 +22,7 @@ begin
    for buff in (select owner, trigger_name
                  from  dba_triggers
                  where table_owner = 'CLUE'
-                  and  table_name = 'GAMES'
+                  and  table_name = 'USERS_ACT'
                  order by owner, trigger_name)
    loop
       run_sql('alter trigger "' || buff.owner        || '"' ||
@@ -32,17 +32,17 @@ begin
                  from  dba_constraints
                  where constraint_type = 'R'
                   and  owner = 'CLUE'
-                  and  table_name = 'GAMES'
+                  and  table_name = 'USERS_ACT'
                  order by constraint_name)
    loop
-      run_sql('alter table "CLUE"."GAMES"' ||
+      run_sql('alter table "CLUE"."USERS_ACT"' ||
               ' DISABLE constraint "' || buff.constraint_name || '"');
    end loop;
    for buff in (select owner, index_name
                  from  dba_indexes
                  where index_type = 'DOMAIN'
                   and  table_owner = 'CLUE'
-                  and  table_name = 'GAMES'
+                  and  table_name = 'USERS_ACT'
                  order by owner, index_name)
    loop
       run_sql('alter index "' || buff.owner || '"."' || buff.index_name || '"' ||
@@ -57,12 +57,12 @@ end;
 --   .log - Log File
 
 prompt
-prompt sqlldr_control=CLUE/GAMES.ctl
-host sqlldr '&1.' control=CLUE/GAMES.ctl data=CLUE/GAMES.csv log=CLUE/GAMES.log silent=HEADER,FEEDBACK
+prompt sqlldr_control=CLUE/USERS_ACT.ctl
+host sqlldr '&1.' control=CLUE/USERS_ACT.ctl data=CLUE/USERS_ACT.csv log=CLUE/USERS_ACT.log silent=HEADER,FEEDBACK
 
 begin
    if '&_RC.' != '0' then
-      raise_application_error(-20000, 'Control file "CLUE/GAMES.ctl" returned error: &_RC.');
+      raise_application_error(-20000, 'Control file "CLUE/USERS_ACT.ctl" returned error: &_RC.');
    end if;
 end;
 /
