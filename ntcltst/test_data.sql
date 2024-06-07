@@ -1,6 +1,8 @@
 
 spool test_data
 
+set serveroutput on size unlimited format word_wrapped
+
 execute clue.delete_game;
 execute clue.delete_user;
 
